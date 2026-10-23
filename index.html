@@ -1,703 +1,786 @@
+```xml
+<canvas id="canvas-1" type="web_code" title="MINIATURES SKI RESORT - Shop">
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MINIATURES SKI RESORT — Scale 1:32 Snow Cannons</title>
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Alpine.js for page tab routing and cart management -->
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- Inter Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MINIATURES SKI RESORT BY WIIPY</title>
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #111111;
+      --border-color: #e5e5e5;
+      --accent-color: #ff5500;
+      --accent-hover: #e04b00;
+      --bg-light: #f9f9f9;
+      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
 
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            orange: '#FF5500',
-                            orangeHover: '#E04B00',
-                            black: '#111111',
-                            lightGray: '#F7F7F8',
-                            border: '#E2E2E5',
-                            textMuted: '#66666E'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #FFFFFF;
-            color: #111111;
-        }
-        [x-cloak] { display: none !important; }
-    </style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* Header & Navigation */
+    header {
+      position: sticky;
+      top: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border-color);
+      z-index: 100;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .brand-title {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .brand-subtitle {
+      font-size: 0.75rem;
+      color: #666;
+      font-weight: 500;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .nav-link {
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0.4rem 0;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      border-bottom-color: var(--accent-color);
+      color: var(--accent-color);
+    }
+
+    .cart-btn {
+      background: var(--text-color);
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      cursor: pointer;
+      border: none;
+    }
+
+    .cart-btn:hover {
+      background: var(--accent-color);
+    }
+
+    .cart-badge {
+      background: var(--accent-color);
+      color: #fff;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+    }
+
+    /* Main Container & Tab System */
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      min-height: calc(100vh - 160px);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Hero Banner */
+    .hero {
+      background: var(--bg-light);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 3rem 2rem;
+      margin-bottom: 2.5rem;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+
+    .hero p {
+      font-size: 1rem;
+      color: #555;
+      max-width: 600px;
+      margin: 0 auto 1.5rem auto;
+    }
+
+    .btn-primary {
+      background: var(--accent-color);
+      color: white;
+      padding: 0.75rem 1.75rem;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+      display: inline-block;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-hover);
+    }
+
+    /* Product Grid */
+    .section-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid var(--text-color);
+      padding-bottom: 0.5rem;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .product-card {
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      overflow: hidden;
+      background: #fff;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      background: var(--bg-light);
+    }
+
+    .product-info {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .product-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .product-scale {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: #777;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .product-price {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text-color);
+      margin-bottom: 1rem;
+    }
+
+    .product-actions {
+      margin-top: auto;
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .qty-select {
+      padding: 0.5rem;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .add-to-cart-btn {
+      flex: 1;
+      background: var(--text-color);
+      color: #fff;
+      border: none;
+      padding: 0.6rem;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+    }
+
+    .add-to-cart-btn:hover {
+      background: var(--accent-color);
+    }
+
+    /* Process / How We Make It Section */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+
+    .process-card {
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    .process-img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .process-body {
+      padding: 1.25rem;
+    }
+
+    .process-step {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--accent-color);
+      text-transform: uppercase;
+      margin-bottom: 0.25rem;
+    }
+
+    .process-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .process-desc {
+      font-size: 0.85rem;
+      color: #555;
+    }
+
+    /* Creator Section */
+    .creator-box {
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 2rem;
+      background: var(--bg-light);
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .creator-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .social-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.6rem 1.2rem;
+      border: 1px solid var(--text-color);
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      background: #fff;
+    }
+
+    .social-btn:hover {
+      background: var(--accent-color);
+      color: #fff;
+      border-color: var(--accent-color);
+    }
+
+    /* Cart & Checkout Modal / View */
+    .cart-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1.5rem;
+    }
+
+    .cart-table th, .cart-table td {
+      padding: 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .cart-table th {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      color: #666;
+    }
+
+    .cart-summary {
+      max-width: 400px;
+      margin-left: auto;
+      border: 1px solid var(--border-color);
+      padding: 1.5rem;
+      border-radius: 6px;
+      background: var(--bg-light);
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+      font-size: 0.9rem;
+    }
+
+    .summary-row.total {
+      font-weight: 800;
+      font-size: 1.1rem;
+      border-top: 1px solid var(--border-color);
+      padding-top: 0.75rem;
+    }
+
+    /* Photo Upload Tool Drawer */
+    .tool-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #111;
+      color: #fff;
+      border: none;
+      padding: 0.6rem 1rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
+
+    .tool-drawer {
+      display: none;
+      position: fixed;
+      bottom: 60px;
+      right: 20px;
+      background: #fff;
+      border: 1px solid var(--border-color);
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      z-index: 1000;
+      width: 300px;
+    }
+
+    .tool-drawer.active {
+      display: block;
+    }
+
+    .tool-drawer h4 {
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .tool-drawer input {
+      font-size: 0.75rem;
+      width: 100%;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-color);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #777;
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 600px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      nav {
+        width: 100%;
+        justify-content: space-between;
+      }
+    }
+  </style>
 </head>
+<body>
 
-<body x-data="siteApp()" x-init="init()" class="min-h-screen flex flex-col bg-white text-brand-black antialiased selection:bg-brand-orange selection:text-white">
-
-    <!-- Top Announcement Ribbon -->
-    <div class="bg-brand-black text-white text-xs font-semibold py-2 px-4 text-center tracking-wide flex justify-center items-center gap-2">
-        <span>Handcrafted 1:32 Scale Miniature Snow Cannons</span>
-        <span class="text-brand-orange">&bull;</span>
-        <span>Fixed Price: €25.00 each</span>
-        <span class="text-brand-orange">&bull;</span>
-        <span>Max 5 Units Per Model</span>
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <div class="brand">
+        <span class="brand-title">MINIATURES SKI RESORT</span>
+        <span class="brand-subtitle">BY WIIPY</span>
+      </div>
+      <nav>
+        <span class="nav-link active" onclick="switchTab('shop')">Shop</span>
+        <span class="nav-link" onclick="switchTab('process')">How We Make It</span>
+        <span class="nav-link" onclick="switchTab('creators')">Creators</span>
+        <button class="cart-btn" onclick="switchTab('cart')">
+          Cart <span class="cart-badge" id="cart-count">0</span>
+        </button>
+      </nav>
     </div>
+  </header>
 
-    <!-- Navigation Header -->
-    <header class="sticky top-0 z-40 bg-white border-b border-brand-border">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <!-- Brand Logo -->
-            <button @click="activePage = 'home'" class="text-left focus:outline-none">
-                <span class="text-xl sm:text-2xl font-black tracking-tight text-brand-black block">
-                    MINIATURES SKI RESORT
-                </span>
-                <span class="text-xs font-semibold text-brand-textMuted uppercase tracking-wider block">
-                    BY <span class="text-brand-black font-bold">Nikkes</span> &amp; <span class="text-brand-black font-bold">WIIPY</span>
-                </span>
-            </button>
+  <main>
+    <!-- SHOP TAB -->
+    <section id="tab-shop" class="tab-content active">
+      <div class="hero">
+        <h1>Handcrafted Snow Cannons</h1>
+        <p>Detailed 1:32 scale model snow cannons for your alpine dioramas and miniature ski resorts.</p>
+        <button class="btn-primary" onclick="scrollToShop()">View Collection</button>
+      </div>
 
-            <!-- Multi-Page Navigation Tabs -->
-            <nav class="hidden md:flex items-center space-x-1 border border-brand-border p-1 rounded-full bg-brand-lightGray">
-                <button @click="activePage = 'home'" :class="activePage === 'home' ? 'bg-white text-brand-black shadow-sm font-bold' : 'text-brand-textMuted hover:text-brand-black font-medium'" class="px-5 py-2 rounded-full text-xs transition-all">
-                    Home
-                </button>
-                <button @click="activePage = 'shop'" :class="activePage === 'shop' ? 'bg-white text-brand-black shadow-sm font-bold' : 'text-brand-textMuted hover:text-brand-black font-medium'" class="px-5 py-2 rounded-full text-xs transition-all">
-                    Shop
-                </button>
-                <button @click="activePage = 'craft'" :class="activePage === 'craft' ? 'bg-white text-brand-black shadow-sm font-bold' : 'text-brand-textMuted hover:text-brand-black font-medium'" class="px-5 py-2 rounded-full text-xs transition-all">
-                    How We Make It
-                </button>
-                <button @click="activePage = 'creators'" :class="activePage === 'creators' ? 'bg-white text-brand-black shadow-sm font-bold' : 'text-brand-textMuted hover:text-brand-black font-medium'" class="px-5 py-2 rounded-full text-xs transition-all">
-                    Creators
-                </button>
-            </nav>
+      <h2 class="section-title" id="shop-title">Snow Cannons (Scale 1:32)</h2>
+      <div class="product-grid" id="product-grid">
+        <!-- Dynamic Product Rendering -->
+      </div>
+    </section>
 
-            <!-- Instagram Shortcuts & Cart Button -->
-            <div class="flex items-center space-x-3">
-                <div class="hidden xl:flex items-center space-x-3 border-r border-brand-border pr-4 text-xs font-semibold">
-                    <a href="https://www.instagram.com/nikkes_miniatures__/" target="_blank" class="hover:text-brand-orange flex items-center gap-1 transition-colors">
-                        <i data-lucide="instagram" class="w-3.5 h-3.5 text-brand-orange"></i>
-                        <span>@nikkes_miniatures__</span>
-                    </a>
-                    <a href="https://www.instagram.com/wiipy_footage/" target="_blank" class="hover:text-brand-orange flex items-center gap-1 transition-colors">
-                        <i data-lucide="instagram" class="w-3.5 h-3.5 text-brand-orange"></i>
-                        <span>@wiipy_footage</span>
-                    </a>
-                </div>
-
-                <button @click="activePage = 'cart'" class="bg-brand-black hover:bg-brand-orange text-white px-5 py-2.5 rounded-full text-xs font-bold transition-all flex items-center gap-2">
-                    <i data-lucide="shopping-bag" class="w-4 h-4"></i>
-                    <span>Cart</span>
-                    <span x-show="cartTotalItems > 0" x-text="cartTotalItems" class="bg-brand-orange text-white text-[10px] font-black px-2 py-0.5 rounded-full border border-white"></span>
-                </button>
-            </div>
+    <!-- PROCESS TAB -->
+    <section id="tab-process" class="tab-content">
+      <h2 class="section-title">How We Make It</h2>
+      <p style="margin-bottom: 1.5rem; color: #555;">Take a look behind the scenes at our manufacturing process, precision 3D printing, hand-painted details, and final assembly.</p>
+      
+      <div class="process-grid">
+        <div class="process-card">
+          <img id="proc-img-1" src="1.jpeg" class="process-img" alt="Preparation" onerror="handleImgError(this, 'Process 1')">
+          <div class="process-body">
+            <div class="process-step">Step 01</div>
+            <h3 class="process-title">Parts Printing & Prep</h3>
+            <p class="process-desc">Every individual component is 3D printed with extreme precision before being sanded and checked for high quality accuracy.</p>
+          </div>
         </div>
 
-        <!-- Mobile Nav Bar -->
-        <div class="md:hidden flex items-center justify-around border-t border-brand-border py-2 bg-white text-xs font-semibold">
-            <button @click="activePage = 'home'" :class="activePage === 'home' ? 'text-brand-orange font-bold' : 'text-brand-textMuted'">Home</button>
-            <button @click="activePage = 'shop'" :class="activePage === 'shop' ? 'text-brand-orange font-bold' : 'text-brand-textMuted'">Shop</button>
-            <button @click="activePage = 'craft'" :class="activePage === 'craft' ? 'text-brand-orange font-bold' : 'text-brand-textMuted'">Process</button>
-            <button @click="activePage = 'creators'" :class="activePage === 'creators' ? 'text-brand-orange font-bold' : 'text-brand-textMuted'">Creators</button>
+        <div class="process-card">
+          <img id="proc-img-2" src="2.jpeg" class="process-img" alt="Assembly Line" onerror="handleImgError(this, 'Process 2')">
+          <div class="process-body">
+            <div class="process-step">Step 02</div>
+            <h3 class="process-title">Batch Assembly</h3>
+            <p class="process-desc">Models are aligned in production batches to fit custom frames, trailer mounts, and precision hose connections.</p>
+          </div>
         </div>
-    </header>
 
-    <!-- Main Content Viewport -->
-    <main class="flex-grow">
-
-        <section x-show="activePage === 'home'" x-cloak class="space-y-16 py-12">
-            <!-- Hero Banner -->
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="bg-brand-lightGray border-2 border-brand-black rounded-3xl p-8 sm:p-16 relative overflow-hidden">
-                    <div class="max-w-2xl">
-                        <span class="inline-block bg-brand-orange text-white font-extrabold text-xs uppercase px-3 py-1 rounded-md mb-6 tracking-wider">
-                            Scale 1:32 Collection
-                        </span>
-                        <h1 class="text-4xl sm:text-6xl font-black text-brand-black tracking-tight leading-none mb-6">
-                            MINIATURE SNOW CANNONS.
-                        </h1>
-                        <p class="text-base sm:text-lg text-brand-textMuted font-medium leading-relaxed mb-8">
-                            High-detail 1:32 scale snowmaking equipment designed and handcrafted by Nikkes and WIIPY. Engineered for collectors, ski resort builders, and diorama creators.
-                        </p>
-                        <div class="flex flex-wrap items-center gap-4">
-                            <button @click="activePage = 'shop'" class="bg-brand-orange hover:bg-brand-orangeHover text-white px-8 py-4 rounded-xl font-extrabold text-sm transition-all flex items-center gap-3">
-                                <span>Explore All 6 Models</span>
-                                <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                            </button>
-                            <button @click="activePage = 'craft'" class="bg-white hover:bg-brand-black hover:text-white border-2 border-brand-black text-brand-black px-6 py-3.5 rounded-xl font-bold text-sm transition-all">
-                                How We Make Them
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Featured Highlights -->
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="border-b-2 border-brand-black pb-4 mb-8 flex items-center justify-between">
-                    <h2 class="text-2xl font-black text-brand-black uppercase tracking-tight">Product Lineup</h2>
-                    <button @click="activePage = 'shop'" class="text-xs font-bold text-brand-orange hover:underline flex items-center gap-1">
-                        View Full Shop &rarr;
-                    </button>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <template x-for="product in products.slice(0, 3)" :key="product.id">
-                        <div class="border border-brand-border rounded-2xl overflow-hidden hover:border-brand-black transition-all bg-white flex flex-col justify-between">
-                            <div class="p-4">
-                                <div class="aspect-4/3 rounded-xl bg-brand-lightGray overflow-hidden mb-4 border border-brand-border">
-                                    <img :src="product.image" :alt="product.name" class="w-full h-full object-cover">
-                                </div>
-                                <div class="text-xs font-bold text-brand-orange uppercase mb-1" x-text="product.scale"></div>
-                                <h3 class="font-extrabold text-base text-brand-black mb-2" x-text="product.name"></h3>
-                                <p class="text-xs text-brand-textMuted line-clamp-2 mb-4" x-text="product.description"></p>
-                            </div>
-                            <div class="p-4 pt-0 border-t border-brand-border flex items-center justify-between bg-brand-lightGray/50">
-                                <span class="font-black text-lg text-brand-black">€25.00</span>
-                                <button @click="quickAddToCart(product)" class="bg-brand-black hover:bg-brand-orange text-white px-4 py-2 rounded-lg text-xs font-bold transition-colors">
-                                    Add To Cart
-                                </button>
-                            </div>
-                        </div>
-                    </template>
-                </div>
-            </div>
-
-            <!-- Creator Banner -->
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="bg-brand-black text-white p-8 sm:p-12 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-8">
-                    <div>
-                        <span class="text-brand-orange font-bold text-xs uppercase tracking-widest block mb-2">Authentic Craftsmanship</span>
-                        <h2 class="text-3xl font-black tracking-tight mb-2">Crafted by Nikkes &amp; WIIPY</h2>
-                        <p class="text-gray-400 text-sm max-w-xl">
-                            Each model is designed, printed, assembled, and painted individually. Follow our Instagram accounts for live build logs and custom creations.
-                        </p>
-                    </div>
-                    <div class="flex flex-wrap gap-3">
-                        <a href="https://www.instagram.com/nikkes_miniatures__/" target="_blank" class="bg-white/10 hover:bg-brand-orange text-white px-5 py-3 rounded-xl font-bold text-xs border border-white/20 transition-all flex items-center gap-2">
-                            <i data-lucide="instagram" class="w-4 h-4"></i>
-                            <span>Nikkes</span>
-                        </a>
-                        <a href="https://www.instagram.com/wiipy_footage/" target="_blank" class="bg-white/10 hover:bg-brand-orange text-white px-5 py-3 rounded-xl font-bold text-xs border border-white/20 transition-all flex items-center gap-2">
-                            <i data-lucide="instagram" class="w-4 h-4"></i>
-                            <span>WIIPY</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section x-show="activePage === 'shop'" x-cloak class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Shop Header -->
-            <div class="border-b-2 border-brand-black pb-6 mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4">
-                <div>
-                    <span class="text-brand-orange font-bold text-xs uppercase tracking-wider block mb-1">Scale 1:32 Models</span>
-                    <h1 class="text-3xl font-black text-brand-black tracking-tight uppercase">Snow Cannon Catalog</h1>
-                </div>
-                <div class="text-xs font-semibold text-brand-textMuted bg-brand-lightGray border border-brand-border px-4 py-2 rounded-xl inline-block">
-                    Price: <span class="text-brand-black font-bold">€25.00 each</span> &bull; Maximum quantity: <span class="text-brand-orange font-bold">5 per model</span>
-                </div>
-            </div>
-
-            <!-- Products Grid (6 Models) -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <template x-for="product in products" :key="product.id">
-                    <div class="border-2 border-brand-border rounded-2xl overflow-hidden hover:border-brand-black transition-all bg-white flex flex-col justify-between group">
-                        <div>
-                            <!-- Product Image -->
-                            <div class="relative aspect-4/3 bg-brand-lightGray border-b border-brand-border overflow-hidden">
-                                <img :src="product.image" :alt="product.name" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                                <span class="absolute top-3 left-3 bg-brand-black text-white text-[11px] font-black px-2.5 py-1 rounded-md uppercase">
-                                    1:32 SCALE
-                                </span>
-                                <span class="absolute top-3 right-3 bg-brand-orange text-white text-sm font-black px-3 py-1 rounded-md">
-                                    €25.00
-                                </span>
-                            </div>
-
-                            <!-- Product Info -->
-                            <div class="p-6">
-                                <h3 class="text-lg font-black text-brand-black mb-2 leading-tight" x-text="product.name"></h3>
-                                <p class="text-xs text-brand-textMuted leading-relaxed mb-4" x-text="product.description"></p>
-                            </div>
-                        </div>
-
-                        <!-- Quantity Selector & Add Button -->
-                        <div class="p-6 pt-0 space-y-3">
-                            <div class="flex items-center justify-between text-xs font-bold text-brand-textMuted bg-brand-lightGray p-2 rounded-xl border border-brand-border">
-                                <span>Quantity (Max 5):</span>
-                                <div class="flex items-center space-x-2">
-                                    <button @click="decreaseProductQty(product.id)" class="w-7 h-7 bg-white border border-brand-border rounded-lg text-brand-black font-bold hover:bg-brand-lightGray flex items-center justify-center">-</button>
-                                    <span class="w-6 text-center font-black text-brand-black text-sm" x-text="product.selectedQty"></span>
-                                    <button @click="increaseProductQty(product.id)" class="w-7 h-7 bg-white border border-brand-border rounded-lg text-brand-black font-bold hover:bg-brand-lightGray flex items-center justify-center">+</button>
-                                </div>
-                            </div>
-
-                            <button @click="addToCart(product)" class="w-full py-3.5 bg-brand-black hover:bg-brand-orange text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-colors flex items-center justify-center gap-2">
-                                <i data-lucide="plus" class="w-4 h-4"></i>
-                                <span>Add To Cart (€<span x-text="(25 * product.selectedQty).toFixed(2)"></span>)</span>
-                            </button>
-                        </div>
-                    </div>
-                </template>
-            </div>
-        </section>
-
-        <section x-show="activePage === 'craft'" x-cloak class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-            <!-- Process Header -->
-            <div class="border-b-2 border-brand-black pb-6">
-                <span class="text-brand-orange font-bold text-xs uppercase tracking-wider block mb-1">Behind The Scenes</span>
-                <h1 class="text-3xl font-black text-brand-black tracking-tight uppercase">How We Make It</h1>
-                <p class="text-sm text-brand-textMuted mt-2 max-w-2xl">
-                    Every 1:32 scale snow cannon is crafted with precise detail. Here is a look at the workshop process from initial components to completed models.
-                </p>
-            </div>
-
-            <!-- Process Grid (Using uploaded 1.jpeg, 2.jpeg, 3.jpeg) -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Step 1 -->
-                <div class="border-2 border-brand-border rounded-2xl p-4 bg-white hover:border-brand-black transition-all">
-                    <div class="aspect-4/3 rounded-xl overflow-hidden mb-4 bg-brand-lightGray border border-brand-border">
-                        <img src="1.jpeg" alt="Trailer lineup process" class="w-full h-full object-cover">
-                    </div>
-                    <div class="inline-block bg-brand-black text-white text-[10px] font-black uppercase px-2.5 py-1 rounded mb-2">
-                        STEP 01
-                    </div>
-                    <h3 class="font-extrabold text-base text-brand-black mb-1">Chassis &amp; Trailer Rigging</h3>
-                    <p class="text-xs text-brand-textMuted leading-relaxed">
-                        Chassis frames, wheels, and stabilizer jacks are assembled in batches to ensure perfect 1:32 scale alignment.
-                    </p>
-                </div>
-
-                <!-- Step 2 -->
-                <div class="border-2 border-brand-border rounded-2xl p-4 bg-white hover:border-brand-black transition-all">
-                    <div class="aspect-4/3 rounded-xl overflow-hidden mb-4 bg-brand-lightGray border border-brand-border">
-                        <img src="2.jpeg" alt="Yellow snow cannons lineup" class="w-full h-full object-cover">
-                    </div>
-                    <div class="inline-block bg-brand-black text-white text-[10px] font-black uppercase px-2.5 py-1 rounded mb-2">
-                        STEP 02
-                    </div>
-                    <h3 class="font-extrabold text-base text-brand-black mb-1">Turbine &amp; Valve Assembly</h3>
-                    <p class="text-xs text-brand-textMuted leading-relaxed">
-                        Propeller nozzles, compressor housings, decals, and safety labels are attached by hand.
-                    </p>
-                </div>
-
-                <!-- Step 3 -->
-                <div class="border-2 border-brand-border rounded-2xl p-4 bg-white hover:border-brand-black transition-all">
-                    <div class="aspect-4/3 rounded-xl overflow-hidden mb-4 bg-brand-lightGray border border-brand-border">
-                        <img src="3.jpeg" alt="Assembly desk with blue cannon" class="w-full h-full object-cover">
-                    </div>
-                    <div class="inline-block bg-brand-black text-white text-[10px] font-black uppercase px-2.5 py-1 rounded mb-2">
-                        STEP 03
-                    </div>
-                    <h3 class="font-extrabold text-base text-brand-black mb-1">Final Quality Check</h3>
-                    <p class="text-xs text-brand-textMuted leading-relaxed">
-                        Each individual cannon undergoes inspection on our assembly workbench before being securely boxed for delivery.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Quality Banner -->
-            <div class="bg-brand-lightGray border-2 border-brand-black p-8 rounded-2xl flex flex-col md:flex-row items-center justify-between gap-6">
-                <div>
-                    <h3 class="font-black text-xl text-brand-black mb-1">Want a custom scale model?</h3>
-                    <p class="text-xs text-brand-textMuted">Contact us via Instagram for custom paint schemes or diorama accessories.</p>
-                </div>
-                <button @click="activePage = 'creators'" class="bg-brand-black hover:bg-brand-orange text-white px-6 py-3 rounded-xl text-xs font-bold transition-colors">
-                    Meet The Creators
-                </button>
-            </div>
-        </section>
-
-        <section x-show="activePage === 'creators'" x-cloak class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
-            <!-- Creators Header -->
-            <div class="border-b-2 border-brand-black pb-6">
-                <span class="text-brand-orange font-bold text-xs uppercase tracking-wider block mb-1">The Team</span>
-                <h1 class="text-3xl font-black text-brand-black tracking-tight uppercase">About The Creators</h1>
-                <p class="text-sm text-brand-textMuted mt-2 max-w-2xl">
-                    MINIATURES SKI RESORT is a joint project by Nikkes and WIIPY, driven by a passion for winter sports and miniature model engineering.
-                </p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                <!-- Creator 1: Nikkes -->
-                <div class="border-2 border-brand-black rounded-3xl p-8 bg-white flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 bg-brand-orange/10 text-brand-orange rounded-2xl flex items-center justify-center font-black text-xl mb-6 border border-brand-orange/30">
-                            N
-                        </div>
-                        <h2 class="text-2xl font-black text-brand-black mb-2">Nikkes</h2>
-                        <span class="text-xs font-bold text-brand-orange uppercase block mb-4">Model Construction &amp; Printing</span>
-                        <p class="text-xs text-brand-textMuted leading-relaxed mb-6">
-                            Focuses on high-precision 1:32 scale model fabrication, trailer design, and technical scaling of real-world alpine machinery.
-                        </p>
-                    </div>
-                    <a href="https://www.instagram.com/nikkes_miniatures__/" target="_blank" class="w-full py-3 bg-brand-black hover:bg-brand-orange text-white font-bold text-xs rounded-xl transition-colors flex items-center justify-center gap-2">
-                        <i data-lucide="instagram" class="w-4 h-4"></i>
-                        <span>@nikkes_miniatures__</span>
-                    </a>
-                </div>
-
-                <!-- Creator 2: WIIPY -->
-                <div class="border-2 border-brand-black rounded-3xl p-8 bg-white flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 bg-brand-orange/10 text-brand-orange rounded-2xl flex items-center justify-center font-black text-xl mb-6 border border-brand-orange/30">
-                            W
-                        </div>
-                        <h2 class="text-2xl font-black text-brand-black mb-2">WIIPY</h2>
-                        <span class="text-xs font-bold text-brand-orange uppercase block mb-4">Media &amp; Resort Dioramas</span>
-                        <p class="text-xs text-brand-textMuted leading-relaxed mb-6">
-                            Specializes in snow resort diorama scenes, photography, video footage, and custom colorways for ski slopes.
-                        </p>
-                    </div>
-                    <a href="https://www.instagram.com/wiipy_footage/" target="_blank" class="w-full py-3 bg-brand-black hover:bg-brand-orange text-white font-bold text-xs rounded-xl transition-colors flex items-center justify-center gap-2">
-                        <i data-lucide="instagram" class="w-4 h-4"></i>
-                        <span>@wiipy_footage</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-        <section x-show="activePage === 'cart'" x-cloak class="py-12 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="border-b-2 border-brand-black pb-6 mb-8 flex items-center justify-between">
-                <div>
-                    <span class="text-brand-orange font-bold text-xs uppercase tracking-wider block mb-1">Your Order</span>
-                    <h1 class="text-3xl font-black text-brand-black tracking-tight uppercase">Shopping Cart</h1>
-                </div>
-                <button @click="activePage = 'shop'" class="text-xs font-bold text-brand-black hover:text-brand-orange flex items-center gap-1">
-                    &larr; Continue Shopping
-                </button>
-            </div>
-
-            <!-- Empty Cart State -->
-            <template x-if="cart.length === 0">
-                <div class="text-center py-20 border-2 border-dashed border-brand-border rounded-3xl bg-brand-lightGray">
-                    <i data-lucide="shopping-bag" class="w-12 h-12 text-brand-textMuted mx-auto mb-4 opacity-50"></i>
-                    <h2 class="text-xl font-black text-brand-black mb-2">Your cart is empty</h2>
-                    <p class="text-xs text-brand-textMuted mb-6">Select from our 6 1:32 scale snow cannon models.</p>
-                    <button @click="activePage = 'shop'" class="bg-brand-black hover:bg-brand-orange text-white px-8 py-3.5 rounded-xl text-xs font-bold uppercase transition-colors">
-                        Browse Shop
-                    </button>
-                </div>
-            </template>
-
-            <!-- Filled Cart View -->
-            <template x-if="cart.length > 0">
-                <div class="space-y-8">
-                    <!-- Items List -->
-                    <div class="space-y-4">
-                        <template x-for="item in cart" :key="item.id">
-                            <div class="border-2 border-brand-border rounded-2xl p-4 bg-white flex flex-col sm:flex-row items-center justify-between gap-4">
-                                <div class="flex items-center gap-4 w-full sm:w-auto">
-                                    <img :src="item.image" :alt="item.name" class="w-16 h-16 object-cover rounded-xl border border-brand-border bg-brand-lightGray">
-                                    <div>
-                                        <h3 class="font-extrabold text-sm text-brand-black" x-text="item.name"></h3>
-                                        <p class="text-xs text-brand-orange font-bold mt-0.5">Scale 1:32 &bull; €25.00 each</p>
-                                    </div>
-                                </div>
-
-                                <div class="flex items-center justify-between sm:justify-end gap-6 w-full sm:w-auto border-t sm:border-t-0 pt-3 sm:pt-0 border-brand-border">
-                                    <!-- Qty buttons -->
-                                    <div class="flex items-center space-x-2 border border-brand-border rounded-lg p-1 bg-brand-lightGray">
-                                        <button @click="updateCartQty(item.id, item.quantity - 1)" class="w-6 h-6 bg-white rounded font-bold text-xs hover:bg-brand-border text-brand-black">-</button>
-                                        <span class="w-6 text-center font-black text-xs text-brand-black" x-text="item.quantity"></span>
-                                        <button @click="updateCartQty(item.id, item.quantity + 1)" class="w-6 h-6 bg-white rounded font-bold text-xs hover:bg-brand-border text-brand-black">+</button>
-                                    </div>
-
-                                    <div class="font-black text-sm text-brand-black min-w-[70px] text-right" x-text="'€' + (item.price * item.quantity).toFixed(2)"></div>
-
-                                    <button @click="removeFromCart(item.id)" class="text-brand-textMuted hover:text-red-600 transition-colors">
-                                        <i data-lucide="trash-2" class="w-4 h-4"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </template>
-                    </div>
-
-                    <!-- Order Summary Box -->
-                    <div class="bg-brand-lightGray border-2 border-brand-black p-6 rounded-2xl space-y-4">
-                        <div class="flex justify-between items-center text-sm font-bold text-brand-textMuted">
-                            <span>Total Items:</span>
-                            <span class="text-brand-black font-extrabold" x-text="cartTotalItems"></span>
-                        </div>
-                        <div class="flex justify-between items-center text-lg font-black text-brand-black pt-2 border-t border-brand-border">
-                            <span>Subtotal Amount:</span>
-                            <span class="text-brand-orange text-2xl" x-text="'€' + cartTotalPrice.toFixed(2)"></span>
-                        </div>
-                    </div>
-
-                    <!-- Checkout Form Section -->
-                    <div class="border-2 border-brand-black rounded-3xl p-8 bg-white space-y-6">
-                        <h2 class="text-xl font-black text-brand-black uppercase tracking-tight">Checkout Details</h2>
-                        
-                        <form @submit.prevent="submitOrder" class="space-y-4">
-                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-xs font-bold uppercase text-brand-textMuted mb-1">Full Name</label>
-                                    <input type="text" x-model="checkoutForm.name" required placeholder="John Doe" class="w-full border-2 border-brand-border rounded-xl px-4 py-3 text-xs font-medium focus:outline-none focus:border-brand-black">
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-bold uppercase text-brand-textMuted mb-1">Email Address</label>
-                                    <input type="email" x-model="checkoutForm.email" required placeholder="john@example.com" class="w-full border-2 border-brand-border rounded-xl px-4 py-3 text-xs font-medium focus:outline-none focus:border-brand-black">
-                                </div>
-                            </div>
-
-                            <div>
-                                <label class="block text-xs font-bold uppercase text-brand-textMuted mb-1">Shipping Address</label>
-                                <input type="text" x-model="checkoutForm.address" required placeholder="123 Alpine Road" class="w-full border-2 border-brand-border rounded-xl px-4 py-3 text-xs font-medium focus:outline-none focus:border-brand-black">
-                            </div>
-
-                            <div class="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block text-xs font-bold uppercase text-brand-textMuted mb-1">Postal Code</label>
-                                    <input type="text" x-model="checkoutForm.zip" required placeholder="90210" class="w-full border-2 border-brand-border rounded-xl px-4 py-3 text-xs font-medium focus:outline-none focus:border-brand-black">
-                                </div>
-                                <div>
-                                    <label class="block text-xs font-bold uppercase text-brand-textMuted mb-1">City / Country</label>
-                                    <input type="text" x-model="checkoutForm.city" required placeholder="Innsbruck" class="w-full border-2 border-brand-border rounded-xl px-4 py-3 text-xs font-medium focus:outline-none focus:border-brand-black">
-                                </div>
-                            </div>
-
-                            <div>
-                                <label class="block text-xs font-bold uppercase text-brand-textMuted mb-2">Payment Option</label>
-                                <div class="grid grid-cols-3 gap-3">
-                                    <label class="border-2 border-brand-border p-3 rounded-xl flex items-center justify-center font-bold text-xs cursor-pointer hover:border-brand-black has-[:checked]:border-brand-orange has-[:checked]:bg-brand-orange/5">
-                                        <input type="radio" name="payment" value="iDEAL" x-model="checkoutForm.payment" class="hidden" checked>
-                                        <span>iDEAL</span>
-                                    </label>
-                                    <label class="border-2 border-brand-border p-3 rounded-xl flex items-center justify-center font-bold text-xs cursor-pointer hover:border-brand-black has-[:checked]:border-brand-orange has-[:checked]:bg-brand-orange/5">
-                                        <input type="radio" name="payment" value="PayPal" x-model="checkoutForm.payment" class="hidden">
-                                        <span>PayPal</span>
-                                    </label>
-                                    <label class="border-2 border-brand-border p-3 rounded-xl flex items-center justify-center font-bold text-xs cursor-pointer hover:border-brand-black has-[:checked]:border-brand-orange has-[:checked]:bg-brand-orange/5">
-                                        <input type="radio" name="payment" value="Credit Card" x-model="checkoutForm.payment" class="hidden">
-                                        <span>Credit Card</span>
-                                    </label>
-                                </div>
-                            </div>
-
-                            <button type="submit" class="w-full py-4 bg-brand-orange hover:bg-brand-orangeHover text-white font-extrabold text-sm uppercase tracking-wider rounded-xl transition-colors mt-4 shadow-md">
-                                Place Order (€<span x-text="cartTotalPrice.toFixed(2)"></span>)
-                            </button>
-                        </form>
-                    </div>
-                </div>
-            </template>
-        </section>
-
-    </main>
-
-    <!-- Order Confirmation Overlay -->
-    <div x-show="orderSuccess" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-xs" x-cloak>
-        <div class="bg-white border-2 border-brand-black rounded-3xl max-w-md w-full p-8 text-center space-y-4">
-            <div class="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto font-black text-2xl">
-                ✓
-            </div>
-            <h2 class="text-2xl font-black text-brand-black">Order Confirmed!</h2>
-            <p class="text-xs text-brand-textMuted leading-relaxed">
-                Thank you for your order. Nikkes &amp; WIIPY have received your request and will prepare your 1:32 scale snow cannon package.
-            </p>
-            <button @click="orderSuccess = false; activePage = 'home'" class="w-full py-3.5 bg-brand-black text-white font-bold text-xs uppercase rounded-xl hover:bg-brand-orange transition-colors">
-                Return To Home Page
-            </button>
+        <div class="process-card">
+          <img id="proc-img-3" src="3.jpeg" class="process-img" alt="Custom Detailing" onerror="handleImgError(this, 'Process 3')">
+          <div class="process-body">
+            <div class="process-step">Step 03</div>
+            <h3 class="process-title">Custom Paint & Finishing</h3>
+            <p class="process-desc">Hand-painted decals, brand details, and mechanical fittings are carefully attached to ensure scale 1:32 realism.</p>
+          </div>
         </div>
-    </div>
+      </div>
+    </section>
 
-    <!-- Site Footer -->
-    <footer class="mt-auto border-t-2 border-brand-black bg-white py-10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
-                <div class="font-black text-lg tracking-tight text-brand-black">MINIATURES SKI RESORT</div>
-                <div class="text-xs font-semibold text-brand-textMuted">BY Nikkes &amp; WIIPY &bull; Scale 1:32 Collectibles</div>
-            </div>
-
-            <div class="flex items-center space-x-6 text-xs font-bold">
-                <a href="https://www.instagram.com/nikkes_miniatures__/" target="_blank" class="hover:text-brand-orange transition-colors">
-                    Instagram: @nikkes_miniatures__
-                </a>
-                <a href="https://www.instagram.com/wiipy_footage/" target="_blank" class="hover:text-brand-orange transition-colors">
-                    Instagram: @wiipy_footage
-                </a>
-            </div>
+    <!-- CREATORS TAB -->
+    <section id="tab-creators" class="tab-content">
+      <h2 class="section-title">Creators</h2>
+      <div class="creator-box">
+        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">WIIPY</h3>
+        <p style="color: #666; margin-bottom: 1.5rem;">Official YouTube Channel & Footage Creator</p>
+        <p style="font-size: 0.9rem; margin-bottom: 1.5rem;">Follow the official channel for videos, resort showcases, and behind-the-scenes content.</p>
+        <div class="creator-links">
+          <a href="https://www.youtube.com/@WIIPY_FOOTAGE" target="_blank" class="social-btn">
+            YouTube Channel
+          </a>
+          <a href="https://www.instagram.com/wiipy_footage/" target="_blank" class="social-btn">
+            Instagram
+          </a>
         </div>
-    </footer>
+      </div>
+    </section>
 
-    <script>
-        function siteApp() {
-            return {
-                activePage: 'home',
-                orderSuccess: false,
-                cartTotalItems: 0,
-                cartTotalPrice: 0,
+    <!-- CART TAB -->
+    <section id="tab-cart" class="tab-content">
+      <h2 class="section-title">Your Cart</h2>
+      <div id="cart-container">
+        <!-- Rendered via JavaScript -->
+      </div>
+    </section>
+  </main>
 
-                checkoutForm: {
-                    name: '',
-                    email: '',
-                    address: '',
-                    zip: '',
-                    city: '',
-                    payment: 'iDEAL'
-                },
+  <!-- Photo Loader Tool Drawer -->
+  <button class="tool-btn" onclick="toggleDrawer()">📷 Load Local Photos</button>
+  <div class="tool-drawer" id="tool-drawer">
+    <h4>Select local photo files</h4>
+    <p style="font-size: 0.7rem; color: #666; margin-bottom: 0.5rem;">If photos don't render automatically, select them here:</p>
+    <input type="file" id="photo-input" multiple accept="image/*" onchange="loadUserPhotos(event)">
+  </div>
 
-                // All 6 Models (€25.00 each, Scale 1:32)
-                products: [
-                    {
-                        id: 1,
-                        name: 'High Pole Snow Lance',
-                        scale: '1:32 Scale Model',
-                        description: 'Tall snow lance mounted on a heavy stability base plate with precise nozzle heads.',
-                        price: 25.00,
-                        selectedQty: 1,
-                        image: 'WhatsApp Image 2026-10-11 at 20.28.47 (2).jpeg'
-                    },
-                    {
-                        id: 2,
-                        name: 'Yellow Fan Gun on Wheeled Chassis',
-                        scale: '1:32 Scale Model',
-                        description: 'Bright yellow propeller gun featuring red ring nozzles and a mobile wheel frame.',
-                        price: 25.00,
-                        selectedQty: 1,
-                        image: 'WhatsApp Image 2026-10-11 at 20.28.47 (3).jpeg'
-                    },
-                    {
-                        id: 3,
-                        name: 'TechnoAlpin Fan Cannon',
-                        scale: '1:32 Scale Model',
-                        description: 'Detailed TechnoAlpin fan cannon on adjustable stabilizer leg supports.',
-                        price: 25.00,
-                        selectedQty: 1,
-                        image: 'WhatsApp Image 2026-10-11 at 20.28.47 (4).jpeg'
-                    },
-                    {
-                        id: 4,
-                        name: 'Heavy Duty Trailer Fan Cannon',
-                        scale: '1:32 Scale Model',
-                        description: 'Mounted M20 snow cannon on a dark blue trailer base with heavy rubber tires.',
-                        price: 25.00,
-                        selectedQty: 1,
-                        image: 'WhatsApp Image 2026-10-11 at 20.28.48.jpeg'
-                    },
-                    {
-                        id: 5,
-                        name: 'Green High-Output Snow Cannon',
-                        scale: '1:32 Scale Model',
-                        description: 'Green & white custom cannon complete with power plugs and cable coil details.',
-                        price: 25.00,
-                        selectedQty: 1,
-                        image: 'WhatsApp Image 2026-10-11 at 20.28.48 (1).jpeg'
-                    },
-                    {
-                        id: 6,
-                        name: 'DemacLenko Blue Tower Cannon',
-                        scale: '1:32 Scale Model',
-                        description: 'Blue DemacLenko fan cannon on a elevated tripod rig with control panel.',
-                        price: 25.00,
-                        selectedQty: 1,
-                        image: 'WhatsApp Image 2026-10-11 at 20.28.48 (2).jpeg'
-                    }
-                ],
+  <footer>
+    <p>&copy; 2026 MINIATURES SKI RESORT BY WIIPY. All rights reserved.</p>
+  </footer>
 
-                cart: [],
+  <script>
+    // Product Data
+    const products = [
+      { id: 1, name: "Lance Snow Cannon", scale: "1:32", price: 25.00, img: "WhatsApp Image 2026-10-11 at 20.28.47 (2).jpeg" },
+      { id: 2, name: "Yellow Fan Cannon (Red Ring)", scale: "1:32", price: 25.00, img: "WhatsApp Image 2026-10-11 at 20.28.47 (3).jpeg" },
+      { id: 3, name: "TechnoAlpin TR8 Fan Cannon", scale: "1:32", price: 25.00, img: "WhatsApp Image 2026-10-11 at 20.28.47 (4).jpeg" },
+      { id: 4, name: "M20 Yellow Fan Cannon", scale: "1:32", price: 25.00, img: "WhatsApp Image 2026-10-11 at 20.28.48.jpeg" },
+      { id: 5, name: "Green Compact Fan Cannon", scale: "1:32", price: 25.00, img: "WhatsApp Image 2026-10-11 at 20.28.48 (1).jpeg" },
+      { id: 6, name: "Demaclenko Blue Fan Cannon", scale: "1:32", price: 25.00, img: "WhatsApp Image 2026-10-11 at 20.28.48 (2).jpeg" }
+    ];
 
-                init() {
-                    this.$watch('cart', () => {
-                        this.updateTotals();
-                    }, { deep: true });
+    let cart = {};
 
-                    this.$watch('activePage', () => {
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
-                    });
+    // Render Products
+    function renderProducts() {
+      const grid = document.getElementById('product-grid');
+      grid.innerHTML = products.map(p => `
+        <div class="product-card">
+          <img id="prod-img-${p.id}" src="${p.img}" class="product-image" alt="${p.name}" onerror="handleImgError(this, '${p.name}')">
+          <div class="product-info">
+            <div class="product-title">${p.name}</div>
+            <div class="product-scale">Scale ${p.scale}</div>
+            <div class="product-price">€${p.price.toFixed(2)}</div>
+            <div class="product-actions">
+              <select id="qty-${p.id}" class="qty-select">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Max)</option>
+              </select>
+              <button class="add-to-cart-btn" onclick="addToCart(${p.id})">Add to Cart</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
 
-                    setTimeout(() => {
-                        if (typeof lucide !== 'undefined') {
-                            lucide.createIcons();
-                        }
-                    }, 100);
-                },
+    // SVG Fallbacks
+    function handleImgError(imgElem, label) {
+      const svg = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 300 200" style="background:#f4f4f4;">
+          <rect width="300" height="200" fill="#f4f4f4"/>
+          <circle cx="150" cy="90" r="40" fill="#e0e0e0"/>
+          <text x="150" y="95" font-family="sans-serif" font-size="12" fill="#666" text-anchor="middle" font-weight="bold">${label}</text>
+          <text x="150" y="160" font-family="sans-serif" font-size="10" fill="#999" text-anchor="middle">1:32 Scale Model</text>
+        </svg>
+      `;
+      imgElem.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+    }
 
-                increaseProductQty(id) {
-                    const p = this.products.find(item => item.id === id);
-                    if (p && p.selectedQty < 5) p.selectedQty++;
-                },
+    // Tab Navigation
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('active'));
+      
+      document.getElementById(`tab-${tabId}`).classList.add('active');
+      
+      const activeLink = Array.from(document.querySelectorAll('.nav-link')).find(
+        el => el.getAttribute('onclick') && el.getAttribute('onclick').includes(tabId)
+      );
+      if (activeLink) activeLink.classList.add('active');
 
-                decreaseProductQty(id) {
-                    const p = this.products.find(item => item.id === id);
-                    if (p && p.selectedQty > 1) p.selectedQty--;
-                },
+      if (tabId === 'cart') {
+        renderCart();
+      }
+      window.scrollTo(0,0);
+    }
 
-                quickAddToCart(product) {
-                    this.addToCart({ ...product, selectedQty: 1 });
-                },
+    function scrollToShop() {
+      document.getElementById('shop-title').scrollIntoView({ behavior: 'smooth' });
+    }
 
-                addToCart(product) {
-                    const qty = product.selectedQty || 1;
-                    const existing = this.cart.find(item => item.id === product.id);
+    // Cart System
+    function addToCart(productId) {
+      const qtySelect = document.getElementById(`qty-${productId}`);
+      const qty = parseInt(qtySelect.value);
+      
+      const currentCartQty = cart[productId] || 0;
+      if (currentCartQty + qty > 5) {
+        cart[productId] = 5;
+        alert("Maximum limit of 5 units per model reached.");
+      } else {
+        cart[productId] = currentCartQty + qty;
+      }
+      
+      updateCartBadge();
+      alert("Added to cart!");
+    }
 
-                    if (existing) {
-                        const nextQty = existing.quantity + qty;
-                        if (nextQty > 5) {
-                            existing.quantity = 5;
-                            alert('Maximum limit of 5 units per cannon model reached.');
-                        } else {
-                            existing.quantity = nextQty;
-                        }
-                    } else {
-                        this.cart.push({
-                            id: product.id,
-                            name: product.name,
-                            price: product.price,
-                            quantity: Math.min(qty, 5),
-                            image: product.image
-                        });
-                    }
+    function updateCartBadge() {
+      const total = Object.values(cart).reduce((a, b) => a + b, 0);
+      document.getElementById('cart-count').innerText = total;
+    }
 
-                    this.activePage = 'cart';
-                    setTimeout(() => lucide.createIcons(), 50);
-                },
+    function renderCart() {
+      const container = document.getElementById('cart-container');
+      const keys = Object.keys(cart).filter(id => cart[id] > 0);
 
-                updateCartQty(id, newQty) {
-                    if (newQty <= 0) {
-                        this.removeFromCart(id);
-                        return;
-                    }
-                    if (newQty > 5) {
-                        alert('Maximum limit is 5 units per cannon model.');
-                        newQty = 5;
-                    }
-                    const item = this.cart.find(i => i.id === id);
-                    if (item) item.quantity = newQty;
-                },
+      if (keys.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 3rem 0; color: #777;">
+            <p>Your cart is empty.</p>
+            <button class="btn-primary" style="margin-top: 1rem;" onclick="switchTab('shop')">Return to Shop</button>
+          </div>
+        `;
+        return;
+      }
 
-                removeFromCart(id) {
-                    this.cart = this.cart.filter(item => item.id !== id);
-                },
+      let subtotal = 0;
+      const rows = keys.map(id => {
+        const prod = products.find(p => p.id == id);
+        const qty = cart[id];
+        const itemTotal = prod.price * qty;
+        subtotal += itemTotal;
+        return `
+          <tr>
+            <td><strong>${prod.name}</strong><br><small style="color:#777;">Scale 1:32</small></td>
+            <td>€${prod.price.toFixed(2)}</td>
+            <td>
+              <select onchange="updateCartQty(${prod.id}, this.value)">
+                ${[1,2,3,4,5].map(n => `<option value="${n}" ${n === qty ? 'selected' : ''}>${n}</option>`).join('')}
+              </select>
+            </td>
+            <td>€${itemTotal.toFixed(2)}</td>
+            <td><button onclick="removeFromCart(${prod.id})" style="border:none; background:none; color:red; cursor:pointer; font-weight:bold;">✕</button></td>
+          </tr>
+        `;
+      }).join('');
 
-                updateTotals() {
-                    this.cartTotalItems = this.cart.reduce((sum, i) => sum + i.quantity, 0);
-                    this.cartTotalPrice = this.cart.reduce((sum, i) => sum + (i.price * i.quantity), 0);
-                },
+      container.innerHTML = `
+        <table class="cart-table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Price</th>
+              <th>Quantity</th>
+              <th>Total</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>${rows}</tbody>
+        </table>
 
-                submitOrder() {
-                    this.cart = [];
-                    this.orderSuccess = true;
-                    setTimeout(() => lucide.createIcons(), 50);
-                }
-            }
+        <div class="cart-summary">
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span>€${subtotal.toFixed(2)}</span>
+          </div>
+          <div class="summary-row">
+            <span>Shipping</span>
+            <span>Calculated at checkout</span>
+          </div>
+          <div class="summary-row total">
+            <span>Total</span>
+            <span>€${subtotal.toFixed(2)}</span>
+          </div>
+          <button class="btn-primary" style="width: 100%; margin-top: 1rem;" onclick="alert('Checkout process initiated!')">Proceed to Checkout</button>
+        </div>
+      `;
+    }
+
+    function updateCartQty(productId, qty) {
+      cart[productId] = parseInt(qty);
+      updateCartBadge();
+      renderCart();
+    }
+
+    function removeFromCart(productId) {
+      delete cart[productId];
+      updateCartBadge();
+      renderCart();
+    }
+
+    // Photo Loading Helper
+    function toggleDrawer() {
+      document.getElementById('tool-drawer').classList.toggle('active');
+    }
+
+    function loadUserPhotos(event) {
+      const files = event.target.files;
+      for (let file of files) {
+        const url = URL.createObjectURL(file);
+        
+        // Match product images or process images by name or index
+        if (file.name.includes("1") && file.name.includes("jpeg")) {
+          document.getElementById('proc-img-1').src = url;
         }
-    </script>
+        if (file.name.includes("2") && file.name.includes("jpeg")) {
+          document.getElementById('proc-img-2').src = url;
+        }
+        if (file.name.includes("3") && file.name.includes("jpeg")) {
+          document.getElementById('proc-img-3').src = url;
+        }
+
+        // Check products
+        products.forEach(p => {
+          if (file.name === p.img) {
+            const imgEl = document.getElementById(`prod-img-${p.id}`);
+            if (imgEl) imgEl.src = url;
+          }
+        });
+      }
+    }
+
+    // Initialize
+    renderProducts();
+  </script>
 </body>
 </html>
+```
