@@ -4,15 +4,21 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MINIATURES SKI RESORT BY WIIPY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
   <style>
     :root {
-      --bg-color: #ffffff;
-      --text-color: #111111;
-      --border-color: #e5e5e5;
-      --accent-color: #ff5500;
-      --accent-hover: #e04b00;
-      --bg-light: #f9f9f9;
-      --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --bg-main: #0b0f19;
+      --bg-card: rgba(255, 255, 255, 0.05);
+      --border-card: rgba(255, 255, 255, 0.12);
+      --accent-orange: #ff5500;
+      --accent-orange-hover: #ff7733;
+      --accent-blue: #00d2ff;
+      --text-white: #ffffff;
+      --text-gray: #a0aec0;
+      --font-main: 'Plus Jakarta Sans', -apple-system, sans-serif;
     }
 
     * {
@@ -22,11 +28,46 @@
     }
 
     body {
-      font-family: var(--font-family);
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      line-height: 1.5;
-      -webkit-font-smoothing: antialiased;
+      font-family: var(--font-main);
+      background-color: var(--bg-main);
+      color: var(--text-white);
+      line-height: 1.6;
+      overflow-x: hidden;
+      min-height: 100vh;
+      background: radial-gradient(circle at 50% 0%, #1a233a 0%, #0b0f19 70%);
+    }
+
+    /* Falling Snow Background Effect */
+    .snow-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .snowflake {
+      position: absolute;
+      top: -10px;
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 1rem;
+      user-select: none;
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(105vh) rotate(360deg);
+      }
+    }
+
+    /* Content Wrapper */
+    .app-wrapper {
+      position: relative;
+      z-index: 2;
     }
 
     a {
@@ -34,20 +75,20 @@
       text-decoration: none;
     }
 
-    /* Header & Navigation */
+    /* Header */
     header {
       position: sticky;
       top: 0;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--border-color);
+      background: rgba(11, 15, 25, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-card);
       z-index: 100;
     }
 
     .nav-container {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 1rem 1.5rem;
+      padding: 1.2rem 1.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -55,178 +96,288 @@
 
     .brand {
       display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .brand-logo-img {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 1px solid var(--border-card);
+      box-shadow: 0 4px 12px rgba(255, 85, 0, 0.3);
+    }
+
+    .brand-text {
+      display: flex;
       flex-direction: column;
     }
 
     .brand-title {
       font-size: 1.1rem;
       font-weight: 800;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
+      background: linear-gradient(90deg, #fff, #a0aec0);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     .brand-subtitle {
-      font-size: 0.75rem;
-      color: #666;
-      font-weight: 600;
-      letter-spacing: 0.05em;
+      font-size: 0.7rem;
+      color: var(--accent-orange);
+      font-weight: 700;
+      letter-spacing: 0.12em;
     }
 
     nav {
       display: flex;
-      gap: 1.5rem;
+      gap: 2rem;
       align-items: center;
     }
 
     .nav-link {
       font-size: 0.9rem;
       font-weight: 600;
+      color: var(--text-gray);
       cursor: pointer;
       padding: 0.4rem 0;
-      border-bottom: 2px solid transparent;
       transition: all 0.2s ease;
+      position: relative;
     }
 
     .nav-link:hover, .nav-link.active {
-      border-bottom-color: var(--accent-color);
-      color: var(--accent-color);
+      color: var(--text-white);
+    }
+
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent-orange);
+      border-radius: 2px;
+      box-shadow: 0 0 10px var(--accent-orange);
     }
 
     .cart-btn {
-      background: var(--text-color);
+      background: linear-gradient(135deg, var(--accent-orange), var(--accent-orange-hover));
       color: #fff;
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
-      font-weight: 600;
+      padding: 0.6rem 1.2rem;
+      border-radius: 20px;
+      font-weight: 700;
       font-size: 0.85rem;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.6rem;
       cursor: pointer;
       border: none;
+      box-shadow: 0 4px 15px rgba(255, 85, 0, 0.3);
+      transition: transform 0.2s ease;
     }
 
     .cart-btn:hover {
-      background: var(--accent-color);
+      transform: translateY(-2px);
     }
 
     .cart-badge {
-      background: var(--accent-color);
-      color: #fff;
+      background: #ffffff;
+      color: var(--accent-orange);
       border-radius: 50%;
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.7rem;
+      font-size: 0.75rem;
+      font-weight: 800;
     }
 
-    /* Main Container & Tab System */
+    /* Main Container */
     main {
       max-width: 1200px;
       margin: 0 auto;
-      padding: 2rem 1.5rem;
-      min-height: calc(100vh - 160px);
+      padding: 2.5rem 1.5rem;
+      min-height: calc(100vh - 180px);
     }
 
     .tab-content {
       display: none;
+      animation: fadeIn 0.4s ease;
     }
 
     .tab-content.active {
       display: block;
     }
 
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
     /* Hero Banner */
     .hero {
-      background: var(--bg-light);
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 3rem 2rem;
-      margin-bottom: 2.5rem;
+      background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+      border: 1px solid var(--border-card);
+      border-radius: 16px;
+      padding: 4rem 2rem;
+      margin-bottom: 3rem;
       text-align: center;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(0,210,255,0.15) 0%, rgba(0,0,0,0) 70%);
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(0, 210, 255, 0.1);
+      color: var(--accent-blue);
+      border: 1px solid rgba(0, 210, 255, 0.3);
+      padding: 0.3rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
     }
 
     .hero h1 {
-      font-size: 2.2rem;
+      font-size: 2.8rem;
       font-weight: 800;
-      margin-bottom: 0.5rem;
+      margin-bottom: 1rem;
       text-transform: uppercase;
+      letter-spacing: -0.02em;
     }
 
     .hero p {
-      font-size: 1rem;
-      color: #555;
-      max-width: 600px;
-      margin: 0 auto 1.5rem auto;
+      font-size: 1.1rem;
+      color: var(--text-gray);
+      max-width: 650px;
+      margin: 0 auto 2rem auto;
     }
 
     .btn-primary {
-      background: var(--accent-color);
+      background: linear-gradient(135deg, var(--accent-orange), var(--accent-orange-hover));
       color: white;
-      padding: 0.75rem 1.75rem;
-      border-radius: 4px;
+      padding: 0.85rem 2.2rem;
+      border-radius: 30px;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       border: none;
       cursor: pointer;
       display: inline-block;
       text-transform: uppercase;
       letter-spacing: 0.05em;
+      box-shadow: 0 4px 20px rgba(255, 85, 0, 0.4);
+      transition: all 0.2s ease;
     }
 
     .btn-primary:hover {
-      background: var(--accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(255, 85, 0, 0.6);
+    }
+
+    /* Section Headers */
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      letter-spacing: 0.05em;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border-card);
     }
 
     /* Product Grid */
-    .section-title {
-      font-size: 1.4rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-      border-bottom: 2px solid var(--text-color);
-      padding-bottom: 0.5rem;
-    }
-
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
     }
 
     .product-card {
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 16px;
       overflow: hidden;
-      background: #fff;
       display: flex;
       flex-direction: column;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
     }
 
     .product-card:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transform: translateY(-6px);
+      border-color: rgba(255, 85, 0, 0.4);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .product-img-wrapper {
+      position: relative;
+      width: 100%;
+      height: 280px;
+      background: #141a29;
+      overflow: hidden;
     }
 
     .product-image {
       width: 100%;
-      height: 240px;
+      height: 100%;
       object-fit: cover;
-      background: var(--bg-light);
+      transition: transform 0.5s ease;
+    }
+
+    .product-card:hover .product-image {
+      transform: scale(1.05);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      background: rgba(11, 15, 25, 0.8);
+      border: 1px solid var(--border-card);
+      backdrop-filter: blur(8px);
+      color: var(--accent-blue);
+      padding: 0.25rem 0.6rem;
+      border-radius: 6px;
+      font-size: 0.7rem;
+      font-weight: 700;
     }
 
     .product-info {
-      padding: 1.25rem;
+      padding: 1.5rem;
       display: flex;
       flex-direction: column;
       flex-grow: 1;
     }
 
     .product-title {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       font-weight: 700;
       margin-bottom: 0.25rem;
     }
@@ -234,223 +385,256 @@
     .product-scale {
       font-size: 0.75rem;
       font-weight: 600;
-      color: #777;
-      text-transform: uppercase;
-      margin-bottom: 0.75rem;
+      color: var(--text-gray);
+      margin-bottom: 1rem;
+    }
+
+    .product-price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.25rem;
     }
 
     .product-price {
-      font-size: 1.2rem;
+      font-size: 1.5rem;
       font-weight: 800;
-      color: var(--text-color);
-      margin-bottom: 1rem;
+      color: var(--text-white);
+    }
+
+    .product-limit {
+      font-size: 0.7rem;
+      color: var(--accent-orange);
+      font-weight: 700;
+      background: rgba(255, 85, 0, 0.1);
+      padding: 0.2rem 0.5rem;
+      border-radius: 4px;
     }
 
     .product-actions {
       margin-top: auto;
       display: flex;
-      gap: 0.5rem;
+      gap: 0.75rem;
     }
 
     .qty-select {
-      padding: 0.5rem;
-      border: 1px solid var(--border-color);
-      border-radius: 4px;
-      font-weight: 600;
+      background: #141a29;
+      color: #fff;
+      border: 1px solid var(--border-card);
+      padding: 0.6rem 0.8rem;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
     }
 
     .add-to-cart-btn {
       flex: 1;
-      background: var(--text-color);
+      background: rgba(255, 255, 255, 0.1);
       color: #fff;
-      border: none;
-      padding: 0.6rem;
-      border-radius: 4px;
-      font-weight: 600;
+      border: 1px solid var(--border-card);
+      padding: 0.75rem;
+      border-radius: 8px;
+      font-weight: 700;
       font-size: 0.85rem;
       cursor: pointer;
+      transition: all 0.2s ease;
     }
 
     .add-to-cart-btn:hover {
-      background: var(--accent-color);
+      background: var(--accent-orange);
+      border-color: var(--accent-orange);
+      box-shadow: 0 4px 15px rgba(255, 85, 0, 0.3);
     }
 
-    /* Process Section */
+    /* Process Grid */
     .process-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 2rem;
-      margin-top: 1rem;
     }
 
     .process-card {
-      border: 1px solid var(--border-color);
-      border-radius: 6px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 16px;
       overflow: hidden;
+      backdrop-filter: blur(10px);
+    }
+
+    .process-img-wrapper {
+      height: 240px;
+      overflow: hidden;
+      background: #141a29;
     }
 
     .process-img {
       width: 100%;
-      height: 250px;
+      height: 100%;
       object-fit: cover;
     }
 
     .process-body {
-      padding: 1.25rem;
+      padding: 1.5rem;
     }
 
     .process-step {
       font-size: 0.75rem;
       font-weight: 800;
-      color: var(--accent-color);
+      color: var(--accent-orange);
       text-transform: uppercase;
+      letter-spacing: 0.1em;
       margin-bottom: 0.25rem;
     }
 
     .process-title {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       font-weight: 700;
       margin-bottom: 0.5rem;
     }
 
     .process-desc {
-      font-size: 0.85rem;
-      color: #555;
+      font-size: 0.9rem;
+      color: var(--text-gray);
     }
 
-    /* Creator Section */
+    /* Creator Box */
     .creator-box {
-      border: 1px solid var(--border-color);
-      border-radius: 8px;
-      padding: 2.5rem 2rem;
-      background: var(--bg-light);
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 20px;
+      padding: 3rem 2rem;
       max-width: 600px;
       margin: 0 auto;
       text-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .creator-avatar-img {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 1.5rem auto;
+      border: 2px solid var(--accent-orange);
+      box-shadow: 0 8px 25px rgba(255, 85, 0, 0.4);
     }
 
     .creator-links {
       display: flex;
       justify-content: center;
       gap: 1rem;
-      margin-top: 1.5rem;
+      margin-top: 2rem;
       flex-wrap: wrap;
     }
 
     .social-btn {
       display: inline-flex;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0.6rem 1.2rem;
-      border: 1px solid var(--text-color);
-      border-radius: 4px;
-      font-weight: 600;
+      gap: 0.6rem;
+      padding: 0.75rem 1.5rem;
+      border-radius: 30px;
+      font-weight: 700;
       font-size: 0.85rem;
-      background: #fff;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border-card);
       transition: all 0.2s ease;
     }
 
     .social-btn:hover {
-      background: var(--accent-color);
-      color: #fff;
-      border-color: var(--accent-color);
+      background: var(--accent-orange);
+      border-color: var(--accent-orange);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(255, 85, 0, 0.3);
     }
 
-    /* Cart & Checkout View */
+    /* Cart Table */
     .cart-table {
       width: 100%;
       border-collapse: collapse;
-      margin-bottom: 1.5rem;
+      margin-bottom: 2rem;
     }
 
     .cart-table th, .cart-table td {
-      padding: 0.75rem;
+      padding: 1rem;
       text-align: left;
-      border-bottom: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-card);
     }
 
     .cart-table th {
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       text-transform: uppercase;
-      color: #666;
+      color: var(--text-gray);
     }
 
     .cart-summary {
       max-width: 400px;
       margin-left: auto;
-      border: 1px solid var(--border-color);
-      padding: 1.5rem;
-      border-radius: 6px;
-      background: var(--bg-light);
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      padding: 2rem;
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
     }
 
     .summary-row {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 0.75rem;
-      font-size: 0.9rem;
+      margin-bottom: 0.9rem;
+      font-size: 0.95rem;
     }
 
     .summary-row.total {
       font-weight: 800;
-      font-size: 1.1rem;
-      border-top: 1px solid var(--border-color);
-      padding-top: 0.75rem;
+      font-size: 1.2rem;
+      border-top: 1px solid var(--border-card);
+      padding-top: 1rem;
+      color: var(--text-white);
     }
 
-    /* Photo Loader Tool Drawer */
+    /* Photo Loader Drawer */
     .tool-btn {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #111;
+      bottom: 24px;
+      right: 24px;
+      background: #141a29;
       color: #fff;
-      border: none;
-      padding: 0.6rem 1rem;
-      border-radius: 20px;
-      font-size: 0.75rem;
+      border: 1px solid var(--border-card);
+      padding: 0.75rem 1.25rem;
+      border-radius: 30px;
+      font-size: 0.8rem;
       font-weight: 700;
       cursor: pointer;
       z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      backdrop-filter: blur(10px);
     }
 
     .tool-drawer {
       display: none;
       position: fixed;
-      bottom: 60px;
-      right: 20px;
-      background: #fff;
-      border: 1px solid var(--border-color);
-      padding: 1rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      bottom: 75px;
+      right: 24px;
+      background: #141a29;
+      border: 1px solid var(--border-card);
+      padding: 1.25rem;
+      border-radius: 12px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.5);
       z-index: 1000;
-      width: 300px;
+      width: 320px;
     }
 
     .tool-drawer.active {
       display: block;
     }
 
-    .tool-drawer h4 {
-      font-size: 0.85rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .tool-drawer input {
-      font-size: 0.75rem;
-      width: 100%;
-    }
-
     /* Footer */
     footer {
-      border-top: 1px solid var(--border-color);
-      padding: 2rem 1.5rem;
+      border-top: 1px solid var(--border-card);
+      padding: 2.5rem 1.5rem;
       text-align: center;
-      font-size: 0.8rem;
-      color: #777;
-      margin-top: 3rem;
+      font-size: 0.85rem;
+      color: var(--text-gray);
+      margin-top: 4rem;
     }
 
     @media (max-width: 600px) {
@@ -462,119 +646,147 @@
         width: 100%;
         justify-content: space-between;
       }
+      .hero h1 {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header>
-    <div class="nav-container">
-      <div class="brand">
-        <span class="brand-title">MINIATURES SKI RESORT</span>
-        <span class="brand-subtitle">BY WIIPY</span>
+  <!-- Snowfall background -->
+  <div class="snow-container" id="snow-container"></div>
+
+  <div class="app-wrapper">
+    <!-- Header -->
+    <header>
+      <div class="nav-container">
+        <div class="brand">
+          <img id="brand-logo" src="logo nieuw.jpg" class="brand-logo-img" alt="WIIPY Logo" onerror="handleLogoError(this)">
+          <div class="brand-text">
+            <span class="brand-title">MINIATURES SKI RESORT</span>
+            <span class="brand-subtitle">BY WIIPY</span>
+          </div>
+        </div>
+        <nav>
+          <span class="nav-link active" onclick="switchTab('shop')">Shop</span>
+          <span class="nav-link" onclick="switchTab('process')">How We Make It</span>
+          <span class="nav-link" onclick="switchTab('creators')">Creators</span>
+          <button class="cart-btn" onclick="switchTab('cart')">
+            Cart <span class="cart-badge" id="cart-count">0</span>
+          </button>
+        </nav>
       </div>
-      <nav>
-        <span class="nav-link active" onclick="switchTab('shop')">Shop</span>
-        <span class="nav-link" onclick="switchTab('process')">How We Make It</span>
-        <span class="nav-link" onclick="switchTab('creators')">Creators</span>
-        <button class="cart-btn" onclick="switchTab('cart')">
-          Cart <span class="cart-badge" id="cart-count">0</span>
-        </button>
-      </nav>
+    </header>
+
+    <main>
+      <!-- SHOP TAB -->
+      <section id="tab-shop" class="tab-content active">
+        <div class="hero">
+          <span class="hero-tag">Scale 1:32 Precision Models</span>
+          <h1>Miniature Snow Cannons</h1>
+          <p>Handcrafted, highly-detailed 1:32 scale model snow cannons engineered for alpine dioramas and miniature ski resorts.</p>
+          <button class="btn-primary" onclick="scrollToShop()">Explore Models</button>
+        </div>
+
+        <h2 class="section-title" id="shop-title">Snow Cannons Collection</h2>
+        <div class="product-grid" id="product-grid"></div>
+      </section>
+
+      <!-- PROCESS TAB -->
+      <section id="tab-process" class="tab-content">
+        <h2 class="section-title">How We Make It</h2>
+        <p style="margin-bottom: 2rem; color: var(--text-gray);">Craftsmanship in miniature scale: From high-precision 3D printing to hand-painted details and custom mounting hardware.</p>
+        
+        <div class="process-grid">
+          <div class="process-card">
+            <div class="process-img-wrapper">
+              <img id="proc-img-1" src="1.jpeg" class="process-img" alt="Preparation" onerror="handleImgError(this, 'Process 1')">
+            </div>
+            <div class="process-body">
+              <div class="process-step">Step 01</div>
+              <h3 class="process-title">3D Printing & Preparation</h3>
+              <p class="process-desc">Every nozzle, frame, and trailer component is 3D printed with micron-level detail before being sanded for finish.</p>
+            </div>
+          </div>
+
+          <div class="process-card">
+            <div class="process-img-wrapper">
+              <img id="proc-img-2" src="2.jpeg" class="process-img" alt="Assembly Line" onerror="handleImgError(this, 'Process 2')">
+            </div>
+            <div class="process-body">
+              <div class="process-step">Step 02</div>
+              <h3 class="process-title">Precision Batch Assembly</h3>
+              <p class="process-desc">Models are fitted onto custom wheeled chassis or tower bases with scale-accurate trailer hitches and support legs.</p>
+            </div>
+          </div>
+
+          <div class="process-card">
+            <div class="process-img-wrapper">
+              <img id="proc-img-3" src="3.jpeg" class="process-img" alt="Custom Detailing" onerror="handleImgError(this, 'Process 3')">
+            </div>
+            <div class="process-body">
+              <div class="process-step">Step 03</div>
+              <h3 class="process-title">Hand Painting & Decals</h3>
+              <p class="process-desc">Finished with authentic alpine livery, warning markings, pressure hoses, and electrical connection lines.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CREATORS TAB -->
+      <section id="tab-creators" class="tab-content">
+        <h2 class="section-title">Creators</h2>
+        <div class="creator-box">
+          <img id="creator-avatar" src="logo nieuw.jpg" class="creator-avatar-img" alt="WIIPY Gaming" onerror="handleLogoError(this)">
+          <h3 style="font-size: 1.8rem; margin-bottom: 0.5rem;">WIIPY</h3>
+          <p style="color: var(--accent-blue); font-weight: 700; margin-bottom: 1rem;">Footage & Diorama Creator</p>
+          <p style="font-size: 0.95rem; color: var(--text-gray); margin-bottom: 1.5rem;">Follow for behind-the-scenes videos, miniature ski resort operations, and model testing.</p>
+          <div class="creator-links">
+            <a href="https://www.youtube.com/@wiipy" target="_blank" class="social-btn">
+              ▶ YouTube Channel
+            </a>
+            <a href="https://www.instagram.com/wiipy_footage/" target="_blank" class="social-btn">
+              📸 Instagram
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- CART TAB -->
+      <section id="tab-cart" class="tab-content">
+        <h2 class="section-title">Your Shopping Cart</h2>
+        <div id="cart-container"></div>
+      </section>
+    </main>
+
+    <!-- Photo Loader Drawer -->
+    <button class="tool-btn" onclick="toggleDrawer()">📷 Upload Photos</button>
+    <div class="tool-drawer" id="tool-drawer">
+      <h4 style="font-size: 0.9rem; margin-bottom: 0.5rem;">Select Photo Files</h4>
+      <p style="font-size: 0.75rem; color: var(--text-gray); margin-bottom: 0.75rem;">If photos don't render automatically, select them here:</p>
+      <input type="file" id="photo-input" multiple accept="image/*" onchange="loadUserPhotos(event)">
     </div>
-  </header>
 
-  <main>
-    <!-- SHOP TAB -->
-    <section id="tab-shop" class="tab-content active">
-      <div class="hero">
-        <h1>Handcrafted Snow Cannons</h1>
-        <p>Detailed 1:32 scale model snow cannons for your alpine dioramas and miniature ski resorts.</p>
-        <button class="btn-primary" onclick="scrollToShop()">View Collection</button>
-      </div>
-
-      <h2 class="section-title" id="shop-title">Snow Cannons (Scale 1:32)</h2>
-      <div class="product-grid" id="product-grid">
-        <!-- Dynamic Product Rendering -->
-      </div>
-    </section>
-
-    <!-- PROCESS TAB -->
-    <section id="tab-process" class="tab-content">
-      <h2 class="section-title">How We Make It</h2>
-      <p style="margin-bottom: 1.5rem; color: #555;">Take a look behind the scenes at our manufacturing process, precision 3D printing, hand-painted details, and final assembly.</p>
-      
-      <div class="process-grid">
-        <div class="process-card">
-          <img id="proc-img-1" src="1.jpeg" class="process-img" alt="Preparation" onerror="handleImgError(this, 'Process 1')">
-          <div class="process-body">
-            <div class="process-step">Step 01</div>
-            <h3 class="process-title">Parts Printing & Prep</h3>
-            <p class="process-desc">Every individual component is 3D printed with extreme precision before being sanded and checked for high quality accuracy.</p>
-          </div>
-        </div>
-
-        <div class="process-card">
-          <img id="proc-img-2" src="2.jpeg" class="process-img" alt="Assembly Line" onerror="handleImgError(this, 'Process 2')">
-          <div class="process-body">
-            <div class="process-step">Step 02</div>
-            <h3 class="process-title">Batch Assembly</h3>
-            <p class="process-desc">Models are aligned in production batches to fit custom frames, trailer mounts, and precision hose connections.</p>
-          </div>
-        </div>
-
-        <div class="process-card">
-          <img id="proc-img-3" src="3.jpeg" class="process-img" alt="Custom Detailing" onerror="handleImgError(this, 'Process 3')">
-          <div class="process-body">
-            <div class="process-step">Step 03</div>
-            <h3 class="process-title">Custom Paint & Finishing</h3>
-            <p class="process-desc">Hand-painted decals, brand details, and mechanical fittings are carefully attached to ensure scale 1:32 realism.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CREATORS TAB -->
-    <section id="tab-creators" class="tab-content">
-      <h2 class="section-title">Creators</h2>
-      <div class="creator-box">
-        <h3 style="font-size: 1.5rem; margin-bottom: 0.5rem;">WIIPY</h3>
-        <p style="color: #666; margin-bottom: 1.5rem;">Official YouTube Channel & Footage Creator</p>
-        <p style="font-size: 0.9rem; margin-bottom: 1.5rem;">Follow the official channel for videos, resort showcases, and behind-the-scenes content.</p>
-        <div class="creator-links">
-          <a href="https://www.youtube.com/@WIIPY_FOOTAGE" target="_blank" class="social-btn">
-            YouTube Channel
-          </a>
-          <a href="https://www.instagram.com/wiipy_footage/" target="_blank" class="social-btn">
-            Instagram
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- CART TAB -->
-    <section id="tab-cart" class="tab-content">
-      <h2 class="section-title">Your Cart</h2>
-      <div id="cart-container">
-        <!-- Rendered via JavaScript -->
-      </div>
-    </section>
-  </main>
-
-  <!-- Photo Loader Tool Drawer -->
-  <button class="tool-btn" onclick="toggleDrawer()">📷 Load Local Photos</button>
-  <div class="tool-drawer" id="tool-drawer">
-    <h4>Select local photo files</h4>
-    <p style="font-size: 0.7rem; color: #666; margin-bottom: 0.5rem;">If photos don't render automatically, select them here:</p>
-    <input type="file" id="photo-input" multiple accept="image/*" onchange="loadUserPhotos(event)">
+    <footer>
+      <p>&copy; 2026 MINIATURES SKI RESORT BY WIIPY. All rights reserved.</p>
+    </footer>
   </div>
 
-  <footer>
-    <p>&copy; 2026 MINIATURES SKI RESORT BY WIIPY. All rights reserved.</p>
-  </footer>
-
   <script>
+    // Create Snow Flakes Effect
+    const snowContainer = document.getElementById('snow-container');
+    for (let i = 0; i < 30; i++) {
+      const flake = document.createElement('div');
+      flake.className = 'snowflake';
+      flake.innerHTML = '❄';
+      flake.style.left = Math.random() * 100 + 'vw';
+      flake.style.animationDuration = (Math.random() * 5 + 5) + 's';
+      flake.style.opacity = Math.random() * 0.5 + 0.2;
+      flake.style.fontSize = (Math.random() * 10 + 10) + 'px';
+      snowContainer.appendChild(flake);
+    }
+
     // Product Data
     const products = [
       { id: 1, name: "Lance Snow Cannon", scale: "1:32", price: 25.00, img: "WhatsApp Image 2026-10-11 at 20.28.47 (2).jpeg" },
@@ -587,23 +799,28 @@
 
     let cart = {};
 
-    // Render Products
     function renderProducts() {
       const grid = document.getElementById('product-grid');
       grid.innerHTML = products.map(p => `
         <div class="product-card">
-          <img id="prod-img-${p.id}" src="${p.img}" class="product-image" alt="${p.name}" onerror="handleImgError(this, '${p.name}')">
+          <div class="product-img-wrapper">
+            <span class="product-badge">SCALE ${p.scale}</span>
+            <img id="prod-img-${p.id}" src="${p.img}" class="product-image" alt="${p.name}" onerror="handleImgError(this, '${p.name}')">
+          </div>
           <div class="product-info">
             <div class="product-title">${p.name}</div>
-            <div class="product-scale">Scale ${p.scale}</div>
-            <div class="product-price">€${p.price.toFixed(2)}</div>
+            <div class="product-scale">Detailed Diorama Model</div>
+            <div class="product-price-row">
+              <div class="product-price">€${p.price.toFixed(2)}</div>
+              <div class="product-limit">Max 5 per order</div>
+            </div>
             <div class="product-actions">
               <select id="qty-${p.id}" class="qty-select">
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
-                <option value="5">5 (Max)</option>
+                <option value="5">5</option>
               </select>
               <button class="add-to-cart-btn" onclick="addToCart(${p.id})">Add to Cart</button>
             </div>
@@ -612,20 +829,22 @@
       `).join('');
     }
 
-    // SVG Fallbacks
+    function handleLogoError(imgElem) {
+      imgElem.style.display = 'none';
+    }
+
     function handleImgError(imgElem, label) {
       const svg = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 300 200" style="background:#f4f4f4;">
-          <rect width="300" height="200" fill="#f4f4f4"/>
-          <circle cx="150" cy="90" r="40" fill="#e0e0e0"/>
-          <text x="150" y="95" font-family="sans-serif" font-size="12" fill="#666" text-anchor="middle" font-weight="bold">${label}</text>
-          <text x="150" y="160" font-family="sans-serif" font-size="10" fill="#999" text-anchor="middle">1:32 Scale Model</text>
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 300 200">
+          <rect width="300" height="200" fill="#141a29"/>
+          <circle cx="150" cy="90" r="35" fill="#1e2738" stroke="#ff5500" stroke-width="2"/>
+          <text x="150" y="95" font-family="sans-serif" font-size="11" fill="#fff" text-anchor="middle" font-weight="bold">${label}</text>
+          <text x="150" y="160" font-family="sans-serif" font-size="9" fill="#a0aec0" text-anchor="middle">1:32 Scale Model</text>
         </svg>
       `;
       imgElem.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
     }
 
-    // Tab Navigation
     function switchTab(tabId) {
       document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.nav-link').forEach(el => el.classList.remove('active'));
@@ -637,9 +856,7 @@
       );
       if (activeLink) activeLink.classList.add('active');
 
-      if (tabId === 'cart') {
-        renderCart();
-      }
+      if (tabId === 'cart') renderCart();
       window.scrollTo(0,0);
     }
 
@@ -647,12 +864,11 @@
       document.getElementById('shop-title').scrollIntoView({ behavior: 'smooth' });
     }
 
-    // Cart System
     function addToCart(productId) {
       const qtySelect = document.getElementById(`qty-${productId}`);
       const qty = parseInt(qtySelect.value);
-      
       const currentCartQty = cart[productId] || 0;
+
       if (currentCartQty + qty > 5) {
         cart[productId] = 5;
         alert("Maximum limit of 5 units per model reached.");
@@ -675,9 +891,9 @@
 
       if (keys.length === 0) {
         container.innerHTML = `
-          <div style="text-align: center; padding: 3rem 0; color: #777;">
-            <p>Your cart is empty.</p>
-            <button class="btn-primary" style="margin-top: 1rem;" onclick="switchTab('shop')">Return to Shop</button>
+          <div style="text-align: center; padding: 4rem 0; color: var(--text-gray);">
+            <p style="font-size: 1.1rem; margin-bottom: 1rem;">Your shopping cart is empty.</p>
+            <button class="btn-primary" onclick="switchTab('shop')">Explore Products</button>
           </div>
         `;
         return;
@@ -691,15 +907,15 @@
         subtotal += itemTotal;
         return `
           <tr>
-            <td><strong>${prod.name}</strong><br><small style="color:#777;">Scale 1:32</small></td>
+            <td><strong>${prod.name}</strong><br><small style="color:var(--text-gray);">Scale 1:32</small></td>
             <td>€${prod.price.toFixed(2)}</td>
             <td>
-              <select onchange="updateCartQty(${prod.id}, this.value)">
+              <select class="qty-select" onchange="updateCartQty(${prod.id}, this.value)">
                 ${[1,2,3,4,5].map(n => `<option value="${n}" ${n === qty ? 'selected' : ''}>${n}</option>`).join('')}
               </select>
             </td>
             <td>€${itemTotal.toFixed(2)}</td>
-            <td><button onclick="removeFromCart(${prod.id})" style="border:none; background:none; color:red; cursor:pointer; font-weight:bold;">✕</button></td>
+            <td><button onclick="removeFromCart(${prod.id})" style="border:none; background:none; color:var(--accent-orange); cursor:pointer; font-weight:bold; font-size: 1.1rem;">✕</button></td>
           </tr>
         `;
       }).join('');
@@ -748,7 +964,6 @@
       renderCart();
     }
 
-    // Photo Loading Helper
     function toggleDrawer() {
       document.getElementById('tool-drawer').classList.toggle('active');
     }
@@ -758,6 +973,11 @@
       for (let file of files) {
         const url = URL.createObjectURL(file);
         
+        if (file.name.includes("logo")) {
+          document.getElementById('brand-logo').src = url;
+          document.getElementById('creator-avatar').src = url;
+        }
+
         if (file.name.includes("1") && file.name.includes("jpeg")) {
           document.getElementById('proc-img-1').src = url;
         }
@@ -777,7 +997,6 @@
       }
     }
 
-    // Initialize
     renderProducts();
   </script>
 </body>
