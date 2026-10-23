@@ -1,4 +1,3 @@
-<canvas id="canvas-1" type="web_code" title="MINIATURES SKI RESORT - Shop">
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,7 +68,8 @@
     .brand-subtitle {
       font-size: 0.75rem;
       color: #666;
-      font-weight: 500;
+      font-weight: 600;
+      letter-spacing: 0.05em;
     }
 
     nav {
@@ -275,7 +275,7 @@
       background: var(--accent-color);
     }
 
-    /* Process / How We Make It Section */
+    /* Process Section */
     .process-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -322,7 +322,7 @@
     .creator-box {
       border: 1px solid var(--border-color);
       border-radius: 8px;
-      padding: 2rem;
+      padding: 2.5rem 2rem;
       background: var(--bg-light);
       max-width: 600px;
       margin: 0 auto;
@@ -334,6 +334,7 @@
       justify-content: center;
       gap: 1rem;
       margin-top: 1.5rem;
+      flex-wrap: wrap;
     }
 
     .social-btn {
@@ -346,6 +347,7 @@
       font-weight: 600;
       font-size: 0.85rem;
       background: #fff;
+      transition: all 0.2s ease;
     }
 
     .social-btn:hover {
@@ -354,7 +356,7 @@
       border-color: var(--accent-color);
     }
 
-    /* Cart & Checkout Modal / View */
+    /* Cart & Checkout View */
     .cart-table {
       width: 100%;
       border-collapse: collapse;
@@ -396,7 +398,7 @@
       padding-top: 0.75rem;
     }
 
-    /* Photo Upload Tool Drawer */
+    /* Photo Loader Tool Drawer */
     .tool-btn {
       position: fixed;
       bottom: 20px;
@@ -756,7 +758,6 @@
       for (let file of files) {
         const url = URL.createObjectURL(file);
         
-        // Match product images or process images by name or index
         if (file.name.includes("1") && file.name.includes("jpeg")) {
           document.getElementById('proc-img-1').src = url;
         }
@@ -767,7 +768,6 @@
           document.getElementById('proc-img-3').src = url;
         }
 
-        // Check products
         products.forEach(p => {
           if (file.name === p.img) {
             const imgEl = document.getElementById(`prod-img-${p.id}`);
@@ -782,4 +782,3 @@
   </script>
 </body>
 </html>
-```
