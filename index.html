@@ -8,6 +8,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   
+  <!-- Google Translate Script -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'nl',
+        includedLanguages: 'nl,en,de,fr,it,es,cs,pl',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+        autoDisplay: false
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
   <style>
     :root {
       --bg-main: #ffffff;
@@ -52,10 +65,10 @@
       background: var(--text-main);
       color: #ffffff;
       text-align: center;
-      padding: 0.75rem 1.5rem;
-      font-size: 0.8rem;
+      padding: 0.6rem 1rem;
+      font-size: 0.78rem;
       font-weight: 800;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
     }
 
@@ -64,11 +77,11 @@
       border-bottom: 1px solid #fee2e2;
       color: #991b1b;
       text-align: center;
-      padding: 0.65rem 1.5rem;
-      font-size: 0.75rem;
+      padding: 0.55rem 1rem;
+      font-size: 0.72rem;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
     }
 
     /* Modern Clean Header */
@@ -80,29 +93,30 @@
     .nav-container {
       max-width: 1400px;
       margin: 0 auto;
-      padding: 1.5rem 2.5rem;
+      padding: 1.25rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 2rem;
+      gap: 1.5rem;
+      flex-wrap: wrap;
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 1.25rem;
+      gap: 1rem;
     }
 
     .brand-logo-img {
-      width: 54px;
-      height: 54px;
+      width: 48px;
+      height: 48px;
       border-radius: 10px;
       object-fit: cover;
       border: 1px solid var(--border-color);
     }
 
     .brand-title {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: 900;
       letter-spacing: -0.02em;
       text-transform: uppercase;
@@ -110,7 +124,7 @@
     }
 
     .brand-subtitle {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       color: var(--accent-orange);
       font-weight: 800;
       letter-spacing: 0.12em;
@@ -120,8 +134,9 @@
 
     nav { 
       display: flex; 
-      gap: 2.5rem; 
+      gap: 1.75rem; 
       align-items: center; 
+      flex-wrap: wrap;
     }
 
     .nav-link {
@@ -129,10 +144,10 @@
       font-weight: 800;
       color: var(--text-muted);
       cursor: pointer;
-      padding: 0.6rem 0;
+      padding: 0.5rem 0;
       transition: color 0.2s ease;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.05em;
       position: relative;
     }
 
@@ -149,29 +164,48 @@
       border-radius: 2px;
     }
 
+    /* Tools Bar (Translate & Currency) */
+    .header-tools {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .currency-select {
+      background: var(--bg-surface);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      padding: 0.45rem 0.65rem;
+      border-radius: 6px;
+      font-weight: 800;
+      font-size: 0.8rem;
+      cursor: pointer;
+      outline: none;
+    }
+
     .cart-btn {
       background: var(--text-main);
       color: #fff;
-      padding: 0.75rem 1.5rem;
+      padding: 0.65rem 1.25rem;
       border-radius: 8px;
       font-weight: 800;
       font-size: 0.85rem;
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.6rem;
       cursor: pointer;
       border: none;
       transition: background 0.2s ease, transform 0.1s ease;
     }
 
-    .cart-btn:hover { background: var(--accent-orange); transform: translateY(-1px); }
+    .cart-btn:hover { background: var(--accent-orange); }
 
     .cart-badge {
       background: var(--accent-orange);
       color: #ffffff;
       border-radius: 50%;
-      width: 22px;
-      height: 22px;
+      width: 20px;
+      height: 20px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -183,7 +217,7 @@
     main {
       max-width: 1400px;
       margin: 0 auto;
-      padding: 4rem 2.5rem;
+      padding: 3rem 1.5rem;
       min-height: calc(100vh - 200px);
     }
 
@@ -194,38 +228,38 @@
     .hero-banner {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 3.5rem;
+      gap: 3rem;
       background: var(--bg-surface);
       border: 1px solid var(--border-color);
       border-radius: 20px;
-      padding: 4.5rem;
+      padding: 3.5rem;
       align-items: center;
-      margin-bottom: 5rem;
+      margin-bottom: 4rem;
     }
 
     .hero-text-content h1 {
-      font-size: 3.5rem;
+      font-size: 3rem;
       font-weight: 900;
-      line-height: 1.1;
+      line-height: 1.15;
       text-transform: uppercase;
       letter-spacing: -0.03em;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
     }
 
     .hero-text-content p {
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       color: var(--text-muted);
-      margin-bottom: 2.25rem;
+      margin-bottom: 2rem;
       max-width: 550px;
     }
 
     .btn-primary {
       background: var(--accent-orange);
       color: white;
-      padding: 1.1rem 2.8rem;
+      padding: 1rem 2.4rem;
       border-radius: 8px;
       font-weight: 800;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       border: none;
       cursor: pointer;
       display: inline-block;
@@ -240,15 +274,15 @@
       background: #ffffff;
       color: var(--text-main);
       border: 1px solid var(--border-color);
-      padding: 1.1rem 2.5rem;
+      padding: 1rem 2.2rem;
       border-radius: 8px;
       font-weight: 800;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       cursor: pointer;
       display: inline-block;
       text-transform: uppercase;
       letter-spacing: 0.08em;
-      margin-left: 1rem;
+      margin-left: 0.75rem;
       transition: all 0.2s ease;
     }
 
@@ -258,7 +292,7 @@
     .slider-container {
       position: relative;
       width: 100%;
-      height: 480px;
+      height: 420px;
       border-radius: 16px;
       overflow: hidden;
       border: 1px solid var(--border-color);
@@ -288,33 +322,33 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      padding: 3rem 2.5rem 2rem 2.5rem;
+      padding: 2.5rem 2rem 1.75rem 2rem;
       background: linear-gradient(180deg, transparent 0%, rgba(15, 23, 42, 0.85) 100%);
       color: #ffffff;
     }
 
     .slide-overlay h3 {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       font-weight: 900;
       text-transform: uppercase;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.3rem;
     }
 
     .slide-overlay p {
-      font-size: 1rem;
+      font-size: 0.95rem;
       opacity: 0.9;
     }
 
     /* Titles */
     .section-title {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       font-weight: 900;
       text-transform: uppercase;
-      margin-bottom: 2.5rem;
+      margin-bottom: 2rem;
       letter-spacing: -0.02em;
       display: flex;
       align-items: center;
-      gap: 1.25rem;
+      gap: 1rem;
     }
 
     .section-title::after {
@@ -328,42 +362,42 @@
     .story-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 3.5rem;
+      gap: 3rem;
       align-items: center;
-      margin-bottom: 5rem;
+      margin-bottom: 4rem;
       background: var(--bg-surface);
-      padding: 4.5rem;
+      padding: 3.5rem;
       border-radius: 20px;
       border: 1px solid var(--border-color);
     }
 
     .story-text h2 {
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-weight: 900;
       text-transform: uppercase;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1rem;
     }
 
     .story-text p {
-      font-size: 1.05rem;
+      font-size: 1rem;
       color: var(--text-muted);
-      margin-bottom: 1.25rem;
+      margin-bottom: 1rem;
       line-height: 1.7;
     }
 
     .story-img {
       width: 100%;
-      height: 380px;
+      height: 350px;
       object-fit: cover;
       border-radius: 12px;
       border: 1px solid var(--border-color);
     }
 
-    /* Product Grid & Stock Status */
+    /* Product Grid & Cards */
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
-      gap: 2.5rem;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
     }
 
     .product-card {
@@ -384,8 +418,8 @@
     .product-img-wrapper {
       position: relative;
       width: 100%;
-      height: 320px;
-      background: var(--bg-surface);
+      height: 300px;
+      background: #ffffff;
       overflow: hidden;
       border-bottom: 1px solid var(--border-color);
       display: flex;
@@ -397,31 +431,31 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
-      padding: 1.5rem;
+      padding: 1rem;
     }
 
     .product-badge-soon {
       position: absolute;
-      top: 1.25rem;
-      right: 1.25rem;
+      top: 1rem;
+      right: 1rem;
       background: var(--accent-orange);
       color: #ffffff;
-      padding: 0.4rem 0.9rem;
+      padding: 0.35rem 0.8rem;
       border-radius: 6px;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 900;
       letter-spacing: 0.05em;
       text-transform: uppercase;
     }
 
     .product-info {
-      padding: 2rem;
+      padding: 1.75rem;
       display: flex;
       flex-direction: column;
       flex-grow: 1;
     }
 
-    .product-title { font-size: 1.35rem; font-weight: 800; margin-bottom: 0.3rem; }
+    .product-title { font-size: 1.25rem; font-weight: 800; margin-bottom: 0.3rem; }
     .product-scale { font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.5rem; text-transform: uppercase; }
 
     .product-notice {
@@ -430,7 +464,7 @@
       background: #fef2f2;
       padding: 0.5rem 0.75rem;
       border-radius: 4px;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
       font-weight: 700;
     }
 
@@ -438,10 +472,10 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
     }
 
-    .product-price { font-size: 1.75rem; font-weight: 900; }
+    .product-price { font-size: 1.6rem; font-weight: 900; }
 
     .product-actions { margin-top: auto; display: flex; gap: 0.75rem; }
 
@@ -449,7 +483,7 @@
       background: var(--bg-surface);
       color: var(--text-main);
       border: 1px solid var(--border-color);
-      padding: 0.75rem 1rem;
+      padding: 0.75rem 0.85rem;
       border-radius: 6px;
       font-weight: 800;
       cursor: pointer;
@@ -460,10 +494,10 @@
       background: var(--text-main);
       color: #ffffff;
       border: none;
-      padding: 1rem;
+      padding: 0.9rem;
       border-radius: 8px;
       font-weight: 800;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       cursor: pointer;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -475,7 +509,7 @@
     /* Cart Layout */
     .cart-layout {
       display: grid;
-      grid-template-columns: 1fr 440px;
+      grid-template-columns: 1fr 420px;
       gap: 2.5rem;
     }
 
@@ -501,7 +535,7 @@
     }
 
     .address-form-box h3 {
-      font-size: 1.2rem;
+      font-size: 1.15rem;
       margin-bottom: 1.25rem;
       text-transform: uppercase;
       font-weight: 900;
@@ -524,7 +558,7 @@
     .form-input:focus { border-color: var(--text-main); }
 
     .summary-row { display: flex; justify-content: space-between; margin-bottom: 0.8rem; font-size: 0.95rem; }
-    .summary-row.total { font-weight: 900; font-size: 1.25rem; border-top: 1px solid var(--border-color); padding-top: 1rem; margin-top: 1rem; }
+    .summary-row.total { font-weight: 900; font-size: 1.2rem; border-top: 1px solid var(--border-color); padding-top: 1rem; margin-top: 1rem; }
 
     .checkout-buttons {
       display: flex;
@@ -572,13 +606,13 @@
     /* Gallery Grid */
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
     }
 
     .gallery-item {
       position: relative;
-      height: 320px;
+      height: 280px;
       border-radius: 12px;
       overflow: hidden;
       border: 1px solid var(--border-color);
@@ -589,9 +623,9 @@
     /* Creator Section */
     .creators-wrapper {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 2.5rem;
-      max-width: 1000px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      max-width: 900px;
       margin: 0 auto;
     }
 
@@ -599,16 +633,16 @@
       background: var(--bg-surface);
       border: 1px solid var(--border-color);
       border-radius: 20px;
-      padding: 3.5rem 2rem;
+      padding: 3rem 1.75rem;
       text-align: center;
     }
 
     .creator-avatar-img {
-      width: 110px;
-      height: 110px;
+      width: 100px;
+      height: 100px;
       border-radius: 50%;
       object-fit: cover;
-      margin: 0 auto 1.5rem auto;
+      margin: 0 auto 1.25rem auto;
       border: 3px solid var(--accent-orange);
     }
 
@@ -617,15 +651,15 @@
       align-items: center;
       justify-content: center;
       gap: 0.6rem;
-      padding: 0.9rem 1.5rem;
+      padding: 0.85rem 1.25rem;
       border-radius: 8px;
       font-weight: 800;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       background: #ffffff;
       border: 1px solid var(--border-color);
       transition: all 0.2s ease;
       width: 100%;
-      margin-top: 1rem;
+      margin-top: 0.85rem;
       text-transform: uppercase;
     }
 
@@ -635,25 +669,65 @@
       border-color: var(--text-main);
     }
 
+    /* Google Translate Clean Styling */
+    .goog-te-gadget-simple {
+      background-color: var(--bg-surface) !important;
+      border: 1px solid var(--border-color) !important;
+      padding: 6px 10px !important;
+      border-radius: 6px !important;
+      font-family: var(--font-main) !important;
+      font-size: 0.8rem !important;
+      font-weight: 800 !important;
+    }
+    .goog-te-gadget-icon { display: none !important; }
+
     /* Footer */
     footer {
       border-top: 1px solid var(--border-color);
-      padding: 4rem 2rem;
+      padding: 3.5rem 1.5rem;
       text-align: center;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: var(--text-muted);
-      margin-top: 6rem;
+      margin-top: 5rem;
       background: var(--bg-surface);
     }
 
-    @media (max-width: 960px) {
-      .nav-container { flex-direction: column; align-items: flex-start; gap: 1.5rem; padding: 1.5rem; }
-      nav { width: 100%; justify-content: flex-start; gap: 1.25rem; flex-wrap: wrap; }
-      .hero-banner { grid-template-columns: 1fr; padding: 2.5rem; }
-      .story-grid { grid-template-columns: 1fr; padding: 2.5rem; }
+    /* OPTIMISATIE VOOR GSM / MOBIEL (Mobile First Adjustments) */
+    @media (max-width: 850px) {
+      .nav-container { 
+        flex-direction: column; 
+        align-items: stretch; 
+        gap: 1.25rem; 
+        padding: 1.25rem 1rem; 
+      }
+      .brand { justify-content: center; text-align: center; }
+      nav { justify-content: center; gap: 1rem; width: 100%; }
+      .header-tools { justify-content: center; width: 100%; margin-top: 0.5rem; }
+      
+      main { padding: 2rem 1rem; }
+      
+      .hero-banner { 
+        grid-template-columns: 1fr; 
+        padding: 2rem 1.25rem; 
+        gap: 2rem;
+        text-align: center;
+      }
+      .hero-text-content h1 { font-size: 2.2rem; }
+      .btn-secondary { margin-left: 0; margin-top: 0.75rem; display: block; width: 100%; }
+      .btn-primary { width: 100%; }
+
+      .slider-container { height: 280px; }
+
+      .story-grid { 
+        grid-template-columns: 1fr; 
+        padding: 2rem 1.25rem; 
+        gap: 2rem;
+        text-align: center;
+      }
+
       .cart-layout { grid-template-columns: 1fr; }
-      .hero-text-content h1 { font-size: 2.5rem; }
-      .slider-container { height: 320px; }
+      .product-grid { grid-template-columns: 1fr; }
+      .creators-wrapper { grid-template-columns: 1fr; }
     }
   </style>
 </head>
@@ -663,12 +737,12 @@
   <div class="top-header-wrapper">
     <!-- Top Announcement Bar -->
     <div class="announcement-bar">
-      NEW BATCH OF 1:32 SCALE SNOW CANNONS SOON ONLINE — PRE-ORDERS OPEN
+      NIEUWE BATCH 1:32 SNEEUWKANNONNEN BINNENKORT ONLINE — RESERVEER DIRECT
     </div>
     
     <!-- Safety Disclaimer Bar -->
     <div class="disclaimer-bar">
-      PLEASE NOTE: ALL MODELS ARE SCALE 1:32 NON-FUNCTIONAL DIORAMA DISPLAY PIECES. THEY DO NOT PRODUCE REAL SNOW.
+      LET OP: ALLE MODELLEN ZIJN SCHAAL 1:32 NIET-WERKENDE DIORAMA MODELLEN. ZE SPUITEN GEEN ECHTE SNEEUW.
     </div>
 
     <!-- Header Navigation -->
@@ -681,15 +755,31 @@
             <span class="brand-subtitle">BY NIKKES & WIIPY</span>
           </div>
         </div>
+
         <nav>
           <span class="nav-link active" onclick="switchTab('home')">Home</span>
-          <span class="nav-link" onclick="switchTab('shop')">Catalog</span>
-          <span class="nav-link" onclick="switchTab('gallery')">Gallery</span>
+          <span class="nav-link" onclick="switchTab('shop')">Catalogus</span>
+          <span class="nav-link" onclick="switchTab('gallery')">Galerij</span>
           <span class="nav-link" onclick="switchTab('creators')">Creators</span>
+        </nav>
+
+        <div class="header-tools">
+          <!-- Google Translate Widget -->
+          <div id="google_translate_element"></div>
+
+          <!-- Valuta Omrekenaar -->
+          <select class="currency-select" id="currency-select" onchange="changeCurrency(this.value)">
+            <option value="EUR">EUR (€)</option>
+            <option value="USD">USD ($)</option>
+            <option value="GBP">GBP (£)</option>
+            <option value="CHF">CHF (CHF)</option>
+          </select>
+
+          <!-- Winkelwagen Knop -->
           <button class="cart-btn" onclick="switchTab('cart')">
             Cart <span class="cart-badge" id="cart-count">0</span>
           </button>
-        </nav>
+        </div>
       </div>
     </header>
   </div>
@@ -701,10 +791,10 @@
         <!-- Showcase Hero Banner -->
         <div class="hero-banner">
           <div class="hero-text-content">
-            <h1>Scale 1:32 Miniature Ski Resort Machinery</h1>
-            <p>Welcome to Miniatures Ski Resort by Nikkes & WIIPY. We design ultra-detailed 1:32 replica snow cannons for alpine dioramas and collectors worldwide.</p>
-            <button class="btn-primary" onclick="switchTab('shop')">Browse Catalog</button>
-            <button class="btn-secondary" onclick="scrollToStory()">Our Story</button>
+            <h1>Schaal 1:32 Miniatuur Skigebied Modellen</h1>
+            <p>Welkom bij Miniatures Ski Resort door Nikkes & WIIPY. Wij ontwerpen gedetailleerde 1:32 replica sneeuwkanonnen voor diorama's en verzamelaars wereldwijd.</p>
+            <button class="btn-primary" onclick="switchTab('shop')">Bekijk Catalogus</button>
+            <button class="btn-secondary" onclick="scrollToStory()">Ons Verhaal</button>
           </div>
 
           <!-- Image Slider Carousel -->
@@ -712,29 +802,29 @@
             <div class="slide active">
               <img src="4117868-snow-cannon-3222927_1920.jpg" class="slide-img" alt="Snow Cannon 1">
               <div class="slide-overlay">
-                <h3>Precision Engineering</h3>
-                <p>Scale 1:32 models crafted for authentic alpine dioramas.</p>
+                <h3>Precisie Engineering</h3>
+                <p>Schaal 1:32 modellen gemaakt voor authentieke diorama's.</p>
               </div>
             </div>
             <div class="slide">
               <img src="hans-snow-cannon-999296_1920.jpg" class="slide-img" alt="Snow Cannon 2">
               <div class="slide-overlay">
-                <h3>Extreme Realism</h3>
-                <p>Designed with accurate pressure rings, nozzles, and chassis.</p>
+                <h3>Extreem Realisme</h3>
+                <p>Ontworpen met gedetailleerde drukringen en spuitkoppen.</p>
               </div>
             </div>
             <div class="slide">
               <img src="anncapictures-snow-cannon-2087106_1920.jpg" class="slide-img" alt="Snow Cannon 3">
               <div class="slide-overlay">
-                <h3>Authentic Details</h3>
-                <p>Inspired by TechnoAlpin, Demaclenko, and alpine machinery.</p>
+                <h3>Authentieke Details</h3>
+                <p>Geïnspireerd op TechnoAlpin, Demaclenko en alpiene machines.</p>
               </div>
             </div>
             <div class="slide">
               <img src="hans-snow-cannon-999287_1920.jpg" class="slide-img" alt="Snow Cannon 4">
               <div class="slide-overlay">
-                <h3>Handcrafted Batches</h3>
-                <p>Assembled in Belgium and tested in Swiss Alpine conditions.</p>
+                <h3>Handgemaakte Beproefde Kwaliteit</h3>
+                <p>Gemonteerd in België en getest in Zwitserse omstandigheden.</p>
               </div>
             </div>
           </div>
@@ -744,8 +834,8 @@
         <div class="story-grid" id="our-story">
           <div class="story-text">
             <h2>Our Story</h2>
-            <p>Miniatures Ski Resort started with a shared passion between <strong>Nikkes</strong> and <strong>WIIPY</strong> to bring the magic of alpine snowmaking machinery down to 1:32 scale.</p>
-            <p>Every single model begins as a digital blueprint modeled directly after real-world TechnoAlpin, Demaclenko, and custom alpine snow generators. Using high-precision 3D printing and hand-finishing, we create collector-grade models tailored for miniature ski resort dioramas.</p>
+            <p>Miniatures Ski Resort is ontstaan uit een gedeelde passie tussen <strong>Nikkes</strong> en <strong>WIIPY</strong> om alpiene sneeuwkanonnen en machines op schaal 1:32 na te bouwen.</p>
+            <p>Elk model begint als digitaal ontwerp gebaseerd op echte sneeuwblazers van merken zoals TechnoAlpin en Demaclenko. Met behulp van hoge-resolutie 3D-printers en nauwkeurige handafwerking bouwen we unieke verzamelmodellen.</p>
           </div>
           <div>
             <img src="marcino-ski-270297_1920.jpg" class="story-img" alt="Alpine Mountain Scene">
@@ -755,14 +845,14 @@
 
       <!-- SHOP TAB -->
       <section id="tab-shop" class="tab-content">
-        <h2 class="section-title">Snow Cannons Catalog (Scale 1:32)</h2>
-        <p style="margin-bottom: 2rem; color: var(--text-muted);">New models coming soon online! Reserve or pre-order yours directly via Cart or Instagram DM.</p>
+        <h2 class="section-title">Sneeuwkanonnen Catalogus (Schaal 1:32)</h2>
+        <p style="margin-bottom: 2rem; color: var(--text-muted);">Binnenkort online beschikbaar! Reserveer of bestel jouw gewenste modellen direct via de winkelwagen of Instagram DM.</p>
         <div class="product-grid" id="product-grid"></div>
       </section>
 
       <!-- GALLERY TAB -->
       <section id="tab-gallery" class="tab-content">
-        <h2 class="section-title">Alpine Gallery & Dioramas</h2>
+        <h2 class="section-title">Alpiene Galerij & Diorama's</h2>
         <div class="gallery-grid">
           <div class="gallery-item"><img src="4117868-snow-cannon-3222927_1920.jpg" class="gallery-img" alt="Gallery 1"></div>
           <div class="gallery-item"><img src="hans-snow-cannon-999296_1920.jpg" class="gallery-img" alt="Gallery 2"></div>
@@ -774,27 +864,27 @@
 
       <!-- CREATORS TAB -->
       <section id="tab-creators" class="tab-content">
-        <h2 class="section-title">The Creators</h2>
+        <h2 class="section-title">De Creators</h2>
         <div class="creators-wrapper">
           
           <div class="creator-box">
-            <img id="creator-avatar" src="logo nieuw.png" class="creator-avatar-img" alt="WIIPY Gaming" onerror="handleLogoError(this)">
-            <h3 style="font-size: 1.8rem; margin-bottom: 0.3rem;">WIIPY</h3>
-            <p style="color: var(--accent-orange); font-weight: 800; font-size: 0.9rem;">Footage & Media Lead</p>
+            <img id="creator-avatar" src="logo nieuw.png" class="creator-avatar-img" alt="WIIPY" onerror="handleLogoError(this)">
+            <h3 style="font-size: 1.6rem; margin-bottom: 0.3rem;">WIIPY</h3>
+            <p style="color: var(--accent-orange); font-weight: 800; font-size: 0.85rem;">Footage & Media Lead</p>
             <a href="https://www.instagram.com/wiipy_footage/" target="_blank" class="social-btn">
-              Instagram Profile
+              Instagram Profiel
             </a>
             <a href="https://www.youtube.com/@wiipy" target="_blank" class="social-btn">
-              YouTube Channel
+              YouTube Kanaal
             </a>
           </div>
 
           <div class="creator-box">
-            <div class="creator-avatar-img" style="display:flex; align-items:center; justify-content:center; background:var(--bg-main); font-size:2.5rem; font-weight:900;">N</div>
-            <h3 style="font-size: 1.8rem; margin-bottom: 0.3rem;">NIKKES</h3>
-            <p style="color: var(--accent-orange); font-weight: 800; font-size: 0.9rem;">Miniatures Master</p>
+            <div class="creator-avatar-img" style="display:flex; align-items:center; justify-content:center; background:var(--bg-main); font-size:2.2rem; font-weight:900;">N</div>
+            <h3 style="font-size: 1.6rem; margin-bottom: 0.3rem;">NIKKES</h3>
+            <p style="color: var(--accent-orange); font-weight: 800; font-size: 0.85rem;">Miniatures Master</p>
             <a href="https://www.instagram.com/nikkes_miniatures__/" target="_blank" class="social-btn">
-              Instagram Profile
+              Instagram Profiel
             </a>
           </div>
 
@@ -803,23 +893,46 @@
 
       <!-- CART TAB -->
       <section id="tab-cart" class="tab-content">
-        <h2 class="section-title">Your Shopping Cart</h2>
+        <h2 class="section-title">Jouw Winkelwagen</h2>
         <div id="cart-container"></div>
       </section>
 
     </main>
 
     <footer>
-      <p>&copy; 2026 MINIATURES SKI RESORT BY NIKKES & WIIPY. BELGIUM & SWITZERLAND. All rights reserved.</p>
+      <p>&copy; 2026 MINIATURES SKI RESORT BY NIKKES & WIIPY. BELGIË & ZWITSERLAND. Alle rechten voorbehouden.</p>
     </footer>
   </div>
 
   <script>
+    // Valuta wisselkoersen (basis = EUR)
+    const currencyRates = {
+      EUR: { symbol: "€", rate: 1.0 },
+      USD: { symbol: "$", rate: 1.08 },
+      GBP: { symbol: "£", rate: 0.85 },
+      CHF: { symbol: "CHF ", rate: 0.96 }
+    };
+
+    let selectedCurrency = "EUR";
+
+    function changeCurrency(currency) {
+      selectedCurrency = currency;
+      renderProducts();
+      renderCart();
+    }
+
+    function formatPrice(priceInEUR) {
+      const curr = currencyRates[selectedCurrency];
+      const converted = priceInEUR * curr.rate;
+      return `${curr.symbol}${converted.toFixed(2)}`;
+    }
+
     // Slider Automatic Carousel
     let currentSlide = 0;
     const slides = document.querySelectorAll('.slide');
 
     function nextSlide() {
+      if(slides.length === 0) return;
       slides[currentSlide].classList.remove('active');
       currentSlide = (currentSlide + 1) % slides.length;
       slides[currentSlide].classList.add('active');
@@ -827,17 +940,14 @@
 
     setInterval(nextSlide, 4500);
 
-    // SVG Placeholder for SOON ONLINE Image
-    const soonOnlineSvg = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600"><rect width="600" height="600" fill="%23ffffff"/><text x="50%" y="42%" font-family="Inter, sans-serif" font-size="72" font-weight="900" font-style="italic" fill="%230f172a" text-anchor="middle">SOON</text><text x="50%" y="58%" font-family="Inter, sans-serif" font-size="72" font-weight="900" font-style="italic" fill="%230f172a" text-anchor="middle">ONLINE</text></svg>`;
-
-    // Product Catalog Data
+    // Product Catalogus met 'soon.png'
     const products = [
-      { id: 1, name: "Lance Snow Cannon", scale: "1:32", price: 25.00 },
-      { id: 2, name: "Yellow Fan Cannon (Red Ring)", scale: "1:32", price: 25.00 },
-      { id: 3, name: "TechnoAlpin TR8 Fan Cannon", scale: "1:32", price: 25.00 },
-      { id: 4, name: "M20 Yellow Fan Cannon", scale: "1:32", price: 25.00 },
-      { id: 5, name: "Green Compact Fan Cannon", scale: "1:32", price: 25.00 },
-      { id: 6, name: "Demaclenko Blue Fan Cannon", scale: "1:32", price: 25.00 }
+      { id: 1, name: "Lance Snow Cannon", scale: "1:32", priceEUR: 25.00 },
+      { id: 2, name: "Yellow Fan Cannon (Red Ring)", scale: "1:32", priceEUR: 25.00 },
+      { id: 3, name: "TechnoAlpin TR8 Fan Cannon", scale: "1:32", priceEUR: 25.00 },
+      { id: 4, name: "M20 Yellow Fan Cannon", scale: "1:32", priceEUR: 25.00 },
+      { id: 5, name: "Green Compact Fan Cannon", scale: "1:32", priceEUR: 25.00 },
+      { id: 6, name: "Demaclenko Blue Fan Cannon", scale: "1:32", priceEUR: 25.00 }
     ];
 
     let cart = {};
@@ -848,14 +958,14 @@
         <div class="product-card">
           <div class="product-img-wrapper">
             <span class="product-badge-soon">SOON ONLINE</span>
-            <img src="${soonOnlineSvg}" class="product-image" alt="SOON ONLINE - ${p.name}">
+            <img src="soon.png" class="product-image" alt="SOON ONLINE" onerror="this.onerror=null; this.src='soon.jpeg';">
           </div>
           <div class="product-info">
             <div class="product-title">${p.name}</div>
-            <div class="product-scale">Detailed Diorama Model</div>
-            <div class="product-notice">Non-functional 1:32 scale display model</div>
+            <div class="product-scale">Schoonheid & Detail Diorama Model</div>
+            <div class="product-notice">Niet-werkend 1:32 schaalmodel</div>
             <div class="product-price-row">
-              <div class="product-price">€${p.price.toFixed(2)}</div>
+              <div class="product-price">${formatPrice(p.priceEUR)}</div>
             </div>
             <div class="product-actions">
               <select id="qty-${p.id}" class="qty-select">
@@ -865,7 +975,7 @@
                 <option value="4">4</option>
                 <option value="5">5</option>
               </select>
-              <button class="add-to-cart-btn" onclick="addToCart(${p.id})">Pre-Order / Reserve</button>
+              <button class="add-to-cart-btn" onclick="addToCart(${p.id})">Reserveer / In Winkelwagen</button>
             </div>
           </div>
         </div>
@@ -879,13 +989,13 @@
 
       if (currentCartQty + qty > 5) {
         cart[productId] = 5;
-        alert("Maximum limit of 5 units per model reached.");
+        alert("Maximum van 5 stuks per model bereikt.");
       } else {
         cart[productId] = currentCartQty + qty;
       }
       
       updateCartBadge();
-      alert("Added to cart!");
+      alert("Toegevoegd aan winkelwagen!");
     }
 
     function updateCartBadge() {
@@ -900,32 +1010,32 @@
       if (keys.length === 0) {
         container.innerHTML = `
           <div style="text-align: center; padding: 4rem 0; color: var(--text-muted);">
-            <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Your shopping cart is empty.</p>
-            <button class="btn-primary" onclick="switchTab('shop')">Explore Catalog</button>
+            <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Jouw winkelwagen is momenteel leeg.</p>
+            <button class="btn-primary" onclick="switchTab('shop')">Bekijk Catalogus</button>
           </div>
         `;
         return;
       }
 
-      let subtotal = 0;
+      let subtotalEUR = 0;
       let orderItemsText = "";
 
       const rows = keys.map(id => {
         const prod = products.find(p => p.id == id);
         const qty = cart[id];
-        const itemTotal = prod.price * qty;
-        subtotal += itemTotal;
-        orderItemsText += `- ${qty}x ${prod.name} (Scale 1:32) - €${itemTotal.toFixed(2)}\n`;
+        const itemTotalEUR = prod.priceEUR * qty;
+        subtotalEUR += itemTotalEUR;
+        orderItemsText += `- ${qty}x ${prod.name} (Scale 1:32) - ${formatPrice(itemTotalEUR)}\n`;
         return `
           <tr>
             <td><strong>${prod.name}</strong><br><small style="color:var(--text-muted);">Scale 1:32</small></td>
-            <td>€${prod.price.toFixed(2)}</td>
+            <td>${formatPrice(prod.priceEUR)}</td>
             <td>
               <select class="qty-select" onchange="updateCartQty(${prod.id}, this.value)">
                 ${[1,2,3,4,5].map(n => `<option value="${n}" ${n === qty ? 'selected' : ''}>${n}</option>`).join('')}
               </select>
             </td>
-            <td>€${itemTotal.toFixed(2)}</td>
+            <td>${formatPrice(itemTotalEUR)}</td>
             <td><button onclick="removeFromCart(${prod.id})" style="border:none; background:none; color:var(--accent-orange); cursor:pointer; font-weight:bold; font-size: 1.2rem;">✕</button></td>
           </tr>
         `;
@@ -937,10 +1047,10 @@
             <table class="cart-table">
               <thead>
                 <tr>
-                  <th>Item</th>
-                  <th>Price</th>
-                  <th>Quantity</th>
-                  <th>Total</th>
+                  <th>Artikel</th>
+                  <th>Prijs</th>
+                  <th>Aantal</th>
+                  <th>Totaal</th>
                   <th></th>
                 </tr>
               </thead>
@@ -949,48 +1059,48 @@
           </div>
 
           <div class="address-form-box">
-            <h3>Shipping & Order Details</h3>
+            <h3>Verzend- & Bestelgegevens</h3>
             
             <form action="https://formsubmit.co/maxlescrauwaet@gmail.com" method="POST" onsubmit="return handleFormSubmit(event)">
               <input type="hidden" name="_subject" value="Nieuwe Bestelling - Miniatures Ski Resort">
               <input type="hidden" name="_template" value="table">
               <input type="hidden" name="Bestelde_Artikelen" id="form-items-hidden" value="${orderItemsText}">
-              <input type="hidden" name="Totaal_Bedrag" id="form-total-hidden" value="€${subtotal.toFixed(2)}">
+              <input type="hidden" name="Totaal_Bedrag" id="form-total-hidden" value="${formatPrice(subtotalEUR)} (${selectedCurrency})">
 
               <div class="form-group">
-                <label>Full Name *</label>
-                <input type="text" name="Naam" id="cust-name" class="form-input" placeholder="e.g. John Doe" required>
+                <label>Volledige Naam *</label>
+                <input type="text" name="Naam" id="cust-name" class="form-input" placeholder="bv. Jan Peeters" required>
               </div>
               <div class="form-group">
-                <label>Street & House Number *</label>
-                <input type="text" name="Adres" id="cust-address" class="form-input" placeholder="e.g. Ski Resort Street 12" required>
+                <label>Straat & Huisnummer *</label>
+                <input type="text" name="Adres" id="cust-address" class="form-input" placeholder="bv. Dorpstraat 12" required>
               </div>
               <div class="form-group">
-                <label>Postal Code & City *</label>
-                <input type="text" name="Stad_Postcode" id="cust-city" class="form-input" placeholder="e.g. 1000 Brussels" required>
+                <label>Postcode & Woonplaats *</label>
+                <input type="text" name="Stad_Postcode" id="cust-city" class="form-input" placeholder="bv. 1000 Brussel" required>
               </div>
               <div class="form-group">
-                <label>Phone / WhatsApp Number</label>
-                <input type="text" name="Telefoon" id="cust-phone" class="form-input" placeholder="e.g. +32 4... ">
+                <label>Telefoonnummer / WhatsApp</label>
+                <input type="text" name="Telefoon" id="cust-phone" class="form-input" placeholder="bv. +32 4... ">
               </div>
               <div class="form-group">
-                <label>Your Email Address *</label>
-                <input type="email" name="Email_Klant" class="form-input" placeholder="e.g. yourname@gmail.com" required>
+                <label>E-mailadres *</label>
+                <input type="email" name="Email_Klant" class="form-input" placeholder="bv. naam@gmail.com" required>
               </div>
 
               <div class="summary-row total">
-                <span>Total Price</span>
-                <span>€${subtotal.toFixed(2)}</span>
+                <span>Totaalbedrag</span>
+                <span>${formatPrice(subtotalEUR)}</span>
               </div>
 
               <div class="checkout-buttons">
-                <button type="submit" class="btn-checkout-direct">Submit Order via Email</button>
-                <button type="button" class="btn-checkout-ig" onclick="checkoutInstagram()">Copy Order for Instagram DM</button>
+                <button type="submit" class="btn-checkout-direct">Verstuur Bestelling via E-mail</button>
+                <button type="button" class="btn-checkout-ig" onclick="checkoutInstagram()">Kopieer Bestelling voor Instagram DM</button>
               </div>
             </form>
 
             <div class="ig-notice">
-              Submit directly to maxlescrauwaet@gmail.com, or copy details to DM on Instagram!
+              Verstuur direct naar maxlescrauwaet@gmail.com of kopieer de details naar Instagram DM!
             </div>
           </div>
         </div>
@@ -998,7 +1108,7 @@
     }
 
     function handleFormSubmit(e) {
-      alert("Order submitted! You will receive payment details shortly via maxlescrauwaet@gmail.com.");
+      alert("Bestelling verzonden! Je ontvangt zo snel mogelijk betaalinstructies via maxlescrauwaet@gmail.com.");
       return true;
     }
 
@@ -1010,29 +1120,29 @@
       const phone = document.getElementById('cust-phone').value.trim();
 
       if (!name || !address || !city) {
-        alert("Please fill in your Full Name, Address, and City before copying your order.");
+        alert("Vul alsjeblieft je naam, adres en woonplaats in voordat je de bestelling kopieert.");
         return;
       }
 
-      let orderText = `NEW ORDER - MINIATURES SKI RESORT\n\n`;
-      orderText += `CUSTOMER DETAILS:\nName: ${name}\nAddress: ${address}\nCity/Postal: ${city}\n`;
-      if (phone) orderText += `Phone: ${phone}\n`;
+      let orderText = `NIEUWE BESTELLING - MINIATURES SKI RESORT\n\n`;
+      orderText += `KLANTGEGEVENS:\nNaam: ${name}\nAdres: ${address}\nPostcode/Stad: ${city}\n`;
+      if (phone) orderText += `Telefoon: ${phone}\n`;
 
-      orderText += `\nORDERED ITEMS:\n`;
-      let totalAmount = 0;
+      orderText += `\nBESTELDE ARTIKELEN:\n`;
+      let totalEUR = 0;
 
       keys.forEach(id => {
         const item = products.find(p => p.id == id);
         const qty = cart[id];
-        const lineTotal = item.price * qty;
-        totalAmount += lineTotal;
-        orderText += `- ${qty}x ${item.name} (Scale 1:32) - €${lineTotal.toFixed(2)}\n`;
+        const lineTotal = item.priceEUR * qty;
+        totalEUR += lineTotal;
+        orderText += `- ${qty}x ${item.name} (Scale 1:32) - ${formatPrice(lineTotal)}\n`;
       });
 
-      orderText += `\nTOTAL PRICE: €${totalAmount.toFixed(2)}\n`;
+      orderText += `\nTOTAALBEDRAG: ${formatPrice(totalEUR)} (${selectedCurrency})\n`;
 
       navigator.clipboard.writeText(orderText).then(() => {
-        alert("ORDER COPIED TO CLIPBOARD!\n\n1. Opening @wiipy_footage Instagram profile.\n2. Click 'Message' / 'Bericht' and PASTE your text to send!");
+        alert("BESTELLING GEKOPIEERD NAAR KLEMBORD!\n\n1. Instagram profiel van @wiipy_footage opent nu.\n2. Klik op 'Bericht' en PLAK je tekst om te verzenden!");
         window.open("https://www.instagram.com/wiipy_footage/", "_blank");
       }).catch(() => {
         window.open("https://www.instagram.com/wiipy_footage/", "_blank");
