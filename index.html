@@ -1,37 +1,23 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MINIATURES SKI RESORT | Scale 1:32 Custom Models</title>
+  <title>MINIATURES SKI RESORT | Scale 1:32 Modern Graphic Editions</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   
-  <!-- Google Translate Script -->
-  <script type="text/javascript">
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-        pageLanguage: 'nl',
-        includedLanguages: 'nl,en,de,fr,it,es,cs,pl',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-        autoDisplay: false
-      }, 'google_translate_element');
-    }
-  </script>
-  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
   <style>
     :root {
-      --bg-main: #ffffff;
-      --bg-surface: #f8fafc;
-      --border-color: #e2e8f0;
-      --border-dark: #0f172a;
-      --accent-orange: #ff5500;
-      --accent-orange-hover: #e04b00;
-      --text-main: #0f172a;
-      --text-muted: #64748b;
-      --font-main: 'Inter', -apple-system, sans-serif;
+      --bg-main: #f3f3ee;
+      --bg-card: #ffffff;
+      --border-color: #111111;
+      --accent-blue: #1d4ed8;
+      --accent-red: #dc2626;
+      --text-main: #111111;
+      --text-muted: #555550;
+      --font-graphic: 'Plus Jakarta Sans', -apple-system, sans-serif;
     }
 
     * {
@@ -41,53 +27,174 @@
     }
 
     body {
-      font-family: var(--font-main);
+      font-family: var(--font-graphic);
       background-color: var(--bg-main);
       color: var(--text-main);
-      line-height: 1.6;
+      line-height: 1.5;
       -webkit-font-smoothing: antialiased;
       min-height: 100vh;
+      /* Subtiel modern grafisch achtergrondraster */
+      background-image: linear-gradient(to right, rgba(17,17,17,0.04) 1px, transparent 1px),
+                        linear-gradient(to bottom, rgba(17,17,17,0.04) 1px, transparent 1px);
+      background-size: 40px 40px;
     }
 
     a { color: inherit; text-decoration: none; }
+
+    /* Modern Graphic Language & Currency Modal */
+    #welcome-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(17, 17, 17, 0.88);
+      backdrop-filter: blur(12px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .modal-card {
+      background: #ffffff;
+      border: 3px solid var(--text-main);
+      width: 100%;
+      max-width: 500px;
+      padding: 2.5rem;
+      text-align: center;
+      box-shadow: 14px 14px 0px var(--text-main);
+    }
+
+    .modal-card h2 {
+      font-size: 2.2rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.4rem;
+    }
+
+    .modal-card p {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .modal-section-title {
+      font-size: 0.75rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      color: var(--accent-blue);
+      margin-bottom: 0.75rem;
+      letter-spacing: 0.1em;
+      text-align: left;
+    }
+
+    .flag-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .flag-btn {
+      background: var(--bg-main);
+      border: 2px solid var(--text-main);
+      color: var(--text-main);
+      padding: 0.75rem 0.5rem;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s ease;
+      font-weight: 900;
+      font-size: 0.75rem;
+      font-family: var(--font-graphic);
+    }
+
+    .flag-btn span { font-size: 1.6rem; }
+    .flag-btn:hover, .flag-btn.selected { background: var(--text-main); color: #ffffff; box-shadow: 3px 3px 0px var(--accent-blue); }
+
+    .currency-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+
+    .curr-btn {
+      background: var(--bg-main);
+      border: 2px solid var(--text-main);
+      color: var(--text-main);
+      padding: 0.75rem;
+      cursor: pointer;
+      font-weight: 900;
+      font-size: 0.85rem;
+      transition: all 0.2s ease;
+      font-family: var(--font-graphic);
+    }
+
+    .curr-btn:hover, .curr-btn.selected { border-color: var(--text-main); background: var(--text-main); color: #ffffff; }
+
+    .modal-enter-btn {
+      background: var(--accent-blue);
+      color: #ffffff;
+      width: 100%;
+      padding: 1.1rem;
+      font-weight: 900;
+      font-size: 0.95rem;
+      border: 3px solid var(--text-main);
+      cursor: pointer;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.2s ease;
+      font-family: var(--font-graphic);
+      box-shadow: 4px 4px 0px var(--text-main);
+    }
+
+    .modal-enter-btn:hover { background: var(--text-main); color: #ffffff; transform: translate(-2px, -2px); box-shadow: 6px 6px 0px var(--accent-blue); }
 
     /* Top Bars */
     .top-header-wrapper {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: #ffffff;
-      border-bottom: 1px solid var(--border-color);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
+      background: var(--bg-main);
+      border-bottom: 3px solid var(--text-main);
     }
 
     .announcement-bar {
       background: var(--text-main);
       color: #ffffff;
       text-align: center;
-      padding: 0.6rem 1rem;
-      font-size: 0.78rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
+      padding: 0.7rem 1rem;
+      font-size: 0.8rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
     .disclaimer-bar {
-      background: #fef2f2;
-      border-bottom: 1px solid #fee2e2;
-      color: #991b1b;
+      background: #e5e5de;
+      border-bottom: 2px solid var(--text-main);
+      color: var(--text-muted);
       text-align: center;
       padding: 0.55rem 1rem;
       font-size: 0.72rem;
-      font-weight: 700;
+      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.05em;
     }
 
-    /* Modern Clean Header */
+    /* Header Navigation */
     header {
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(12px);
+      background: rgba(243, 243, 238, 0.96);
+      backdrop-filter: blur(10px);
     }
 
     .nav-container {
@@ -110,44 +217,43 @@
     .brand-logo-img {
       width: 48px;
       height: 48px;
-      border-radius: 10px;
       object-fit: cover;
-      border: 1px solid var(--border-color);
+      border: 2px solid var(--text-main);
     }
 
     .brand-title {
-      font-size: 1.2rem;
+      font-size: 1.25rem;
       font-weight: 900;
-      letter-spacing: -0.02em;
+      letter-spacing: -0.03em;
       text-transform: uppercase;
-      line-height: 1.2;
+      line-height: 1;
     }
 
     .brand-subtitle {
       font-size: 0.7rem;
-      color: var(--accent-orange);
-      font-weight: 800;
-      letter-spacing: 0.12em;
-      margin-top: 2px;
+      color: var(--accent-blue);
+      font-weight: 900;
+      letter-spacing: 0.15em;
+      margin-top: 4px;
       display: block;
     }
 
     nav { 
       display: flex; 
-      gap: 1.75rem; 
+      gap: 2rem; 
       align-items: center; 
       flex-wrap: wrap;
     }
 
     .nav-link {
       font-size: 0.85rem;
-      font-weight: 800;
+      font-weight: 900;
       color: var(--text-muted);
       cursor: pointer;
-      padding: 0.5rem 0;
+      padding: 0.4rem 0;
       transition: color 0.2s ease;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
       position: relative;
     }
 
@@ -160,52 +266,53 @@
       left: 0;
       width: 100%;
       height: 3px;
-      background: var(--text-main);
-      border-radius: 2px;
+      background: var(--accent-blue);
     }
 
-    /* Tools Bar (Translate & Currency) */
     .header-tools {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.85rem;
     }
 
-    .currency-select {
-      background: var(--bg-surface);
+    .settings-trigger-btn {
+      background: #ffffff;
+      border: 2px solid var(--text-main);
       color: var(--text-main);
-      border: 1px solid var(--border-color);
-      padding: 0.45rem 0.65rem;
-      border-radius: 6px;
-      font-weight: 800;
+      padding: 0.55rem 0.95rem;
+      font-weight: 900;
       font-size: 0.8rem;
       cursor: pointer;
-      outline: none;
+      font-family: var(--font-graphic);
+      text-transform: uppercase;
+      box-shadow: 3px 3px 0px var(--text-main);
     }
 
     .cart-btn {
       background: var(--text-main);
-      color: #fff;
-      padding: 0.65rem 1.25rem;
-      border-radius: 8px;
-      font-weight: 800;
+      color: #ffffff;
+      padding: 0.65rem 1.4rem;
+      font-weight: 900;
       font-size: 0.85rem;
       display: flex;
       align-items: center;
       gap: 0.6rem;
       cursor: pointer;
-      border: none;
-      transition: background 0.2s ease, transform 0.1s ease;
+      border: 2px solid var(--text-main);
+      transition: all 0.2s ease;
+      font-family: var(--font-graphic);
+      text-transform: uppercase;
+      box-shadow: 3px 3px 0px var(--accent-blue);
     }
 
-    .cart-btn:hover { background: var(--accent-orange); }
+    .cart-btn:hover { background: var(--accent-blue); box-shadow: 3px 3px 0px var(--text-main); }
 
     .cart-badge {
-      background: var(--accent-orange);
-      color: #ffffff;
+      background: #ffffff;
+      color: #111111;
       border-radius: 50%;
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -213,90 +320,140 @@
       font-weight: 900;
     }
 
-    /* Main Content */
+    /* Main Container */
     main {
       max-width: 1400px;
       margin: 0 auto;
-      padding: 3rem 1.5rem;
+      padding: 3.5rem 2rem;
       min-height: calc(100vh - 200px);
     }
 
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
-    /* Hero Banner */
+    /* Hero Banner Modern Graphic */
     .hero-banner {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      background: var(--bg-surface);
-      border: 1px solid var(--border-color);
-      border-radius: 20px;
-      padding: 3.5rem;
+      gap: 3.5rem;
+      background: var(--bg-card);
+      border: 3px solid var(--text-main);
+      padding: 4rem;
       align-items: center;
-      margin-bottom: 4rem;
+      box-shadow: 12px 12px 0px var(--text-main);
+      margin-bottom: 3.5rem;
+      position: relative;
+    }
+
+    .hero-banner::before {
+      content: 'EDITION 01 // 2026';
+      position: absolute;
+      top: -15px;
+      left: 30px;
+      background: var(--accent-blue);
+      color: #ffffff;
+      font-size: 0.7rem;
+      font-weight: 900;
+      padding: 0.2rem 0.8rem;
+      border: 2px solid var(--text-main);
+      letter-spacing: 0.1em;
     }
 
     .hero-text-content h1 {
-      font-size: 3rem;
+      font-size: 3.6rem;
       font-weight: 900;
-      line-height: 1.15;
+      line-height: 0.98;
       text-transform: uppercase;
-      letter-spacing: -0.03em;
-      margin-bottom: 1.25rem;
+      letter-spacing: -0.04em;
+      margin-bottom: 1.5rem;
     }
 
     .hero-text-content p {
       font-size: 1.05rem;
       color: var(--text-muted);
-      margin-bottom: 2rem;
-      max-width: 550px;
+      margin-bottom: 2.5rem;
+      max-width: 500px;
+      font-weight: 600;
     }
 
     .btn-primary {
-      background: var(--accent-orange);
-      color: white;
-      padding: 1rem 2.4rem;
-      border-radius: 8px;
-      font-weight: 800;
-      font-size: 0.9rem;
-      border: none;
+      background: var(--text-main);
+      color: #ffffff;
+      padding: 1.1rem 2.6rem;
+      font-weight: 900;
+      font-size: 0.95rem;
+      border: 2px solid var(--text-main);
       cursor: pointer;
       display: inline-block;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      transition: background 0.2s ease;
+      letter-spacing: 0.1em;
+      transition: all 0.2s ease;
+      font-family: var(--font-graphic);
+      box-shadow: 4px 4px 0px var(--accent-blue);
     }
 
-    .btn-primary:hover { background: var(--accent-orange-hover); }
+    .btn-primary:hover { background: var(--accent-blue); box-shadow: 4px 4px 0px var(--text-main); transform: translate(-2px, -2px); }
 
     .btn-secondary {
-      background: #ffffff;
+      background: transparent;
       color: var(--text-main);
-      border: 1px solid var(--border-color);
-      padding: 1rem 2.2rem;
-      border-radius: 8px;
-      font-weight: 800;
-      font-size: 0.9rem;
+      border: 2px solid var(--text-main);
+      padding: 1.1rem 2.4rem;
+      font-weight: 900;
+      font-size: 0.95rem;
       cursor: pointer;
       display: inline-block;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-left: 0.75rem;
+      letter-spacing: 0.1em;
+      margin-left: 1rem;
       transition: all 0.2s ease;
+      font-family: var(--font-graphic);
+      box-shadow: 4px 4px 0px rgba(0,0,0,0.1);
     }
 
-    .btn-secondary:hover { background: var(--bg-surface); }
+    .btn-secondary:hover { background: var(--bg-main); }
+
+    /* Brand Values Graphic Bar */
+    .values-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 5rem;
+    }
+
+    .value-item {
+      background: var(--bg-card);
+      border: 2px solid var(--text-main);
+      padding: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      box-shadow: 6px 6px 0px var(--text-main);
+    }
+
+    .value-num {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--accent-blue);
+      line-height: 1;
+    }
+
+    .value-text {
+      font-size: 0.85rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
 
     /* Slider Container */
     .slider-container {
       position: relative;
       width: 100%;
-      height: 420px;
-      border-radius: 16px;
+      height: 440px;
       overflow: hidden;
-      border: 1px solid var(--border-color);
-      background: #ffffff;
+      border: 3px solid var(--text-main);
+      background: #000000;
+      box-shadow: 8px 8px 0px var(--text-main);
     }
 
     .slide {
@@ -322,106 +479,138 @@
       bottom: 0;
       left: 0;
       width: 100%;
-      padding: 2.5rem 2rem 1.75rem 2rem;
-      background: linear-gradient(180deg, transparent 0%, rgba(15, 23, 42, 0.85) 100%);
+      padding: 2.5rem 2rem 2rem 2rem;
+      background: linear-gradient(180deg, transparent 0%, rgba(17, 17, 17, 0.95) 100%);
       color: #ffffff;
     }
 
     .slide-overlay h3 {
-      font-size: 1.6rem;
+      font-size: 1.8rem;
       font-weight: 900;
       text-transform: uppercase;
       margin-bottom: 0.3rem;
+      letter-spacing: -0.02em;
     }
 
     .slide-overlay p {
       font-size: 0.95rem;
-      opacity: 0.9;
+      color: #aaaaaa;
     }
 
     /* Titles */
     .section-title {
-      font-size: 1.6rem;
+      font-size: 2.2rem;
       font-weight: 900;
       text-transform: uppercase;
-      margin-bottom: 2rem;
-      letter-spacing: -0.02em;
+      margin-bottom: 2.5rem;
+      letter-spacing: -0.03em;
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 1.25rem;
     }
 
     .section-title::after {
       content: '';
       flex: 1;
-      height: 1px;
-      background: var(--border-color);
+      height: 3px;
+      background: var(--text-main);
+    }
+
+    /* Filter Bar Graphic */
+    .filter-bar {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: var(--bg-card);
+      border: 2px solid var(--text-main);
+      padding: 0.6rem 1.25rem;
+      font-weight: 900;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-family: var(--font-graphic);
+      box-shadow: 3px 3px 0px var(--text-main);
+    }
+
+    .filter-btn:hover, .filter-btn.active {
+      background: var(--text-main);
+      color: #ffffff;
+      box-shadow: 3px 3px 0px var(--accent-blue);
+      transform: translate(-2px, -2px);
     }
 
     /* Our Story */
     .story-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 3rem;
+      gap: 3.5rem;
       align-items: center;
-      margin-bottom: 4rem;
-      background: var(--bg-surface);
-      padding: 3.5rem;
-      border-radius: 20px;
-      border: 1px solid var(--border-color);
+      margin-bottom: 5rem;
+      background: var(--bg-card);
+      padding: 4rem;
+      border: 3px solid var(--text-main);
+      box-shadow: 12px 12px 0px var(--text-main);
     }
 
     .story-text h2 {
-      font-size: 2rem;
+      font-size: 2.5rem;
       font-weight: 900;
       text-transform: uppercase;
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.03em;
     }
 
     .story-text p {
-      font-size: 1rem;
+      font-size: 1.05rem;
       color: var(--text-muted);
-      margin-bottom: 1rem;
+      margin-bottom: 1.25rem;
       line-height: 1.7;
+      font-weight: 600;
     }
 
     .story-img {
       width: 100%;
-      height: 350px;
+      height: 380px;
       object-fit: cover;
-      border-radius: 12px;
-      border: 1px solid var(--border-color);
+      border: 3px solid var(--text-main);
+      box-shadow: 6px 6px 0px var(--text-main);
     }
 
-    /* Product Grid & Cards */
+    /* Product Grid & Graphic Cards */
     .product-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 2.5rem;
     }
 
     .product-card {
-      background: var(--bg-main);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
+      background: var(--bg-card);
+      border: 3px solid var(--text-main);
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      transition: border-color 0.2s ease, transform 0.2s ease;
+      transition: all 0.2s ease;
+      box-shadow: 8px 8px 0px var(--text-main);
     }
 
     .product-card:hover {
-      border-color: var(--border-dark);
-      transform: translateY(-4px);
+      box-shadow: 12px 12px 0px var(--accent-blue);
+      transform: translate(-3px, -3px);
     }
 
     .product-img-wrapper {
       position: relative;
       width: 100%;
-      height: 300px;
+      height: 340px;
       background: #ffffff;
       overflow: hidden;
-      border-bottom: 1px solid var(--border-color);
+      border-bottom: 3px solid var(--text-main);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -436,186 +625,197 @@
 
     .product-badge-soon {
       position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: var(--accent-orange);
+      top: 1.25rem;
+      right: 1.25rem;
+      background: var(--text-main);
       color: #ffffff;
-      padding: 0.35rem 0.8rem;
-      border-radius: 6px;
+      padding: 0.4rem 0.9rem;
       font-size: 0.75rem;
       font-weight: 900;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
+      border: 2px solid var(--text-main);
     }
 
     .product-info {
-      padding: 1.75rem;
+      padding: 2rem;
       display: flex;
       flex-direction: column;
       flex-grow: 1;
     }
 
-    .product-title { font-size: 1.25rem; font-weight: 800; margin-bottom: 0.3rem; }
-    .product-scale { font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-bottom: 0.5rem; text-transform: uppercase; }
+    .product-title { font-size: 1.35rem; font-weight: 900; text-transform: uppercase; margin-bottom: 0.3rem; letter-spacing: -0.02em; }
+    .product-scale { font-size: 0.75rem; font-weight: 900; color: var(--text-muted); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.08em; }
 
     .product-notice {
       font-size: 0.75rem;
-      color: #b91c1c;
+      color: var(--accent-red);
       background: #fef2f2;
+      border: 2px solid var(--accent-red);
       padding: 0.5rem 0.75rem;
-      border-radius: 4px;
-      margin-bottom: 1.25rem;
-      font-weight: 700;
+      margin-bottom: 1.5rem;
+      font-weight: 900;
+      text-transform: uppercase;
     }
 
     .product-price-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
     }
 
-    .product-price { font-size: 1.6rem; font-weight: 900; }
+    .product-price { font-size: 1.8rem; font-weight: 900; }
 
     .product-actions { margin-top: auto; display: flex; gap: 0.75rem; }
 
     .qty-select {
-      background: var(--bg-surface);
+      background: var(--bg-main);
       color: var(--text-main);
-      border: 1px solid var(--border-color);
-      padding: 0.75rem 0.85rem;
-      border-radius: 6px;
-      font-weight: 800;
+      border: 2px solid var(--text-main);
+      padding: 0.75rem 1rem;
+      font-weight: 900;
       cursor: pointer;
+      font-family: var(--font-graphic);
     }
 
     .add-to-cart-btn {
       flex: 1;
-      background: var(--text-main);
+      background: var(--accent-blue);
       color: #ffffff;
-      border: none;
-      padding: 0.9rem;
-      border-radius: 8px;
-      font-weight: 800;
+      border: 2px solid var(--text-main);
+      padding: 1rem;
+      font-weight: 900;
       font-size: 0.85rem;
       cursor: pointer;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      transition: background 0.2s ease;
+      letter-spacing: 0.08em;
+      transition: all 0.2s ease;
+      font-family: var(--font-graphic);
+      box-shadow: 3px 3px 0px var(--text-main);
     }
 
-    .add-to-cart-btn:hover { background: var(--accent-orange); }
+    .add-to-cart-btn:hover { background: var(--text-main); box-shadow: 3px 3px 0px var(--accent-blue); }
 
-    /* Cart Layout */
+    /* Cart Layout Graphic */
     .cart-layout {
       display: grid;
-      grid-template-columns: 1fr 420px;
-      gap: 2.5rem;
+      grid-template-columns: 1fr 440px;
+      gap: 3rem;
     }
 
     .cart-table {
       width: 100%;
       border-collapse: collapse;
       margin-bottom: 2rem;
+      background: var(--bg-card);
+      border: 3px solid var(--text-main);
+      box-shadow: 8px 8px 0px var(--text-main);
     }
 
     .cart-table th, .cart-table td {
-      padding: 1rem 0.75rem;
+      padding: 1.25rem 1rem;
       text-align: left;
-      border-bottom: 1px solid var(--border-color);
+      border-bottom: 2px solid var(--text-main);
     }
 
-    .cart-table th { font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); }
+    .cart-table th { font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); font-weight: 900; letter-spacing: 0.1em; background: #eaeae0; }
 
     .address-form-box {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-color);
-      padding: 2rem;
-      border-radius: 16px;
+      background: var(--bg-card);
+      border: 3px solid var(--text-main);
+      padding: 2.5rem;
+      box-shadow: 10px 10px 0px var(--text-main);
     }
 
     .address-form-box h3 {
-      font-size: 1.15rem;
-      margin-bottom: 1.25rem;
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
       text-transform: uppercase;
       font-weight: 900;
+      letter-spacing: -0.02em;
     }
 
-    .form-group { margin-bottom: 1rem; }
-    .form-group label { display: block; font-size: 0.8rem; font-weight: 800; color: var(--text-main); margin-bottom: 0.3rem; text-transform: uppercase; }
+    .form-group { margin-bottom: 1.25rem; }
+    .form-group label { display: block; font-size: 0.75rem; font-weight: 900; color: var(--text-muted); margin-bottom: 0.4rem; text-transform: uppercase; letter-spacing: 0.08em; }
 
     .form-input {
       width: 100%;
-      background: #ffffff;
-      border: 1px solid var(--border-color);
+      background: var(--bg-main);
+      border: 2px solid var(--text-main);
       color: var(--text-main);
-      padding: 0.75rem;
-      border-radius: 6px;
+      padding: 0.85rem;
       font-size: 0.9rem;
       outline: none;
+      font-family: var(--font-graphic);
+      font-weight: 700;
     }
 
-    .form-input:focus { border-color: var(--text-main); }
+    .form-input:focus { border-color: var(--accent-blue); }
 
-    .summary-row { display: flex; justify-content: space-between; margin-bottom: 0.8rem; font-size: 0.95rem; }
-    .summary-row.total { font-weight: 900; font-size: 1.2rem; border-top: 1px solid var(--border-color); padding-top: 1rem; margin-top: 1rem; }
+    .summary-row { display: flex; justify-content: space-between; margin-bottom: 0.8rem; font-size: 1rem; font-weight: 700; }
+    .summary-row.total { font-weight: 900; font-size: 1.4rem; border-top: 3px solid var(--text-main); padding-top: 1.25rem; margin-top: 1.25rem; }
 
     .checkout-buttons {
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
-      margin-top: 1.25rem;
+      gap: 0.85rem;
+      margin-top: 1.5rem;
     }
 
     .btn-checkout-direct {
-      background: var(--accent-orange);
-      color: white;
-      padding: 0.9rem;
-      border-radius: 6px;
-      font-weight: 800;
-      font-size: 0.85rem;
-      border: none;
+      background: var(--accent-blue);
+      color: #ffffff;
+      padding: 1.1rem;
+      font-weight: 900;
+      font-size: 0.9rem;
+      border: 2px solid var(--text-main);
       cursor: pointer;
       text-transform: uppercase;
       text-align: center;
-      transition: background 0.2s ease;
+      transition: all 0.2s ease;
       width: 100%;
+      font-family: var(--font-graphic);
+      letter-spacing: 0.08em;
+      box-shadow: 3px 3px 0px var(--text-main);
     }
 
-    .btn-checkout-direct:hover { background: var(--accent-orange-hover); }
+    .btn-checkout-direct:hover { background: var(--text-main); box-shadow: 3px 3px 0px var(--accent-blue); }
 
     .btn-checkout-ig {
       background: #ffffff;
       color: var(--text-main);
-      border: 1px solid var(--border-color);
-      padding: 0.85rem;
-      border-radius: 6px;
-      font-weight: 800;
+      border: 2px solid var(--text-main);
+      padding: 1rem;
+      font-weight: 900;
       font-size: 0.85rem;
       cursor: pointer;
       text-transform: uppercase;
       text-align: center;
       transition: all 0.2s ease;
       width: 100%;
+      font-family: var(--font-graphic);
+      letter-spacing: 0.08em;
+      box-shadow: 3px 3px 0px rgba(0,0,0,0.1);
     }
 
-    .btn-checkout-ig:hover { background: var(--bg-surface); }
+    .btn-checkout-ig:hover { background: var(--bg-main); }
 
-    .ig-notice { font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-top: 1rem; font-weight: 600; line-height: 1.4; }
+    .ig-notice { font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-top: 1.25rem; font-weight: 800; line-height: 1.4; text-transform: uppercase; }
 
     /* Gallery Grid */
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
     }
 
     .gallery-item {
       position: relative;
-      height: 280px;
-      border-radius: 12px;
+      height: 320px;
       overflow: hidden;
-      border: 1px solid var(--border-color);
+      border: 3px solid var(--text-main);
+      box-shadow: 6px 6px 0px var(--text-main);
     }
 
     .gallery-img { width: 100%; height: 100%; object-fit: cover; }
@@ -623,76 +823,68 @@
     /* Creator Section */
     .creators-wrapper {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
       max-width: 900px;
       margin: 0 auto;
     }
 
     .creator-box {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-color);
-      border-radius: 20px;
-      padding: 3rem 1.75rem;
+      background: var(--bg-card);
+      border: 3px solid var(--text-main);
+      padding: 3.5rem 2rem;
       text-align: center;
+      box-shadow: 10px 10px 0px var(--text-main);
     }
 
     .creator-avatar-img {
-      width: 100px;
-      height: 100px;
+      width: 110px;
+      height: 110px;
       border-radius: 50%;
       object-fit: cover;
-      margin: 0 auto 1.25rem auto;
-      border: 3px solid var(--accent-orange);
+      margin: 0 auto 1.5rem auto;
+      border: 3px solid var(--accent-blue);
     }
 
     .social-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.6rem;
-      padding: 0.85rem 1.25rem;
-      border-radius: 8px;
-      font-weight: 800;
+      padding: 0.95rem 1.5rem;
+      font-weight: 900;
       font-size: 0.85rem;
-      background: #ffffff;
-      border: 1px solid var(--border-color);
+      background: var(--bg-main);
+      border: 2px solid var(--text-main);
+      color: var(--text-main);
       transition: all 0.2s ease;
       width: 100%;
-      margin-top: 0.85rem;
+      margin-top: 1rem;
       text-transform: uppercase;
+      letter-spacing: 0.08em;
+      box-shadow: 3px 3px 0px var(--text-main);
     }
 
     .social-btn:hover {
       background: var(--text-main);
       color: #ffffff;
-      border-color: var(--text-main);
+      box-shadow: 3px 3px 0px var(--accent-blue);
     }
-
-    /* Google Translate Clean Styling */
-    .goog-te-gadget-simple {
-      background-color: var(--bg-surface) !important;
-      border: 1px solid var(--border-color) !important;
-      padding: 6px 10px !important;
-      border-radius: 6px !important;
-      font-family: var(--font-main) !important;
-      font-size: 0.8rem !important;
-      font-weight: 800 !important;
-    }
-    .goog-te-gadget-icon { display: none !important; }
 
     /* Footer */
     footer {
-      border-top: 1px solid var(--border-color);
-      padding: 3.5rem 1.5rem;
+      border-top: 3px solid var(--text-main);
+      padding: 4rem 2rem;
       text-align: center;
       font-size: 0.85rem;
       color: var(--text-muted);
-      margin-top: 5rem;
-      background: var(--bg-surface);
+      margin-top: 6rem;
+      background: var(--bg-card);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 900;
     }
 
-    /* OPTIMISATIE VOOR GSM / MOBIEL (Mobile First Adjustments) */
+    /* Mobile First Adjustments (GSM) */
     @media (max-width: 850px) {
       .nav-container { 
         flex-direction: column; 
@@ -708,21 +900,23 @@
       
       .hero-banner { 
         grid-template-columns: 1fr; 
-        padding: 2rem 1.25rem; 
+        padding: 2.5rem 1.5rem; 
         gap: 2rem;
         text-align: center;
+        box-shadow: 6px 6px 0px var(--text-main);
       }
-      .hero-text-content h1 { font-size: 2.2rem; }
-      .btn-secondary { margin-left: 0; margin-top: 0.75rem; display: block; width: 100%; }
+      .hero-text-content h1 { font-size: 2.5rem; }
+      .btn-secondary { margin-left: 0; margin-top: 0.85rem; display: block; width: 100%; }
       .btn-primary { width: 100%; }
 
       .slider-container { height: 280px; }
 
       .story-grid { 
         grid-template-columns: 1fr; 
-        padding: 2rem 1.25rem; 
+        padding: 2.5rem 1.5rem; 
         gap: 2rem;
         text-align: center;
+        box-shadow: 6px 6px 0px var(--text-main);
       }
 
       .cart-layout { grid-template-columns: 1fr; }
@@ -733,19 +927,42 @@
 </head>
 <body>
 
+  <!-- WELCOME LANGUAGE & CURRENCY MODAL -->
+  <div id="welcome-modal">
+    <div class="modal-card">
+      <h2>Select Region</h2>
+      <p>Choose language & currency before entering</p>
+      
+      <div class="modal-section-title">Language / Taal</div>
+      <div class="flag-grid">
+        <button class="flag-btn selected" onclick="setLanguage('en', this)"><span>🇬🇧</span>EN</button>
+        <button class="flag-btn" onclick="setLanguage('nl', this)"><span>🇳🇱</span>NL</button>
+        <button class="flag-btn" onclick="setLanguage('de', this)"><span>🇩🇪</span>DE</button>
+        <button class="flag-btn" onclick="setLanguage('fr', this)"><span>🇫🇷</span>FR</button>
+      </div>
+
+      <div class="modal-section-title">Currency / Valuta</div>
+      <div class="currency-grid">
+        <button class="curr-btn selected" onclick="setCurrency('EUR', this)">EUR (€)</button>
+        <button class="curr-btn" onclick="setCurrency('USD', this)">USD ($)</button>
+        <button class="curr-btn" onclick="setCurrency('GBP', this)">GBP (£)</button>
+        <button class="curr-btn" onclick="setCurrency('CHF', this)">CHF</button>
+      </div>
+
+      <button class="modal-enter-btn" onclick="closeWelcomeModal()">Enter Website</button>
+    </div>
+  </div>
+
   <!-- Sticky Header Wrapper -->
   <div class="top-header-wrapper">
-    <!-- Top Announcement Bar -->
-    <div class="announcement-bar">
-      NIEUWE BATCH 1:32 SNEEUWKANNONNEN BINNENKORT ONLINE — RESERVEER DIRECT
+    <div class="announcement-bar" id="txt-announcement">
+      NEW BATCH OF 1:32 SCALE SNOW CANNONS SOON ONLINE — PRE-ORDERS OPEN
     </div>
     
-    <!-- Safety Disclaimer Bar -->
-    <div class="disclaimer-bar">
-      LET OP: ALLE MODELLEN ZIJN SCHAAL 1:32 NIET-WERKENDE DIORAMA MODELLEN. ZE SPUITEN GEEN ECHTE SNEEUW.
+    <div class="disclaimer-bar" id="txt-disclaimer">
+      PLEASE NOTE: ALL MODELS ARE SCALE 1:32 NON-FUNCTIONAL DIORAMA DISPLAY PIECES. THEY DO NOT PRODUCE REAL SNOW.
     </div>
 
-    <!-- Header Navigation -->
     <header>
       <div class="nav-container">
         <div class="brand">
@@ -757,27 +974,16 @@
         </div>
 
         <nav>
-          <span class="nav-link active" onclick="switchTab('home')">Home</span>
-          <span class="nav-link" onclick="switchTab('shop')">Catalogus</span>
-          <span class="nav-link" onclick="switchTab('gallery')">Galerij</span>
-          <span class="nav-link" onclick="switchTab('creators')">Creators</span>
+          <span class="nav-link active" onclick="switchTab('home')" id="nav-home">Home</span>
+          <span class="nav-link" onclick="switchTab('shop')" id="nav-shop">Catalog</span>
+          <span class="nav-link" onclick="switchTab('gallery')" id="nav-gallery">Gallery</span>
+          <span class="nav-link" onclick="switchTab('creators')" id="nav-creators">Creators</span>
         </nav>
 
         <div class="header-tools">
-          <!-- Google Translate Widget -->
-          <div id="google_translate_element"></div>
-
-          <!-- Valuta Omrekenaar -->
-          <select class="currency-select" id="currency-select" onchange="changeCurrency(this.value)">
-            <option value="EUR">EUR (€)</option>
-            <option value="USD">USD ($)</option>
-            <option value="GBP">GBP (£)</option>
-            <option value="CHF">CHF (CHF)</option>
-          </select>
-
-          <!-- Winkelwagen Knop -->
+          <button class="settings-trigger-btn" onclick="openWelcomeModal()">🌐 <span id="current-lang-curr">EN / EUR</span></button>
           <button class="cart-btn" onclick="switchTab('cart')">
-            Cart <span class="cart-badge" id="cart-count">0</span>
+            <span id="nav-cart-text">Cart</span> <span class="cart-badge" id="cart-count">0</span>
           </button>
         </div>
       </div>
@@ -788,54 +994,71 @@
     <main>
       <!-- HOME TAB -->
       <section id="tab-home" class="tab-content active">
-        <!-- Showcase Hero Banner -->
         <div class="hero-banner">
           <div class="hero-text-content">
-            <h1>Schaal 1:32 Miniatuur Skigebied Modellen</h1>
-            <p>Welkom bij Miniatures Ski Resort door Nikkes & WIIPY. Wij ontwerpen gedetailleerde 1:32 replica sneeuwkanonnen voor diorama's en verzamelaars wereldwijd.</p>
-            <button class="btn-primary" onclick="switchTab('shop')">Bekijk Catalogus</button>
-            <button class="btn-secondary" onclick="scrollToStory()">Ons Verhaal</button>
+            <h1 id="hero-title">Scale 1:32 Miniature Ski Resort Machinery</h1>
+            <p id="hero-desc">Welcome to Miniatures Ski Resort by Nikkes & WIIPY. We design detailed 1:32 replica snow cannons for alpine dioramas and collectors worldwide.</p>
+            <button class="btn-primary" onclick="switchTab('shop')" id="btn-browse">Browse Catalog</button>
+            <button class="btn-secondary" onclick="scrollToStory()" id="btn-story">Our Story</button>
           </div>
 
-          <!-- Image Slider Carousel -->
           <div class="slider-container">
             <div class="slide active">
               <img src="4117868-snow-cannon-3222927_1920.jpg" class="slide-img" alt="Snow Cannon 1">
               <div class="slide-overlay">
-                <h3>Precisie Engineering</h3>
-                <p>Schaal 1:32 modellen gemaakt voor authentieke diorama's.</p>
+                <h3>Precision Engineering</h3>
+                <p>Scale 1:32 models crafted for authentic alpine dioramas.</p>
               </div>
             </div>
             <div class="slide">
               <img src="hans-snow-cannon-999296_1920.jpg" class="slide-img" alt="Snow Cannon 2">
               <div class="slide-overlay">
-                <h3>Extreem Realisme</h3>
-                <p>Ontworpen met gedetailleerde drukringen en spuitkoppen.</p>
+                <h3>Extreme Realism</h3>
+                <p>Designed with accurate pressure rings and nozzles.</p>
               </div>
             </div>
             <div class="slide">
               <img src="anncapictures-snow-cannon-2087106_1920.jpg" class="slide-img" alt="Snow Cannon 3">
               <div class="slide-overlay">
-                <h3>Authentieke Details</h3>
-                <p>Geïnspireerd op TechnoAlpin, Demaclenko en alpiene machines.</p>
+                <h3>Authentic Details</h3>
+                <p>Inspired by TechnoAlpin, Demaclenko and alpine machinery.</p>
               </div>
             </div>
             <div class="slide">
               <img src="hans-snow-cannon-999287_1920.jpg" class="slide-img" alt="Snow Cannon 4">
               <div class="slide-overlay">
-                <h3>Handgemaakte Beproefde Kwaliteit</h3>
-                <p>Gemonteerd in België en getest in Zwitserse omstandigheden.</p>
+                <h3>Handcrafted Quality</h3>
+                <p>Assembled in Belgium and tested in Swiss Alpine conditions.</p>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- OUR STORY SECTION -->
+        <!-- Graphic Values Bar -->
+        <div class="values-bar">
+          <div class="value-item">
+            <span class="value-num">01</span>
+            <span class="value-text">1:32 Precision Scale</span>
+          </div>
+          <div class="value-item">
+            <span class="value-num">02</span>
+            <span class="value-text">Belgium Workshop</span>
+          </div>
+          <div class="value-item">
+            <span class="value-num">03</span>
+            <span class="value-text">Swiss Alps Tested</span>
+          </div>
+          <div class="value-item">
+            <span class="value-num">04</span>
+            <span class="value-text">Limited Batch Drops</span>
+          </div>
+        </div>
+
         <div class="story-grid" id="our-story">
           <div class="story-text">
-            <h2>Our Story</h2>
-            <p>Miniatures Ski Resort is ontstaan uit een gedeelde passie tussen <strong>Nikkes</strong> en <strong>WIIPY</strong> om alpiene sneeuwkanonnen en machines op schaal 1:32 na te bouwen.</p>
-            <p>Elk model begint als digitaal ontwerp gebaseerd op echte sneeuwblazers van merken zoals TechnoAlpin en Demaclenko. Met behulp van hoge-resolutie 3D-printers en nauwkeurige handafwerking bouwen we unieke verzamelmodellen.</p>
+            <h2 id="story-h">Our Story</h2>
+            <p id="story-p1">Miniatures Ski Resort started with a shared passion between <strong>Nikkes</strong> and <strong>WIIPY</strong> to bring the magic of alpine snowmaking machinery down to 1:32 scale.</p>
+            <p id="story-p2">Every model begins as a digital blueprint modeled directly after real-world TechnoAlpin and Demaclenko snow generators. Using high-precision 3D printing and meticulous hand-finishing, we create collector-grade models.</p>
           </div>
           <div>
             <img src="marcino-ski-270297_1920.jpg" class="story-img" alt="Alpine Mountain Scene">
@@ -845,14 +1068,22 @@
 
       <!-- SHOP TAB -->
       <section id="tab-shop" class="tab-content">
-        <h2 class="section-title">Sneeuwkanonnen Catalogus (Schaal 1:32)</h2>
-        <p style="margin-bottom: 2rem; color: var(--text-muted);">Binnenkort online beschikbaar! Reserveer of bestel jouw gewenste modellen direct via de winkelwagen of Instagram DM.</p>
+        <h2 class="section-title" id="shop-main-title">Snow Cannons Catalog (Scale 1:32)</h2>
+        <p style="margin-bottom: 1.5rem; color: var(--text-muted);" id="shop-subtitle">New models coming soon online! Reserve or pre-order yours directly via Cart or Instagram DM.</p>
+        
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+          <button class="filter-btn active" onclick="filterProducts('all', this)">All Models</button>
+          <button class="filter-btn" onclick="filterProducts('fan', this)">Fan Cannons</button>
+          <button class="filter-btn" onclick="filterProducts('lance', this)">Lance Cannons</button>
+        </div>
+
         <div class="product-grid" id="product-grid"></div>
       </section>
 
       <!-- GALLERY TAB -->
       <section id="tab-gallery" class="tab-content">
-        <h2 class="section-title">Alpiene Galerij & Diorama's</h2>
+        <h2 class="section-title" id="gallery-title">Alpine Gallery & Dioramas</h2>
         <div class="gallery-grid">
           <div class="gallery-item"><img src="4117868-snow-cannon-3222927_1920.jpg" class="gallery-img" alt="Gallery 1"></div>
           <div class="gallery-item"><img src="hans-snow-cannon-999296_1920.jpg" class="gallery-img" alt="Gallery 2"></div>
@@ -864,48 +1095,175 @@
 
       <!-- CREATORS TAB -->
       <section id="tab-creators" class="tab-content">
-        <h2 class="section-title">De Creators</h2>
+        <h2 class="section-title" id="creators-title">The Creators</h2>
         <div class="creators-wrapper">
-          
           <div class="creator-box">
             <img id="creator-avatar" src="logo nieuw.png" class="creator-avatar-img" alt="WIIPY" onerror="handleLogoError(this)">
-            <h3 style="font-size: 1.6rem; margin-bottom: 0.3rem;">WIIPY</h3>
-            <p style="color: var(--accent-orange); font-weight: 800; font-size: 0.85rem;">Footage & Media Lead</p>
-            <a href="https://www.instagram.com/wiipy_footage/" target="_blank" class="social-btn">
-              Instagram Profiel
-            </a>
-            <a href="https://www.youtube.com/@wiipy" target="_blank" class="social-btn">
-              YouTube Kanaal
-            </a>
+            <h3 style="font-size: 1.8rem; margin-bottom: 0.3rem;">WIIPY</h3>
+            <p style="color: var(--accent-blue); font-weight: 900; font-size: 0.85rem;" id="c1-role">Footage & Media Lead</p>
+            <a href="https://www.instagram.com/wiipy_footage/" target="_blank" class="social-btn" id="c1-ig">Instagram Profile</a>
+            <a href="https://www.youtube.com/@wiipy" target="_blank" class="social-btn" id="c1-yt">YouTube Channel</a>
           </div>
 
           <div class="creator-box">
             <div class="creator-avatar-img" style="display:flex; align-items:center; justify-content:center; background:var(--bg-main); font-size:2.2rem; font-weight:900;">N</div>
-            <h3 style="font-size: 1.6rem; margin-bottom: 0.3rem;">NIKKES</h3>
-            <p style="color: var(--accent-orange); font-weight: 800; font-size: 0.85rem;">Miniatures Master</p>
-            <a href="https://www.instagram.com/nikkes_miniatures__/" target="_blank" class="social-btn">
-              Instagram Profiel
-            </a>
+            <h3 style="font-size: 1.8rem; margin-bottom: 0.3rem;">NIKKES</h3>
+            <p style="color: var(--accent-blue); font-weight: 900; font-size: 0.85rem;" id="c2-role">Miniatures Master</p>
+            <a href="https://www.instagram.com/nikkes_miniatures__/" target="_blank" class="social-btn" id="c2-ig">Instagram Profile</a>
           </div>
-
         </div>
       </section>
 
       <!-- CART TAB -->
       <section id="tab-cart" class="tab-content">
-        <h2 class="section-title">Jouw Winkelwagen</h2>
+        <h2 class="section-title" id="cart-title">Your Shopping Cart</h2>
         <div id="cart-container"></div>
       </section>
-
     </main>
 
     <footer>
-      <p>&copy; 2026 MINIATURES SKI RESORT BY NIKKES & WIIPY. BELGIË & ZWITSERLAND. Alle rechten voorbehouden.</p>
+      <p id="footer-text">&copy; 2026 MINIATURES SKI RESORT BY NIKKES & WIIPY. BELGIUM & SWITZERLAND. All rights reserved.</p>
     </footer>
   </div>
 
   <script>
-    // Valuta wisselkoersen (basis = EUR)
+    // Translations Dictionary
+    const translations = {
+      en: {
+        announcement: "NEW BATCH OF 1:32 SCALE SNOW CANNONS SOON ONLINE — PRE-ORDERS OPEN",
+        disclaimer: "PLEASE NOTE: ALL MODELS ARE SCALE 1:32 NON-FUNCTIONAL DIORAMA DISPLAY PIECES. THEY DO NOT PRODUCE REAL SNOW.",
+        home: "Home", shop: "Catalog", gallery: "Gallery", creators: "Creators", cart: "Cart",
+        heroTitle: "Scale 1:32 Miniature Ski Resort Machinery",
+        heroDesc: "Welcome to Miniatures Ski Resort by Nikkes & WIIPY. We design detailed 1:32 replica snow cannons for alpine dioramas and collectors worldwide.",
+        btnBrowse: "Browse Catalog", btnStory: "Our Story",
+        storyH: "Our Story",
+        storyP1: "Miniatures Ski Resort started with a shared passion between <strong>Nikkes</strong> and <strong>WIIPY</strong> to bring the magic of alpine snowmaking machinery down to 1:32 scale.",
+        storyP2: "Every model begins as a digital blueprint modeled directly after real-world TechnoAlpin and Demaclenko snow generators. Using high-precision 3D printing and meticulous hand-finishing, we create collector-grade models.",
+        shopTitle: "Snow Cannons Catalog (Scale 1:32)",
+        shopSub: "New models coming soon online! Reserve or pre-order yours directly via Cart or Instagram DM.",
+        galleryTitle: "Alpine Gallery & Dioramas",
+        creatorsTitle: "The Creators",
+        c1Role: "Footage & Media Lead", c1Ig: "Instagram Profile", c1Yt: "YouTube Channel",
+        c2Role: "Miniatures Master", c2Ig: "Instagram Profile",
+        cartTitle: "Your Shopping Cart",
+        emptyCart: "Your shopping cart is currently empty.",
+        exploreCatalog: "Explore Catalog",
+        item: "Item", price: "Price", qty: "Quantity", total: "Total",
+        shippingDetails: "Shipping & Order Details",
+        fullName: "Full Name *", address: "Street & House Number *", city: "Postal Code & City *", phone: "Phone / WhatsApp", email: "Email Address *",
+        totalPrice: "Total Price",
+        btnEmail: "Submit Order via Email", btnIg: "Copy Order for Instagram DM",
+        igNotice: "Submit directly to maxlescrauwaet@gmail.com, or copy details to DM on Instagram!",
+        footer: "&copy; 2026 MINIATURES SKI RESORT BY NIKKES & WIIPY. BELGIUM & SWITZERLAND. All rights reserved.",
+        addCartBtn: "Pre-Order / Reserve",
+        scaleModel: "Non-functional 1:32 scale display model",
+        addedAlert: "Added to cart!",
+        maxLimit: "Maximum limit of 5 units per model reached.",
+        emptyAlert: "Please fill in your Full Name, Address, and City before copying your order.",
+        orderSubmitted: "Order submitted! You will receive payment details shortly via maxlescrauwaet@gmail.com."
+      },
+      nl: {
+        announcement: "NIEUWE BATCH 1:32 SNEEUWKANNONNEN BINNENKORT ONLINE — RESERVEER DIRECT",
+        disclaimer: "LET OP: ALLE MODELLEN ZIJN SCHAAL 1:32 NIET-WERKENDE DIORAMA MODELLEN. ZE SPUITEN GEEN ECHTE SNEEUW.",
+        home: "Home", shop: "Catalogus", gallery: "Galerij", creators: "Creators", cart: "Winkelwagen",
+        heroTitle: "Schaal 1:32 Miniatuur Skigebied Modellen",
+        heroDesc: "Welkom bij Miniatures Ski Resort door Nikkes & WIIPY. Wij ontwerpen gedetailleerde 1:32 replica sneeuwkanonnen voor diorama's en verzamelaars wereldwijd.",
+        btnBrowse: "Bekijk Catalogus", btnStory: "Ons Verhaal",
+        storyH: "Ons Verhaal",
+        storyP1: "Miniatures Ski Resort is ontstaan uit een gedeelde passie tussen <strong>Nikkes</strong> en <strong>WIIPY</strong> om alpiene sneeuwkanonnen en machines op schaal 1:32 na te bouwen.",
+        storyP2: "Elk model begint als digitaal ontwerp gebaseerd op echte sneeuwblazers van merken zoals TechnoAlpin en Demaclenko. Met behulp van hoge-resolutie 3D-printers en handafwerking bouwen we unieke verzamelmodellen.",
+        shopTitle: "Sneeuwkanonnen Catalogus (Schaal 1:32)",
+        shopSub: "Binnenkort online beschikbaar! Reserveer of bestel jouw gewenste modellen direct via de winkelwagen of Instagram DM.",
+        galleryTitle: "Alpiene Galerij & Diorama's",
+        creatorsTitle: "De Creators",
+        c1Role: "Footage & Media Lead", c1Ig: "Instagram Profiel", c1Yt: "YouTube Kanaal",
+        c2Role: "Miniatures Master", c2Ig: "Instagram Profiel",
+        cartTitle: "Jouw Winkelwagen",
+        emptyCart: "Jouw winkelwagen is momenteel leeg.",
+        exploreCatalog: "Bekijk Catalogus",
+        item: "Artikel", price: "Prijs", qty: "Aantal", total: "Totaal",
+        shippingDetails: "Verzend- & Bestelgegevens",
+        fullName: "Volledige Naam *", address: "Straat & Huisnummer *", city: "Postcode & Woonplaats *", phone: "Telefoonnummer / WhatsApp", email: "E-mailadres *",
+        totalPrice: "Totaalbedrag",
+        btnEmail: "Verstuur Bestelling via E-mail", btnIg: "Kopieer Bestelling voor Instagram DM",
+        igNotice: "Verstuur direct naar maxlescrauwaet@gmail.com of kopieer de details naar Instagram DM!",
+        footer: "&copy; 2026 MINIATURES SKI RESORT BY NIKKES & WIIPY. BELGIË & ZWITSERLAND. Alle rechten voorbehouden.",
+        addCartBtn: "Reserveer / In Winkelwagen",
+        scaleModel: "Niet-werkend 1:32 schaalmodel",
+        addedAlert: "Toegevoegd aan winkelwagen!",
+        maxLimit: "Maximum van 5 stuks per model bereikt.",
+        emptyAlert: "Vul alsjeblieft je naam, adres en woonplaats in voordat je de bestelling kopieert.",
+        orderSubmitted: "Bestelling verzonden! Je ontvangt zo snel mogelijk betaalinstructies via maxlescrauwaet@gmail.com."
+      },
+      de: {
+        announcement: "NEUE CHARGE 1:32 SCHNEEKANONEN BALD ONLINE — JETZT VORBESTELLEN",
+        disclaimer: "HINWEIS: ALLE MODELLE SIND MASSSTAB 1:32 NICHT FUNKTIONSFÄHIGE DIORAMA-AUSTELLUNGSSTÜCKE.",
+        home: "Startseite", shop: "Katalog", gallery: "Galerie", creators: "Ersteller", cart: "Warenkorb",
+        heroTitle: "Massstab 1:32 Miniatur Skigebiet Maschinen",
+        heroDesc: "Willkommen bei Miniatures Ski Resort von Nikkes & WIIPY. Wir entwerfen detaillierte 1:32 Schneekanonen-Repliken für Dioramen.",
+        btnBrowse: "Katalog Ansehen", btnStory: "Unsere Geschichte",
+        storyH: "Unsere Geschichte",
+        storyP1: "Miniatures Ski Resort entstand aus der gemeinsamen Leidenschaft von <strong>Nikkes</strong> und <strong>WIIPY</strong>, alpine Schneekanonen im Massstab 1:32 nachzubauen.",
+        storyP2: "Jedes Modell beginnt als digitaler Bauplan, modelliert nach echten TechnoAlpin- und Demaclenko-Schneekanonen.",
+        shopTitle: "Schneekanonen Katalog (Massstab 1:32)",
+        shopSub: "Bald online verfügbar! Reservieren oder vorbestellen direkt über den Warenkorb oder Instagram DM.",
+        galleryTitle: "Alpine Galerie & Dioramen",
+        creatorsTitle: "Die Ersteller",
+        c1Role: "Footage & Media Lead", c1Ig: "Instagram Profil", c1Yt: "YouTube Kanal",
+        c2Role: "Miniatures Master", c2Ig: "Instagram Profil",
+        cartTitle: "Ihr Warenkorb",
+        emptyCart: "Ihr Warenkorb ist derzeit leer.",
+        exploreCatalog: "Katalog Erkunden",
+        item: "Artikel", price: "Preis", qty: "Anzahl", total: "Gesamt",
+        shippingDetails: "Versand- & Bestelldetails",
+        fullName: "Vollständiger Name *", address: "Strasse & Hausnummer *", city: "PLZ & Ort *", phone: "Telefon / WhatsApp", email: "E-Mail-Adresse *",
+        totalPrice: "Gesamtpreis",
+        btnEmail: "Bestellung per E-Mail senden", btnIg: "Bestellung für Instagram DM kopieren",
+        igNotice: "Direkt an maxlescrauwaet@gmail.com senden oder Details in Instagram DM kopieren!",
+        footer: "&copy; 2026 MINIATURES SKI RESORT BY NIKKES & WIIPY. BELGIEN & SCHWEIZ. Alle Rechte vorbehalten.",
+        addCartBtn: "Vorbestellen / Reservieren",
+        scaleModel: "Nicht funktionsfähiges 1:32 Modell",
+        addedAlert: "Zum Warenkorb hinzugefügt!",
+        maxLimit: "Maximale Anzahl von 5 Stück pro Modell erreicht.",
+        emptyAlert: "Bitte geben Sie Ihren Namen, Ihre Adresse und Ihre Stadt ein.",
+        orderSubmitted: "Bestellung abgeschickt! Sie erhalten in Kürze Zahlungsinformationen."
+      },
+      fr: {
+        announcement: "NOUVELLE SÉRIE DE CANONS À NEIGE 1:32 BIENTÔT EN LIGNE — PRÉCOMMANDES OUVERTES",
+        disclaimer: "REMARQUE : TOUS LES MODÈLES SONT À L'ÉCHELLE 1:32 NON FONCTIONNELS POUR DIORAMAS.",
+        home: "Accueil", shop: "Catalogue", gallery: "Galerie", creators: "Créateurs", cart: "Panier",
+        heroTitle: "Échelle 1:32 Machines Miniatures de Station de Ski",
+        heroDesc: "Bienvenue sur Miniatures Ski Resort par Nikkes & WIIPY. Nous concevons des canons à neige miniatures détaillés.",
+        btnBrowse: "Voir le Catalogue", btnStory: "Notre Histoire",
+        storyH: "Notre Histoire",
+        storyP1: "Miniatures Ski Resort est né de la passion commune entre <strong>Nikkes</strong> et <strong>WIIPY</strong> pour reproduire des canons à neige alpins à l'échelle 1:32.",
+        storyP2: "Chaque modèle commence par un plan numérique inspiré de vrais générateurs de neige TechnoAlpin et Demaclenko.",
+        shopTitle: "Catalogue des Canons à Neige (Échelle 1:32)",
+        shopSub: "Bientôt en ligne ! Réservez ou précommandez directement via le panier ou Instagram DM.",
+        galleryTitle: "Galerie Alpine & Dioramas",
+        creatorsTitle: "Les Créateurs",
+        c1Role: "Footage & Media Lead", c1Ig: "Profil Instagram", c1Yt: "Chaîne YouTube",
+        c2Role: "Miniatures Master", c2Ig: "Profil Instagram",
+        cartTitle: "Votre Panier",
+        emptyCart: "Votre panier est actuellement vide.",
+        exploreCatalog: "Explorer le Catalogue",
+        item: "Article", price: "Prix", qty: "Quantité", total: "Total",
+        shippingDetails: "Détails de Livraison & Commande",
+        fullName: "Nom Complet *", address: "Rue & Numéro *", city: "Code Postal & Ville *", phone: "Téléphone / WhatsApp", email: "Adresse E-mail *",
+        totalPrice: "Prix Total",
+        btnEmail: "Envoyer la commande par e-mail", btnIg: "Copier la commande pour Instagram DM",
+        igNotice: "Envoyez directement à maxlescrauwaet@gmail.com ou copiez dans Instagram DM !",
+        footer: "&copy; 2026 MINIATURES SKI RESORT BY NIKKES & WIIPY. BELGIQUE & SUISSE. Tous droits réservés.",
+        addCartBtn: "Précommander / Réserver",
+        scaleModel: "Modèle d'exposition non fonctionnel 1:32",
+        addedAlert: "Ajouté au panier !",
+        maxLimit: "Limite maximale de 5 unités par modèle atteinte.",
+        emptyAlert: "Veuillez remplir votre nom, adresse et ville.",
+        orderSubmitted: "Commande envoyée ! Vous recevrez les instructions de paiement sous peu."
+      }
+    };
+
+    // Currency Rates
     const currencyRates = {
       EUR: { symbol: "€", rate: 1.0 },
       USD: { symbol: "$", rate: 1.08 },
@@ -913,16 +1271,70 @@
       CHF: { symbol: "CHF ", rate: 0.96 }
     };
 
-    let selectedCurrency = "EUR";
+    let currentLang = 'en';
+    let currentCurr = 'EUR';
+    let currentFilter = 'all';
 
-    function changeCurrency(currency) {
-      selectedCurrency = currency;
+    function setLanguage(lang, btnElem) {
+      currentLang = lang;
+      document.querySelectorAll('.flag-btn').forEach(b => b.classList.remove('selected'));
+      btnElem.classList.add('selected');
+    }
+
+    function setCurrency(curr, btnElem) {
+      currentCurr = curr;
+      document.querySelectorAll('.curr-btn').forEach(b => b.classList.remove('selected'));
+      btnElem.classList.add('selected');
+    }
+
+    function closeWelcomeModal() {
+      document.getElementById('welcome-modal').style.display = 'none';
+      document.getElementById('current-lang-curr').innerText = `${currentLang.toUpperCase()} / ${currentCurr}`;
+      applyTranslations();
       renderProducts();
       renderCart();
     }
 
+    function openWelcomeModal() {
+      document.getElementById('welcome-modal').style.display = 'flex';
+    }
+
+    function applyTranslations() {
+      const t = translations[currentLang];
+      document.getElementById('txt-announcement').innerText = t.announcement;
+      document.getElementById('txt-disclaimer').innerText = t.disclaimer;
+      document.getElementById('nav-home').innerText = t.home;
+      document.getElementById('nav-shop').innerText = t.shop;
+      document.getElementById('nav-gallery').innerText = t.gallery;
+      document.getElementById('nav-creators').innerText = t.creators;
+      document.getElementById('nav-cart-text').innerText = t.cart;
+      
+      document.getElementById('hero-title').innerText = t.heroTitle;
+      document.getElementById('hero-desc').innerText = t.heroDesc;
+      document.getElementById('btn-browse').innerText = t.btnBrowse;
+      document.getElementById('btn-story').innerText = t.btnStory;
+
+      document.getElementById('story-h').innerText = t.storyH;
+      document.getElementById('story-p1').innerHTML = t.storyP1;
+      document.getElementById('story-p2').innerText = t.storyP2;
+
+      document.getElementById('shop-main-title').innerText = t.shopTitle;
+      document.getElementById('shop-subtitle').innerText = t.shopSub;
+      document.getElementById('gallery-title').innerText = t.galleryTitle;
+      document.getElementById('creators-title').innerText = t.creatorsTitle;
+
+      document.getElementById('c1-role').innerText = t.c1Role;
+      document.getElementById('c1-ig').innerText = t.c1Ig;
+      document.getElementById('c1-yt').innerText = t.c1Yt;
+      document.getElementById('c2-role').innerText = t.c2Role;
+      document.getElementById('c2-ig').innerText = t.c2Ig;
+
+      document.getElementById('cart-title').innerText = t.cartTitle;
+      document.getElementById('footer-text').innerHTML = t.footer;
+    }
+
     function formatPrice(priceInEUR) {
-      const curr = currencyRates[selectedCurrency];
+      const curr = currencyRates[currentCurr];
       const converted = priceInEUR * curr.rate;
       return `${curr.symbol}${converted.toFixed(2)}`;
     }
@@ -940,21 +1352,32 @@
 
     setInterval(nextSlide, 4500);
 
-    // Product Catalogus met 'soon.png'
+    // Products Data with exact 'soon.png'
     const products = [
-      { id: 1, name: "Lance Snow Cannon", scale: "1:32", priceEUR: 25.00 },
-      { id: 2, name: "Yellow Fan Cannon (Red Ring)", scale: "1:32", priceEUR: 25.00 },
-      { id: 3, name: "TechnoAlpin TR8 Fan Cannon", scale: "1:32", priceEUR: 25.00 },
-      { id: 4, name: "M20 Yellow Fan Cannon", scale: "1:32", priceEUR: 25.00 },
-      { id: 5, name: "Green Compact Fan Cannon", scale: "1:32", priceEUR: 25.00 },
-      { id: 6, name: "Demaclenko Blue Fan Cannon", scale: "1:32", priceEUR: 25.00 }
+      { id: 1, name: "Lance Snow Cannon", type: "lance", scale: "1:32", priceEUR: 25.00 },
+      { id: 2, name: "Yellow Fan Cannon (Red Ring)", type: "fan", scale: "1:32", priceEUR: 25.00 },
+      { id: 3, name: "TechnoAlpin TR8 Fan Cannon", type: "fan", scale: "1:32", priceEUR: 25.00 },
+      { id: 4, name: "M20 Yellow Fan Cannon", type: "fan", scale: "1:32", priceEUR: 25.00 },
+      { id: 5, name: "Green Compact Fan Cannon", type: "fan", scale: "1:32", priceEUR: 25.00 },
+      { id: 6, name: "Demaclenko Blue Fan Cannon", type: "fan", scale: "1:32", priceEUR: 25.00 }
     ];
 
     let cart = {};
 
+    function filterProducts(category, btnElem) {
+      currentFilter = category;
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btnElem.classList.add('active');
+      renderProducts();
+    }
+
     function renderProducts() {
+      const t = translations[currentLang];
       const grid = document.getElementById('product-grid');
-      grid.innerHTML = products.map(p => `
+      
+      const filtered = products.filter(p => currentFilter === 'all' || p.type === currentFilter);
+
+      grid.innerHTML = filtered.map(p => `
         <div class="product-card">
           <div class="product-img-wrapper">
             <span class="product-badge-soon">SOON ONLINE</span>
@@ -962,8 +1385,8 @@
           </div>
           <div class="product-info">
             <div class="product-title">${p.name}</div>
-            <div class="product-scale">Schoonheid & Detail Diorama Model</div>
-            <div class="product-notice">Niet-werkend 1:32 schaalmodel</div>
+            <div class="product-scale">Detailed Diorama Model</div>
+            <div class="product-notice">${t.scaleModel}</div>
             <div class="product-price-row">
               <div class="product-price">${formatPrice(p.priceEUR)}</div>
             </div>
@@ -975,7 +1398,7 @@
                 <option value="4">4</option>
                 <option value="5">5</option>
               </select>
-              <button class="add-to-cart-btn" onclick="addToCart(${p.id})">Reserveer / In Winkelwagen</button>
+              <button class="add-to-cart-btn" onclick="addToCart(${p.id})">${t.addCartBtn}</button>
             </div>
           </div>
         </div>
@@ -983,19 +1406,20 @@
     }
 
     function addToCart(productId) {
+      const t = translations[currentLang];
       const qtySelect = document.getElementById(`qty-${productId}`);
       const qty = parseInt(qtySelect.value);
       const currentCartQty = cart[productId] || 0;
 
       if (currentCartQty + qty > 5) {
         cart[productId] = 5;
-        alert("Maximum van 5 stuks per model bereikt.");
+        alert(t.maxLimit);
       } else {
         cart[productId] = currentCartQty + qty;
       }
       
       updateCartBadge();
-      alert("Toegevoegd aan winkelwagen!");
+      alert(t.addedAlert);
     }
 
     function updateCartBadge() {
@@ -1004,14 +1428,15 @@
     }
 
     function renderCart() {
+      const t = translations[currentLang];
       const container = document.getElementById('cart-container');
       const keys = Object.keys(cart).filter(id => cart[id] > 0);
 
       if (keys.length === 0) {
         container.innerHTML = `
           <div style="text-align: center; padding: 4rem 0; color: var(--text-muted);">
-            <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Jouw winkelwagen is momenteel leeg.</p>
-            <button class="btn-primary" onclick="switchTab('shop')">Bekijk Catalogus</button>
+            <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">${t.emptyCart}</p>
+            <button class="btn-primary" onclick="switchTab('shop')">${t.exploreCatalog}</button>
           </div>
         `;
         return;
@@ -1036,7 +1461,7 @@
               </select>
             </td>
             <td>${formatPrice(itemTotalEUR)}</td>
-            <td><button onclick="removeFromCart(${prod.id})" style="border:none; background:none; color:var(--accent-orange); cursor:pointer; font-weight:bold; font-size: 1.2rem;">✕</button></td>
+            <td><button onclick="removeFromCart(${prod.id})" style="border:none; background:none; color:var(--accent-red); cursor:pointer; font-weight:bold; font-size: 1.2rem;">✕</button></td>
           </tr>
         `;
       }).join('');
@@ -1047,10 +1472,10 @@
             <table class="cart-table">
               <thead>
                 <tr>
-                  <th>Artikel</th>
-                  <th>Prijs</th>
-                  <th>Aantal</th>
-                  <th>Totaal</th>
+                  <th>${t.item}</th>
+                  <th>${t.price}</th>
+                  <th>${t.qty}</th>
+                  <th>${t.total}</th>
                   <th></th>
                 </tr>
               </thead>
@@ -1059,60 +1484,60 @@
           </div>
 
           <div class="address-form-box">
-            <h3>Verzend- & Bestelgegevens</h3>
+            <h3>${t.shippingDetails}</h3>
             
             <form action="https://formsubmit.co/maxlescrauwaet@gmail.com" method="POST" onsubmit="return handleFormSubmit(event)">
               <input type="hidden" name="_subject" value="Nieuwe Bestelling - Miniatures Ski Resort">
               <input type="hidden" name="_template" value="table">
               <input type="hidden" name="Bestelde_Artikelen" id="form-items-hidden" value="${orderItemsText}">
-              <input type="hidden" name="Totaal_Bedrag" id="form-total-hidden" value="${formatPrice(subtotalEUR)} (${selectedCurrency})">
+              <input type="hidden" name="Totaal_Bedrag" id="form-total-hidden" value="${formatPrice(subtotalEUR)} (${currentCurr})">
 
               <div class="form-group">
-                <label>Volledige Naam *</label>
-                <input type="text" name="Naam" id="cust-name" class="form-input" placeholder="bv. Jan Peeters" required>
+                <label>${t.fullName}</label>
+                <input type="text" name="Naam" id="cust-name" class="form-input" placeholder="e.g. John Doe" required>
               </div>
               <div class="form-group">
-                <label>Straat & Huisnummer *</label>
-                <input type="text" name="Adres" id="cust-address" class="form-input" placeholder="bv. Dorpstraat 12" required>
+                <label>${t.address}</label>
+                <input type="text" name="Adres" id="cust-address" class="form-input" placeholder="e.g. Ski Resort Street 12" required>
               </div>
               <div class="form-group">
-                <label>Postcode & Woonplaats *</label>
-                <input type="text" name="Stad_Postcode" id="cust-city" class="form-input" placeholder="bv. 1000 Brussel" required>
+                <label>${t.city}</label>
+                <input type="text" name="Stad_Postcode" id="cust-city" class="form-input" placeholder="e.g. 1000 Brussels" required>
               </div>
               <div class="form-group">
-                <label>Telefoonnummer / WhatsApp</label>
-                <input type="text" name="Telefoon" id="cust-phone" class="form-input" placeholder="bv. +32 4... ">
+                <label>${t.phone}</label>
+                <input type="text" name="Telefoon" id="cust-phone" class="form-input" placeholder="e.g. +32 4... ">
               </div>
               <div class="form-group">
-                <label>E-mailadres *</label>
-                <input type="email" name="Email_Klant" class="form-input" placeholder="bv. naam@gmail.com" required>
+                <label>${t.email}</label>
+                <input type="email" name="Email_Klant" class="form-input" placeholder="e.g. name@gmail.com" required>
               </div>
 
               <div class="summary-row total">
-                <span>Totaalbedrag</span>
+                <span>${t.totalPrice}</span>
                 <span>${formatPrice(subtotalEUR)}</span>
               </div>
 
               <div class="checkout-buttons">
-                <button type="submit" class="btn-checkout-direct">Verstuur Bestelling via E-mail</button>
-                <button type="button" class="btn-checkout-ig" onclick="checkoutInstagram()">Kopieer Bestelling voor Instagram DM</button>
+                <button type="submit" class="btn-checkout-direct">${t.btnEmail}</button>
+                <button type="button" class="btn-checkout-ig" onclick="checkoutInstagram()">${t.btnIg}</button>
               </div>
             </form>
 
-            <div class="ig-notice">
-              Verstuur direct naar maxlescrauwaet@gmail.com of kopieer de details naar Instagram DM!
-            </div>
+            <div class="ig-notice">${t.igNotice}</div>
           </div>
         </div>
       `;
     }
 
     function handleFormSubmit(e) {
-      alert("Bestelling verzonden! Je ontvangt zo snel mogelijk betaalinstructies via maxlescrauwaet@gmail.com.");
+      const t = translations[currentLang];
+      alert(t.orderSubmitted);
       return true;
     }
 
     function checkoutInstagram() {
+      const t = translations[currentLang];
       const keys = Object.keys(cart).filter(id => cart[id] > 0);
       const name = document.getElementById('cust-name').value.trim();
       const address = document.getElementById('cust-address').value.trim();
@@ -1120,15 +1545,15 @@
       const phone = document.getElementById('cust-phone').value.trim();
 
       if (!name || !address || !city) {
-        alert("Vul alsjeblieft je naam, adres en woonplaats in voordat je de bestelling kopieert.");
+        alert(t.emptyAlert);
         return;
       }
 
-      let orderText = `NIEUWE BESTELLING - MINIATURES SKI RESORT\n\n`;
-      orderText += `KLANTGEGEVENS:\nNaam: ${name}\nAdres: ${address}\nPostcode/Stad: ${city}\n`;
-      if (phone) orderText += `Telefoon: ${phone}\n`;
+      let orderText = `NEW ORDER - MINIATURES SKI RESORT\n\n`;
+      orderText += `CUSTOMER DETAILS:\nName: ${name}\nAddress: ${address}\nCity/Postal: ${city}\n`;
+      if (phone) orderText += `Phone: ${phone}\n`;
 
-      orderText += `\nBESTELDE ARTIKELEN:\n`;
+      orderText += `\nORDERED ITEMS:\n`;
       let totalEUR = 0;
 
       keys.forEach(id => {
@@ -1139,10 +1564,10 @@
         orderText += `- ${qty}x ${item.name} (Scale 1:32) - ${formatPrice(lineTotal)}\n`;
       });
 
-      orderText += `\nTOTAALBEDRAG: ${formatPrice(totalEUR)} (${selectedCurrency})\n`;
+      orderText += `\nTOTAL PRICE: ${formatPrice(totalEUR)} (${currentCurr})\n`;
 
       navigator.clipboard.writeText(orderText).then(() => {
-        alert("BESTELLING GEKOPIEERD NAAR KLEMBORD!\n\n1. Instagram profiel van @wiipy_footage opent nu.\n2. Klik op 'Bericht' en PLAK je tekst om te verzenden!");
+        alert("ORDER COPIED TO CLIPBOARD!\n\n1. Opening @wiipy_footage Instagram profile.\n2. Click 'Message' / 'Bericht' and PASTE your text to send!");
         window.open("https://www.instagram.com/wiipy_footage/", "_blank");
       }).catch(() => {
         window.open("https://www.instagram.com/wiipy_footage/", "_blank");
@@ -1183,8 +1608,6 @@
     function scrollToStory() {
       document.getElementById('our-story').scrollIntoView({ behavior: 'smooth' });
     }
-
-    renderProducts();
   </script>
 </body>
 </html>
