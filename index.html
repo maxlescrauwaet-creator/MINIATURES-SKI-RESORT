@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MINIATURES SKI RESORT | Scale 1:32 Diorama Models</title>
+  <title>MINIATURES SKI RESORT | Scale 1:32 Custom Models</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -16,7 +16,6 @@
       --border-dark: #0f172a;
       --accent-orange: #ff5500;
       --accent-orange-hover: #e04b00;
-      --accent-blue: #0284c7;
       --text-main: #0f172a;
       --text-muted: #64748b;
       --font-main: 'Inter', -apple-system, sans-serif;
@@ -39,17 +38,16 @@
 
     a { color: inherit; text-decoration: none; }
 
-    /* Header Container Top Space */
+    /* Top Bars */
     .top-header-wrapper {
       position: sticky;
       top: 0;
       z-index: 100;
       background: #ffffff;
       border-bottom: 1px solid var(--border-color);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.04);
     }
 
-    /* Announcement & Disclaimer Bars */
     .announcement-bar {
       background: var(--text-main);
       color: #ffffff;
@@ -57,7 +55,7 @@
       padding: 0.75rem 1.5rem;
       font-size: 0.8rem;
       font-weight: 800;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
     }
 
@@ -73,7 +71,7 @@
       letter-spacing: 0.05em;
     }
 
-    /* Spacious Header Navigation */
+    /* Modern Clean Header */
     header {
       background: rgba(255, 255, 255, 0.98);
       backdrop-filter: blur(12px);
@@ -82,7 +80,7 @@
     .nav-container {
       max-width: 1400px;
       margin: 0 auto;
-      padding: 1.75rem 2.5rem;
+      padding: 1.5rem 2.5rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -96,8 +94,8 @@
     }
 
     .brand-logo-img {
-      width: 56px;
-      height: 56px;
+      width: 54px;
+      height: 54px;
       border-radius: 10px;
       object-fit: cover;
       border: 1px solid var(--border-color);
@@ -122,7 +120,7 @@
 
     nav { 
       display: flex; 
-      gap: 2.25rem; 
+      gap: 2.5rem; 
       align-items: center; 
     }
 
@@ -181,7 +179,7 @@
       font-weight: 900;
     }
 
-    /* Main Container */
+    /* Main Content */
     main {
       max-width: 1400px;
       margin: 0 auto;
@@ -192,7 +190,7 @@
     .tab-content { display: none; }
     .tab-content.active { display: block; }
 
-    /* Home & Hero Showcase */
+    /* Hero Banner */
     .hero-banner {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -256,7 +254,7 @@
 
     .btn-secondary:hover { background: var(--bg-surface); }
 
-    /* Image Carousel Slider */
+    /* Slider Container */
     .slider-container {
       position: relative;
       width: 100%;
@@ -307,7 +305,7 @@
       opacity: 0.9;
     }
 
-    /* Section Headers */
+    /* Titles */
     .section-title {
       font-size: 1.8rem;
       font-weight: 900;
@@ -326,7 +324,7 @@
       background: var(--border-color);
     }
 
-    /* Our Story Layout */
+    /* Our Story */
     .story-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -386,7 +384,7 @@
     .product-img-wrapper {
       position: relative;
       width: 100%;
-      height: 300px;
+      height: 320px;
       background: var(--bg-surface);
       overflow: hidden;
       border-bottom: 1px solid var(--border-color);
@@ -395,11 +393,18 @@
       justify-content: center;
     }
 
-    .product-badge-instock {
+    .product-image {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      padding: 1.5rem;
+    }
+
+    .product-badge-soon {
       position: absolute;
       top: 1.25rem;
       right: 1.25rem;
-      background: var(--text-main);
+      background: var(--accent-orange);
       color: #ffffff;
       padding: 0.4rem 0.9rem;
       border-radius: 6px;
@@ -452,7 +457,7 @@
 
     .add-to-cart-btn {
       flex: 1;
-      background: var(--accent-orange);
+      background: var(--text-main);
       color: #ffffff;
       border: none;
       padding: 1rem;
@@ -465,9 +470,9 @@
       transition: background 0.2s ease;
     }
 
-    .add-to-cart-btn:hover { background: var(--accent-orange-hover); }
+    .add-to-cart-btn:hover { background: var(--accent-orange); }
 
-    /* Cart & Address Form */
+    /* Cart Layout */
     .cart-layout {
       display: grid;
       grid-template-columns: 1fr 440px;
@@ -564,58 +569,7 @@
 
     .ig-notice { font-size: 0.8rem; color: var(--text-muted); text-align: center; margin-top: 1rem; font-weight: 600; line-height: 1.4; }
 
-    /* Locations Grid */
-    .locations-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
-      gap: 2.5rem;
-    }
-
-    .location-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
-      padding: 3.5rem 2.5rem;
-    }
-
-    .location-flag { font-size: 2.5rem; margin-bottom: 1.25rem; }
-
-    .location-title {
-      font-size: 1.6rem;
-      font-weight: 900;
-      margin-bottom: 0.75rem;
-      text-transform: uppercase;
-    }
-
-    .location-desc {
-      color: var(--text-muted);
-      font-size: 1.05rem;
-      line-height: 1.7;
-    }
-
-    /* Process Grid */
-    .process-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2.5rem;
-    }
-
-    .process-card {
-      background: var(--bg-main);
-      border: 1px solid var(--border-color);
-      border-radius: 16px;
-      overflow: hidden;
-    }
-
-    .process-img-wrapper { height: 280px; overflow: hidden; background: var(--bg-surface); border-bottom: 1px solid var(--border-color); }
-    .process-img { width: 100%; height: 100%; object-fit: cover; }
-    .process-body { padding: 2rem; }
-
-    .process-step { font-size: 0.8rem; font-weight: 900; color: var(--accent-orange); text-transform: uppercase; margin-bottom: 0.4rem; }
-    .process-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.6rem; }
-    .process-desc { font-size: 0.95rem; color: var(--text-muted); }
-
-    /* Dioramas & Gallery Grid */
+    /* Gallery Grid */
     .gallery-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -643,7 +597,7 @@
 
     .creator-box {
       background: var(--bg-surface);
-      border: 1px solid var(--border-card);
+      border: 1px solid var(--border-color);
       border-radius: 20px;
       padding: 3.5rem 2rem;
       text-align: center;
@@ -705,11 +659,11 @@
 </head>
 <body>
 
-  <!-- Sticky Header Wrapper with Spacing -->
+  <!-- Sticky Header Wrapper -->
   <div class="top-header-wrapper">
     <!-- Top Announcement Bar -->
     <div class="announcement-bar">
-      NEW BATCH OF 1:32 SCALE SNOW CANNONS NOW IN STOCK
+      NEW BATCH OF 1:32 SCALE SNOW CANNONS SOON ONLINE — PRE-ORDERS OPEN
     </div>
     
     <!-- Safety Disclaimer Bar -->
@@ -729,10 +683,8 @@
         </div>
         <nav>
           <span class="nav-link active" onclick="switchTab('home')">Home</span>
-          <span class="nav-link" onclick="switchTab('shop')">Shop</span>
-          <span class="nav-link" onclick="switchTab('locations')">Locations</span>
+          <span class="nav-link" onclick="switchTab('shop')">Catalog</span>
           <span class="nav-link" onclick="switchTab('gallery')">Gallery</span>
-          <span class="nav-link" onclick="switchTab('process')">How We Make It</span>
           <span class="nav-link" onclick="switchTab('creators')">Creators</span>
           <button class="cart-btn" onclick="switchTab('cart')">
             Cart <span class="cart-badge" id="cart-count">0</span>
@@ -750,8 +702,8 @@
         <div class="hero-banner">
           <div class="hero-text-content">
             <h1>Scale 1:32 Miniature Ski Resort Machinery</h1>
-            <p>Welcome to Miniatures Ski Resort by Nikkes & WIIPY. We design and build ultra-detailed 1:32 replica snow cannons and alpine diorama machinery.</p>
-            <button class="btn-primary" onclick="switchTab('shop')">Go To Shop</button>
+            <p>Welcome to Miniatures Ski Resort by Nikkes & WIIPY. We design ultra-detailed 1:32 replica snow cannons for alpine dioramas and collectors worldwide.</p>
+            <button class="btn-primary" onclick="switchTab('shop')">Browse Catalog</button>
             <button class="btn-secondary" onclick="scrollToStory()">Our Story</button>
           </div>
 
@@ -792,8 +744,8 @@
         <div class="story-grid" id="our-story">
           <div class="story-text">
             <h2>Our Story</h2>
-            <p>Miniatures Ski Resort started with a shared passion between <strong>Nikkes</strong> and <strong>WIIPY</strong> to bring the magic of alpine snowmaking and winter machinery down to 1:32 scale.</p>
-            <p>Every single model begins as a digital blueprint modeled directly after real-world TechnoAlpin, Demaclenko, and custom alpine snow generators. Using high-precision 3D printing and meticulous hand-finishing, we create collector-grade models tailored specifically for miniature ski resort dioramas.</p>
+            <p>Miniatures Ski Resort started with a shared passion between <strong>Nikkes</strong> and <strong>WIIPY</strong> to bring the magic of alpine snowmaking machinery down to 1:32 scale.</p>
+            <p>Every single model begins as a digital blueprint modeled directly after real-world TechnoAlpin, Demaclenko, and custom alpine snow generators. Using high-precision 3D printing and hand-finishing, we create collector-grade models tailored for miniature ski resort dioramas.</p>
           </div>
           <div>
             <img src="marcino-ski-270297_1920.jpg" class="story-img" alt="Alpine Mountain Scene">
@@ -803,78 +755,20 @@
 
       <!-- SHOP TAB -->
       <section id="tab-shop" class="tab-content">
-        <h2 class="section-title">Snow Cannons Collection (Scale 1:32)</h2>
-        <p style="margin-bottom: 2rem; color: var(--text-muted);">Please note: All models listed are non-functional 1:32 diorama display replicas.</p>
+        <h2 class="section-title">Snow Cannons Catalog (Scale 1:32)</h2>
+        <p style="margin-bottom: 2rem; color: var(--text-muted);">New models coming soon online! Reserve or pre-order yours directly via Cart or Instagram DM.</p>
         <div class="product-grid" id="product-grid"></div>
-      </section>
-
-      <!-- LOCATIONS TAB -->
-      <section id="tab-locations" class="tab-content">
-        <h2 class="section-title">Our Locations</h2>
-        <div class="locations-grid">
-          <div class="location-card">
-            <div class="location-flag">BE</div>
-            <h3 class="location-title">Belgium HQ</h3>
-            <p class="location-desc">Design studio, high-precision 3D printing, fine sanding, hand-painting, decal application, and primary shipping hub managed by Nikkes & WIIPY.</p>
-          </div>
-          <div class="location-card">
-            <div class="location-flag">CH</div>
-            <h3 class="location-title">Switzerland Outpost</h3>
-            <p class="location-desc">Field research center, alpine testing grounds, and diorama modeling studio located right in the heart of the Swiss Alps.</p>
-          </div>
-        </div>
       </section>
 
       <!-- GALLERY TAB -->
       <section id="tab-gallery" class="tab-content">
-        <h2 class="section-title">Alpine Gallery & Action Shots</h2>
+        <h2 class="section-title">Alpine Gallery & Dioramas</h2>
         <div class="gallery-grid">
           <div class="gallery-item"><img src="4117868-snow-cannon-3222927_1920.jpg" class="gallery-img" alt="Gallery 1"></div>
           <div class="gallery-item"><img src="hans-snow-cannon-999296_1920.jpg" class="gallery-img" alt="Gallery 2"></div>
           <div class="gallery-item"><img src="anncapictures-snow-cannon-2087106_1920.jpg" class="gallery-img" alt="Gallery 3"></div>
           <div class="gallery-item"><img src="hans-snow-cannon-999287_1920.jpg" class="gallery-img" alt="Gallery 4"></div>
           <div class="gallery-item"><img src="marcino-ski-270297_1920.jpg" class="gallery-img" alt="Gallery 5"></div>
-        </div>
-      </section>
-
-      <!-- PROCESS TAB -->
-      <section id="tab-process" class="tab-content">
-        <h2 class="section-title">How We Make It</h2>
-        <p style="margin-bottom: 2.5rem; color: var(--text-muted); font-size: 1.05rem;">Craftsmanship in miniature scale: From high-precision 3D printing to hand-painted details and custom mounting hardware.</p>
-        
-        <div class="process-grid">
-          <div class="process-card">
-            <div class="process-img-wrapper">
-              <img id="proc-img-1" src="1.jpeg" class="process-img" alt="Preparation" onerror="handleImgError(this, 'Process 1')">
-            </div>
-            <div class="process-body">
-              <div class="process-step">Step 01</div>
-              <h3 class="process-title">3D Printing & Prep</h3>
-              <p class="process-desc">Every component is 3D printed with micron precision before being sanded and checked for quality accuracy.</p>
-            </div>
-          </div>
-
-          <div class="process-card">
-            <div class="process-img-wrapper">
-              <img id="proc-img-2" src="2.jpeg" class="process-img" alt="Assembly Line" onerror="handleImgError(this, 'Process 2')">
-            </div>
-            <div class="process-body">
-              <div class="process-step">Step 02</div>
-              <h3 class="process-title">Batch Assembly</h3>
-              <p class="process-desc">Models are fitted onto custom wheeled chassis or tower bases with scale-accurate trailer hitches.</p>
-            </div>
-          </div>
-
-          <div class="process-card">
-            <div class="process-img-wrapper">
-              <img id="proc-img-3" src="3.jpeg" class="process-img" alt="Custom Detailing" onerror="handleImgError(this, 'Process 3')">
-            </div>
-            <div class="process-body">
-              <div class="process-step">Step 03</div>
-              <h3 class="process-title">Custom Paint & Finishing</h3>
-              <p class="process-desc">Finished with authentic decals, brand details, and mechanical pressure hose fittings.</p>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -933,7 +827,10 @@
 
     setInterval(nextSlide, 4500);
 
-    // Product Catalog Data (All In Stock)
+    // SVG Placeholder for SOON ONLINE Image
+    const soonOnlineSvg = `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600"><rect width="600" height="600" fill="%23ffffff"/><text x="50%" y="42%" font-family="Inter, sans-serif" font-size="72" font-weight="900" font-style="italic" fill="%230f172a" text-anchor="middle">SOON</text><text x="50%" y="58%" font-family="Inter, sans-serif" font-size="72" font-weight="900" font-style="italic" fill="%230f172a" text-anchor="middle">ONLINE</text></svg>`;
+
+    // Product Catalog Data
     const products = [
       { id: 1, name: "Lance Snow Cannon", scale: "1:32", price: 25.00 },
       { id: 2, name: "Yellow Fan Cannon (Red Ring)", scale: "1:32", price: 25.00 },
@@ -950,13 +847,8 @@
       grid.innerHTML = products.map(p => `
         <div class="product-card">
           <div class="product-img-wrapper">
-            <span class="product-badge-instock">IN STOCK</span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 300 200">
-              <rect width="300" height="200" fill="#f8fafc"/>
-              <circle cx="150" cy="90" r="35" fill="#e2e8f0" stroke="#ff5500" stroke-width="2"/>
-              <text x="150" y="95" font-family="sans-serif" font-size="11" fill="#0f172a" text-anchor="middle" font-weight="bold">${p.name}</text>
-              <text x="150" y="160" font-family="sans-serif" font-size="9" fill="#64748b" text-anchor="middle">1:32 Scale Model</text>
-            </svg>
+            <span class="product-badge-soon">SOON ONLINE</span>
+            <img src="${soonOnlineSvg}" class="product-image" alt="SOON ONLINE - ${p.name}">
           </div>
           <div class="product-info">
             <div class="product-title">${p.name}</div>
@@ -973,7 +865,7 @@
                 <option value="4">4</option>
                 <option value="5">5</option>
               </select>
-              <button class="add-to-cart-btn" onclick="addToCart(${p.id})">Add to Cart</button>
+              <button class="add-to-cart-btn" onclick="addToCart(${p.id})">Pre-Order / Reserve</button>
             </div>
           </div>
         </div>
@@ -1009,7 +901,7 @@
         container.innerHTML = `
           <div style="text-align: center; padding: 4rem 0; color: var(--text-muted);">
             <p style="font-size: 1.1rem; margin-bottom: 1.5rem;">Your shopping cart is empty.</p>
-            <button class="btn-primary" onclick="switchTab('shop')">Explore Products</button>
+            <button class="btn-primary" onclick="switchTab('shop')">Explore Catalog</button>
           </div>
         `;
         return;
@@ -1161,17 +1053,6 @@
 
     function handleLogoError(imgElem) { 
       imgElem.style.display = 'none'; 
-    }
-
-    function handleImgError(imgElem, label) {
-      const svg = `
-        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 300 200">
-          <rect width="300" height="200" fill="#f8fafc"/>
-          <circle cx="150" cy="90" r="35" fill="#e2e8f0" stroke="#ff5500" stroke-width="2"/>
-          <text x="150" y="95" font-family="sans-serif" font-size="11" fill="#0f172a" text-anchor="middle" font-weight="bold">${label}</text>
-        </svg>
-      `;
-      imgElem.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
     }
 
     function switchTab(tabId) {
